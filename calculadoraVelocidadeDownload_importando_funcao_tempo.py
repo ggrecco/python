@@ -11,6 +11,4 @@ while i != 0:
     fun_Tempo.calcTempo(segundos)
     print("Velocidade máxima de Download {} MB/s\n".format(calcVel(n)))
     i = n
-
-
-    
+#comentário de modificação nesse 1 arquivo
