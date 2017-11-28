@@ -14,3 +14,7 @@ else:
       print("as raízes da equação são {} e {}".format(rSoma,rSub))
     if rSoma == rSub:
       print("a raiz desta equação é {}".format(rSoma))
+<<<<<<< HEAD
+=======
+#comentário para testar o git
+>>>>>>> 010529b5fed1e8d341b34e8387002d2482b1b88f
