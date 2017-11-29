@@ -8,8 +8,8 @@ def cria_matriz(num_linhas, num_colunas, valor):
         #cria a linha i
         linha = [] #lista vazia
         for j in range(num_colunas):
-            linha.append(valor)
-
+            linha.append(valor)            
         # adiciona linha à matriz
-        matriz.append(linha)
+        
+        matriz.append(linha)       
     return matriz
