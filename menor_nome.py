@@ -15,8 +15,6 @@ def menor_nome(nomes):
             if a < menor:
                 menor = a
                 p = lista[i]
-                
-    print(a)
-    print(menor)
-    print(p.capitalize())
+
+    return (p.capitalize())
 
