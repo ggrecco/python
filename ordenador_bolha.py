@@ -11,11 +11,11 @@ class Ordenador:
 
         #reordenando a lista
         lista[i], lista[posicao_do_menor] = lista[posicao_do_menor], lista[i]
-        return lista
 
-'''
->>>lista = [0,15,-10,30,546,11,2,3,48561,20]
->>>a.selecao_direta(lista)
->>>lista
-[0, 15, -10, 30, 546, 11, 2, 3, 20, 48561]
-'''
+    def bolha(self, lista):
+        fim = len(lista)
+
+        for i in range(fim - 1, 0, -1):
+            for j in range(i):
+                if lista[j] > lista[j+1]:
+                    lista[j], lista[j+1] = lista[j+1], lista[j]
