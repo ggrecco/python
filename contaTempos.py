@@ -4,10 +4,13 @@ import time
 
 class ContaTempos:
     def lista_aleatoria(self, n):
-        lista = [0 for x in range(n)]
-        for i in range(n):
-            lista[i] = random.randrange(1000)# inteiros entre 0 e 999
+        lista = [random.randrange(1000) for x in range(n)]
+        #for i in range(n):
+            #lista[i] = random.randrange(1000)# inteiros entre 0 e 999
         return lista
+
+    def lista_quase_ordenada(self, n):
+        
 
     def compara(self, n):
         lista1 = self.lista_aleatoria(n)
@@ -20,7 +23,7 @@ class ContaTempos:
         print("Bolha demorou {}".format(depois - antes))
 
         o = ordenador_bolha.Ordenador()
-        antes = time.time()
+        antes2 = time.time()
         o.selecao_direta(lista2)
-        depois = time.time()
-        print("Seleção direta demorou {}".format(depois - antes))
+        depois2 = time.time()
+        print("Seleção direta demorou {}".format(depois2))
