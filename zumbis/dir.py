@@ -1,4 +1,4 @@
 a = "abacate"
 b = 1
-c = "1"
-print("PARA STRINGS: \n",dir(a),"\nPara Númeors:\n",dir(b),"\nPAra Numeros Strings: \n",dir(c))
+c = 1.2
+print("Para Sstrings: \n",dir(a),"\n\nPara Inteiros:\n",dir(b),"\n\nPara Ponto Fuluante: \n",dir(c))
