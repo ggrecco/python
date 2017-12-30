@@ -4,6 +4,5 @@ x = 0
 while x <= n:
     if x % 2 == 0:
         print(x, end=" ")
-        x += 1
-    else:
-        x += 1
+    x += 1
+    
