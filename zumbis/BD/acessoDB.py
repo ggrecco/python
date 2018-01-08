@@ -1,3 +1,4 @@
+#acesso para pesquisa
 import sqlite3
 
 def db(sql,nomeDB):
@@ -6,5 +7,6 @@ def db(sql,nomeDB):
     cursor = banco.cursor()
     cursor.execute(sql)
     linhas = cursor.fetchall()
-    return linhas
     cursor.close()
+    return linhas
+
