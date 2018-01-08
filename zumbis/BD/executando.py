@@ -1,7 +1,7 @@
-from classDB import db
+from acessoDB import db
 
 nomeDB = "surfersDB.sdb"
-sql = "select * from surfers where age > 25"
+sql = "select * from surfers where age < 25"
 linhas = db(sql,nomeDB)
 for linha in linhas:
     print("Nome....:", linha['name'])
