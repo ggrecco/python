@@ -1,0 +1,8 @@
+{% include "paginas/base.html" %}
+<h1>{{ string }}</h1>
+<h2>Login</h2>
+  <form action="/user" method="post">
+              Username: <input name="username" type="text" />
+              Password: <input name="password" type="password" />
+    <input value="Login" type="submit" />
+  </form>

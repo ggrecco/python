@@ -8,10 +8,9 @@ def italico(f):
         return "<i>" + f() + "</i>"
     return envelope
 
-@italico
 @negrito
+@italico
+def alô():
+    return 'Alô mundo'
 
-def alo():
-    return "Alô Mundo!"
-
-print(alo())
+print (alô())
