@@ -1,0 +1,15 @@
+{% include "html/base.html" %}
+<h1>{{ string }}</h1>
+<h2>Cadastro</h2>
+    <form action="/users" method="post">
+              Nome: <input name="nome" type="text" />
+              Telefone: <input name="telefone" type="text" />
+              E-mail: <input name="email" type="text" />
+    <input value="cadastrar" type="submit" />
+    </form>
+    <br />
+<h2>Pesquizar</h2>
+    <form action="/users" method="post">
+        Nome: <input name="nomeC" type="text" />
+      <input value="visualizar" type="submit" />
+    </form>
