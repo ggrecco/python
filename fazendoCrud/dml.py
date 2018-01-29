@@ -38,6 +38,6 @@ def db_select(data, field):
     FROM users
     WHERE {} = {}""".format(field, data)
     cur.execute(sql)
-    data = cur.fetchall()
+    dados = cur.fetchall()
     con.close()
-    return data
+    return dados
