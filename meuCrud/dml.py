@@ -38,11 +38,12 @@ def db_select(dado):
     sql = """
     SELECT id, name, phone
     FROM users
-    WHERE id = {}""".format(dado)
+    WHERE name = '{}' """.format(dado)
     cur.execute(sql)
     dados = cur.fetchall()
     con.close()
     return dados
+    #WHERE id = {}""".format(dado)
 
 def db_selectall():
     con = sqlite3.connect('banco.db')

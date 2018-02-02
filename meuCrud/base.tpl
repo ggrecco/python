@@ -19,7 +19,7 @@
 
 <h3>READ</h3>
 	<form action="/ler" method="post">
-		Procurar por(id): <input name="dado" type="text" />
+		Procurar por nome: <input name="dado" type="text" />
 		<input value="buscar" type="submit" />
 	</form>
 
@@ -41,7 +41,7 @@
 		<input value="Mostrar Todos" type="submit" />
 	</form>
 
-<h1>{{things}}</h1>
+<h1>{{msg}}</h1>
 
 <ul>
 %for thing in things:
