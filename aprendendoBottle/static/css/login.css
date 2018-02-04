@@ -1,0 +1,9 @@
+body{
+    background: url(https://i.ytimg.com/vi/_GvgBSAKq4Q/maxresdefault.jpg);
+	background-color: #444;
+    background: url(https://media.contentapi.ea.com/content/legacy/starwars-ea-com/pt_BR/starwars/battlefront/news-articles/gamescom-twitter-q-and-a/_jcr_content/featuredImage.img.jpg),url(https://media.contentapi.ea.com/content/legacy/starwars-ea-com/pt_BR/starwars/battlefront/news-articles/gamescom-twitter-q-and-a/_jcr_content/featuredImage.img.jpg);
+}
+
+.vertical-offset-100{
+    padding-top:100px;
+}

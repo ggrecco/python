@@ -1,11 +1,23 @@
 from bottle import route, run, request, post, get, template, static_file
-'''
-@route('/')
-@route('/user/<nome>')
-def index(nome = 'Desconhecido'):
-    return '<center><h1>Olá ' + nome + '</h1></center>'
-'''
-@get('/login')
+
+# static routes
+@get('/<filename:re:.*\.css>')
+def stylesheets(filename):
+    return static_file(filename, root='static/css')
+
+@get('/<filename:re:.*\.js>')
+def javascripts(filename):
+    return static_file(filename, root='static/js')
+
+@get('/<filename:re:.*\.(jpg|png|gif|ico)>')
+def imagens(filename):
+    return static_file(filename, root='static/img')
+
+@get('/<filename:re:.*\.(eot|ttf|woff|svg)')
+def fonts(filename):
+    return static_file(filename, root='static/fonts')
+
+@route('/login')
 def login():
     return template('login')
 
