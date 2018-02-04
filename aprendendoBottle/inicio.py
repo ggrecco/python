@@ -16,7 +16,7 @@ def imagens(filename):
 @get('/<filename:re:.*\.(eot|ttf|woff|svg)')
 def fonts(filename):
     return static_file(filename, root='static/fonts')
-
+#------------------------------------------------
 @route('/login')
 def login():
     return template('login')
@@ -31,7 +31,7 @@ def check_login(username,password):
 def acao_login():
     username = request.forms.get('username')
     password = request.forms.get('password')
-    sucesso = check_login('username', 'password')
+    #sucesso = check_login('username', 'password')
     return template('verificacao_login', sucesso = check_login(username, password),nome = username)
 
 
