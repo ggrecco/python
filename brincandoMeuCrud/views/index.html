@@ -1,42 +1,88 @@
 % rebase('base.html')
 <div class="container">
+<div class="row vertical-offset-100">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="panel panel-default">
+	  	<div class="panel-heading">
+	    	<h3 class="panel-title">CADASTRAR:</h3>
+	 	</div>
+	  	<div class="panel-body">
+	    	<form accept-charset="UTF-8" role="form" action="/inserir" method="post">
+                <fieldset>
+	    	  	<div class="form-group">
+	    		    <input class="form-control" placeholder="nome" name="nome" type="text">
+	    		</div>
+	    		<div class="form-group">
+	    			<input class="form-control" placeholder="telefone" name="telefone" type="text" value="">
+	    		</div>
+	    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Cadastrar">
+	    	</fieldset>
+	      	</form>
+	    </div>
+	</div>
+</div>
+<div class="container">
     <div class="row vertical-offset-100">
     	<div class="col-md-4 col-md-offset-4">
     		<div class="panel panel-default">
 			  	<div class="panel-heading">
-			    	<h3 class="panel-title">Faça o Cadastro:</h3>
+			    	<h3 class="panel-title">EXCLUIR:</h3>
 			 	</div>
 			  	<div class="panel-body">
-			    	<form accept-charset="UTF-8" role="form" action="/inserir" method="post">
+			    	<form accept-charset="UTF-8" role="form" action="/deletar" method="post">
                     <fieldset>
 			    	  	<div class="form-group">
-			    		    <input class="form-control" placeholder="nome" name="nome" type="text">
+			    		    <input class="form-control" placeholder="nome" name="delete" type="text">
 			    		</div>
-			    		<div class="form-group">
-			    			<input class="form-control" placeholder="telefone" name="telefone" type="text" value="">
-			    		</div>
-			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Cadastrar">
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Deletar">
 			    	</fieldset>
 			      	</form>
 			    </div>
 			</div>
 		</div>
-    <div class="container">
-        <div class="row vertical-offset-100">
-        	<div class="col-md-4 col-md-offset-4">
-        		<div class="panel panel-default">
-    			  	<div class="panel-heading">
-    			    	<h3 class="panel-title">Escolha quem EXCLUIR:</h3>
-    			 	</div>
-    			  	<div class="panel-body">
-    			    	<form accept-charset="UTF-8" role="form" action="/deletar" method="post">
-                        <fieldset>
-    			    	  	<div class="form-group">
-    			    		    <input class="form-control" placeholder="nome" name="delete" type="text">
-    			    		</div>
-    			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Deletar">
-    			    	</fieldset>
-    			      	</form>
-    			    </div>
-    			</div>
-    		</div>
+<div class="container">
+<div class="row vertical-offset-100">
+<div class="col-md-4 col-md-offset-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">EDITAR:</h3>
+  </div>
+<div class="panel-body">
+  <form accept-charset="UTF-8" role="form" action="/editar" method="post">
+          <fieldset>
+      <div class="form-group">
+        <input class="form-control" placeholder="nome" name="nome" type="text">
+    </div>
+    <div class="form-group">
+        <input class="form-control" placeholder="telefone" name="telefone" type="text" value="">
+    </div>
+    <input class="btn btn-lg btn-success btn-block" type="submit" value="Editar">
+  </fieldset>
+    </form>
+</div>
+</div>
+</div>
+<div class="container">
+    <div class="row vertical-offset-100">
+    	<div class="col-md-4 col-md-offset-4">
+    		<div class="panel panel-default">
+			  	<div class="panel-heading">
+			    	<h3 class="panel-title">EXIBIR:</h3>
+			 	</div>
+			  	<div class="panel-body">
+			    	<form accept-charset="UTF-8" role="form" action="/ler" method="post">
+                    <fieldset>
+			    	  	<div class="form-group">
+			    		    <input class="form-control" placeholder="nome" name="dado" type="text">
+			    		</div>
+			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Exibir">
+			    	</fieldset>
+			      	</form>
+              <form accept-charset="UTF-8" role="form" action="/all" method="post">
+              <fieldset>
+  			    		<input class="btn btn-lg btn-success btn-block" type="submit" value="Exibir Todos">
+  			    	</fieldset>
+  			      	</form>
+			    </div>
+			</div>
+		</div>

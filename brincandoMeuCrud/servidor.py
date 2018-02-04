@@ -34,26 +34,23 @@ def delete():
     db_delete(nome)
     return template('verifica.html', sucesso = True, acao = "foi excluido(a) ", nome = nome)
 
-'''
-@post('/ler')
-def read():
-    result = str(request.forms.get('dado'))
-    resultado = db_select(result)
-    return template('base', {'msg' : 'O registro correspondente é:','things' : resultado})
-
 @post('/editar')
 def update():
     nome = str(request.forms.get('nome'))
     novo = str(request.forms.get('telefone'))
     db_update(novo, nome)
-    return template('base' , {'msg' : 'Editado com sucesso!', 'things':''})
+    return template('verifica.html', sucesso = True, acao = "foi alterado(a) ", nome = nome)
+
+@post('/ler')
+def read():
+    result = str(request.forms.get('dado'))
+    resultado = db_select(result)
+    return template('exibir', things = resultado)
 
 @post('/all')
 def read():
     resultado = db_selectall()
-    return template('base', {'msg' : 'Os dados pesquisados são:', 'things': resultado })
+    return template('exibir', things = resultado)
 
-run(host='localhost', port=8080,debug=True, reloader=True)
-'''
 if __name__ == '__main__':
     run(host='localhost', port=8080, debug=True, reloader=True)
