@@ -1,6 +1,6 @@
 % rebase('base.html')
 <ul>
 %for thing in things:
-	<li>{{thing}}</li>
+	<li><a href="/alterar/{{thing[0]}}">{{thing[1]}}</a>|{{thing[2]}}</li>
 %end
 </ul>
