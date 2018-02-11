@@ -43,7 +43,6 @@ def db_select(dado):
     dados = cur.fetchall()
     con.close()
     return dados
-    #WHERE id = {}""".format(dado)
 
 def db_selectall():
     con = sqlite3.connect('banco.db')
@@ -51,6 +50,25 @@ def db_selectall():
     sql = """
     SELECT id, name, phone
     FROM users"""
+    cur.execute(sql)
+    dados = cur.fetchall()
+    con.close()
+    return dados
+
+@commit_close
+def db_updateall(ide,name,phone):
+    return """
+    UPDATE users
+    SET phone = '{}', name = '{}'
+    WHERE id = '{}' """.format(phone, name, ide)
+
+def db_selectID(dado):
+    con = sqlite3.connect('banco.db')
+    cur = con.cursor()
+    sql = """
+    SELECT id, name, phone
+    FROM users
+    WHERE id = '{}' """.format(dado)
     cur.execute(sql)
     dados = cur.fetchall()
     con.close()

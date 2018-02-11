@@ -1,40 +1,84 @@
-from bottle import route, run, request, response, post, get, template, debug
-from dml import db_delete, db_insert, db_update, db_select, db_selectall
+from bottle import route, run, request, response, post, get, template, static_file
+from dml import *
 
-@route('/')
+@get('/<filename:re:.*\.css>')
+def stylesheets(filename):
+    return static_file(filename, root='static/css')
+
+@get('/<filename:re:.*\.js>')
+def javascripts(filename):
+    return static_file(filename, root='static/js')
+
+@get('/<filename:re:.*\.(jpg|png|gif|ico)>')
+def imagens(filename):
+    return static_file(filename, root='static/img')
+
+@get('/<filename:re:.*\.(eot|ttf|woff|svg)')
+def fonts(filename):
+    return static_file(filename, root='static/fonts')
+#---------------------------------------------------------
+@route('/index')
 def home_page():
-    return template('base', {'msg' : 'Bem vindo!', 'things':''})
+    return template('index')
 
 @post('/inserir')
 def create():
     nome = request.forms.get('nome')
     telefone = request.forms.get('telefone')
     db_insert(nome, telefone)
-    return template('base', {'msg' : ' Cadastrado com sucesso!', 'things':''})
-#{'msg' : 'Bem vindo!', 'things':''}
+    return template('verifica.html', sucesso = True, acao = "foi cadastrado(a)", nome = nome)
 
-@post('/ler')
-def read():
-    result = str(request.forms.get('dado'))
-    resultado = db_select(result)
-    return template('base', {'msg' : 'O registro correspondente é:','things' : resultado})
+@post('/deletar')
+def delete():
+    nome = str(request.forms.get('delete'))
+    db_delete(nome)
+    return template('verifica.html', sucesso = True, acao = "foi excluido(a) ", nome = nome)
 
 @post('/editar')
 def update():
     nome = str(request.forms.get('nome'))
     novo = str(request.forms.get('telefone'))
     db_update(novo, nome)
-    return template('base' , {'msg' : 'Editado com sucesso!', 'things':''})
+    return template('verifica.html', sucesso = True, acao = "foi alterado(a) ", nome = nome)
 
-@post('/deletar')
-def delete():
-    nome = str(request.forms.get('delete'))
-    db_delete(nome)
-    return template('base' , {'msg' : 'Excluido com sucesso!', 'things':''})
+@post('/ler')
+def read():
+    result = str(request.forms.get('dado'))
+    resultado = db_select(result)
+    return template('exibir', things = resultado)
 
 @post('/all')
-def read():
+def readall():
     resultado = db_selectall()
-    return template('base', {'msg' : 'Os dados pesquisados são:', 'things': resultado })
+    return template('exibir', things = resultado)
 
-run(host='localhost', port=8080)
+@get('/edita/<nID>')
+def link_edicao(nID):
+    resultado = db_selectID(nID)
+    return template('editall', things = resultado)
+
+@post('/editall/<nID>')
+def read_all_ID(nID):
+    ide = str(nID)
+    nome = str(request.forms.get('nome'))
+    telefone = str(request.forms.get('telefone'))
+    if nome not in 'Nonenone':
+        db_updateall(ide, nome, telefone)
+    else:
+        return template('editall', things = resultado)
+    return template('verifica.html', sucesso = True, acao = nome, nome = " Alterado(a) para ")
+
+@get('/deleta/<nID>')
+def link_edicao(nID):
+    resultado = db_select(nID)
+    return template('deletall', things = resultado)
+
+
+@post('/deletall/<nID>')
+def delete(nID):
+    nome = str(nID)
+    db_delete(nID)
+    return template('verifica.html', sucesso = True, acao = "foi excluido(a) ", nome = nome)
+
+if __name__ == '__main__':
+    run(host='localhost', port=8080, debug=True, reloader=True)

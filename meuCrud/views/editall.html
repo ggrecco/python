@@ -1,0 +1,8 @@
+% rebase('base.html')
+%for thing in things:
+<form action="/editall/{{thing[0]}}" method="post">
+	Nome: <input type="text" name="nome" placeholder="{{thing[1]}}">
+	Telefone:<input type="text" name="telefone" placeholder="{{thing[2]}}">
+	<input type="submit" value="Alterar">
+</form>
+%end

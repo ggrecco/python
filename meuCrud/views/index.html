@@ -1,0 +1,90 @@
+% rebase('base.html')
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<div class="container">
+    <div class="row">
+
+    	<div class="col-md-4">
+			<form action="/inserir" method="post">
+			<div id="contact-form" class="form-container" data-form-container>
+			<div class="row">
+				<div class="form-title">
+					<span>Cadastrar</span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Digite o nome da pesso que deseja cadastrar."> </span>
+						<input type="text" data-min-length="8" name="nome" placeholder="Nome Completo">
+					</span>
+				</div>
+				<div class="row">
+					<span class="req-input">
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Digite o número de telefone."> </span>
+						<input type="text" name="telefone" placeholder="Telefone">
+					</span>
+				</div>
+<input class="btn btn-block submit-form" value="Cadastrar" type="submit">
+			</div>
+			</div>
+			</form>
+			</div>
+<!----------------------------------------------------------->
+
+        <div class="col-md-4">
+    		<form action="/deletar" method="post">
+			<div id="contact-form" class="form-container" data-form-container style="color: rgb(46, 125, 50); background: rgb(200, 230, 201);">
+			<div class="row">
+				<div class="form-title">
+					<span> Deletar </span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input valid" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Digite o nome de quem deseja excluir do cadastro."> </span>
+						<input type="text" data-min-length="8" name="delete" placeholder="Nome" value="Nome">
+					</span>
+				</div>
+				<div class="row submit-row">
+<input class="btn btn-block submit-form valid value="Enviar dados" type="submit">
+				</div>
+			</div>
+			</div>
+			</form>
+		</div>
+
+	
+<!--------------------------------------------------------->
+
+        <div class="col-md-4">
+    		<form action="/ler" method="post">
+			<div id="contact-form" class="form-container" data-form-container style="color: rgb(46, 125, 50); background: rgb(200, 230, 201);">
+			<div class="row">
+				<div class="form-title">
+					<span> Procurar </span>
+				</div>
+			</div>
+			<div class="input-container">
+				<div class="row">
+					<span class="req-input valid" >
+						<span class="input-status" data-toggle="tooltip" data-placement="top" title="Digite o nome de quem deseja procurar no cadastro."> </span>
+						<input type="text" name="dado" data-min-length="8" placeholder="Nome" value="Nome">
+					</span>
+				</div>
+				<div class="row submit-row">
+<input class="btn btn-block submit-form valid" valid value="Enviar dados" type="submit">
+				</div>
+				</div>
+			</div>
+			</div>
+			</form>
+<form action="/all" method="post">
+	</div>
+	<input class="btn btn-block btn-danger" value="Buscar Todos" type="submit">
+			</div>
+</form>
+		</div>
+</div>
+</div>

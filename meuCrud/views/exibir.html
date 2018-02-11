@@ -1,0 +1,25 @@
+% rebase('base.html')
+<h2>Cadastro</h2>
+<hr />
+	<div class="table-responsive col-md-12">
+	<table class="table table-striped" cellspacing="0" cellpadding="0">
+	<thead>
+	<tr>
+		<th>ID</th>
+    <th>Nome</th>
+    <th>Telefone</th>
+		<th>Alterar</th>
+	</tr>
+	</thead>
+     %for thing in things:
+	<tr>
+		<td> <a href="/edita/{{thing[0]}}">{{thing[0]}} </a></td>
+		<td> {{thing[1]}} </td>
+		<td> {{thing[2]}} </td>
+		<td><a href="/edita/{{thing[0]}}"><button class="btn btn-warning">Alterar </button></a></td>
+		<td><a href="/deleta/{{thing[1]}}"><button class="btn btn-danger">Deletar</button></a></td>
+	</tr>
+	%end
+         </table>
+     </div>
+ </div>

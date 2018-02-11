@@ -1,0 +1,8 @@
+% rebase('base.html')
+%for thing in things:
+<h2>Deseja realmente deletar {{thing[1]}} ?</h2>
+<form action="/deletall/{{thing[1]}}" method="post">
+	<input type="submit" value="Sim">
+</form>
+<a href="/index"><button class="btn btn-success">Não</button></a><br />
+%end
