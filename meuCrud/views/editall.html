@@ -1,8 +1,29 @@
 % rebase('base.html')
 %for thing in things:
-<form action="/editall/{{thing[0]}}" method="post">
-	Nome: <input type="text" name="nome" placeholder="{{thing[1]}}">
-	Telefone:<input type="text" name="telefone" placeholder="{{thing[2]}}">
-	<input type="submit" value="Alterar">
+<div class="container">
+<div class="col-md-4">
+<div class="form-container" data-form-container style="color: rgb(50, 50, 0); background: rgb(250, 210, 50);">
+<div class="row">
+	<div class="form-title">
+		<span>Alterar</span>
+	</div>
+</div>
+<div class="input-container">
+	<div class="row">
+		<span class="req-input" >
+			<form action="/editall/{{thing[0]}}" method="post">
+			<input type="text" name="nome" value="{{thing[1]}}">
+		</span>
+	</div>
+	<div class="row">
+		<span class="req-input">
+			<input type="text" name="telefone" value="{{thing[2]}}">
+		</span>
+	</div>
+<input class="btn btn-warning btn-block submit-form" value="Alterar" type="submit">
 </form>
+</div>
+</div>
+</div>
+</div>
 %end

@@ -1,8 +1,15 @@
 % rebase('base.html')
-%for thing in things:
-<h2>Deseja realmente deletar {{thing[1]}} ?</h2>
-<form action="/deletall/{{thing[1]}}" method="post">
-	<input type="submit" value="Sim">
-</form>
-<a href="/index"><button class="btn btn-success">Não</button></a><br />
-%end
+% for thing in things:
+
+<div class="form-container" data-form-container style="color: rgb(198, 40, 40); background: rgb(250, 250, 255);">
+	<div class="row">
+		<div class="form-title">
+			<span><h2>Está certo em excluir <p><u><b><i>{{thing[1]}}</i></b></u></p></h2></span>
+		</div>
+	</div>
+	<form action="/deletall/{{thing[1]}}" method="post">
+		<input type="submit" class="btn btn-success" value="Sim">
+	</form><br />
+	<a href="/index"><button class="btn btn-danger">Não</button></a>
+</div>
+% end

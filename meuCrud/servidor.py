@@ -5,6 +5,7 @@ from dml import *
 def stylesheets(filename):
     return static_file(filename, root='static/css')
 
+
 @get('/<filename:re:.*\.js>')
 def javascripts(filename):
     return static_file(filename, root='static/js')
@@ -62,11 +63,12 @@ def read_all_ID(nID):
     ide = str(nID)
     nome = str(request.forms.get('nome'))
     telefone = str(request.forms.get('telefone'))
+    info = str("Nome: " + nome + " Telefone: " + telefone + "")
     if nome not in 'Nonenone':
         db_updateall(ide, nome, telefone)
     else:
         return template('editall', things = resultado)
-    return template('verifica.html', sucesso = True, acao = nome, nome = " Alterado(a) para ")
+    return template('verifica.html', sucesso = True, acao = info, nome = " Alterado(a) para ")
 
 @get('/deleta/<nID>')
 def link_edicao(nID):
@@ -81,4 +83,4 @@ def delete(nID):
     return template('verifica.html', sucesso = True, acao = "foi excluido(a) ", nome = nome)
 
 if __name__ == '__main__':
-    run(host='localhost', port=8080, debug=True, reloader=True)
+    run(host='192.168.0.104', port=8080, debug=True, reloader=True)
