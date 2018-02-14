@@ -7,16 +7,23 @@ from bs4.element import NavigableString, Tag
 with open('arquivo.html', 'r') as f:
     soup_string = BeautifulSoup(f.read(), 'html.parser')
 print(soup_string)
-############################################
+
+####################################################
+####### Captura pagina HTML apartir do link ########
+
 r = requests.get('http://www.google.com')
 soup = BeautifulSoup(r.text, 'lxml')
 print(soup)
-##########################################
+
+#####################################################
+###### Abre e exibe o arquivo ######################
 with open('arquivo.html', 'r') as f:
     soup_string = BeautifulSoup(f.read(), 'html5lib')
 
 print(soup_string)
-##########################################################
+
+######################################################
+######### exibe as tags e seu conteúdo ###############
 with open('arquivo.html', 'r') as f:
     soup = BeautifulSoup(f, 'lxml')
 
@@ -26,7 +33,10 @@ print(tag.name)
 
 tag = soup.p
 print(tag.name)
+
 ##################################################
+####### imprimindo conteudo das tags #############
+
 with open('arquivo.html', 'r') as f:
     soup = BeautifulSoup(f, 'html.parser')
 
@@ -35,7 +45,10 @@ print(soup.p['class'])#imprime o conteúdo do attributo class=""
 print(soup.p.attrs)#imprime os atributos da tag p
 print(soup.a['href'])#imprime o conteúdo do atributo href=""
 print(soup.a.get['href'])#evitando erros caso a tag não exista
+
 ################################################
+###### Imprimindo Texto das Tags #############
+
 with open('arquivo.html', 'r') as f:
     soup = BeautifulSoup(f, 'html5lib')
 
@@ -43,6 +56,7 @@ with open('arquivo.html', 'r') as f:
 #print(soup.get_text())#imprime o texto de todas as tags
 #print(soup.p.get_text())#imprime o texto da tag p
 print(soup.p.b.string)#imprime o texto dentro da tag pai e da tag filho
+
 ###################################################
 
 with open('arquivo02.html', 'r') as f:
@@ -55,12 +69,13 @@ print(soup.td)
 print(soup.tr.td)
 print(soup.td.attrs)
 print(soup.td['class'][0])
+
 ################################
-'''
+
 with open('arquivo02.html', 'r') as f:
     soup = BeautifulSoup(f, 'lxml')
-'''
-print(soup.table.contents)#imprime todos os filhos da tag
+
+print(soup.table.contents)#imprime todos os filhos da tag em uma lista
 print(len(soup.contents))#imprime o tamanho da lista contents
 print(soup.table.contents[1])#imprime o elemento da segunda posição da lista
 print(soup.table.contents[1].span)
@@ -85,6 +100,19 @@ for tag in soup.descendants:
 for tag in soup.descendants:
     if isinstance(tag, Tag):
         print(tag)
-'''
 for string in soup.aside.stripped_strings:#remove os espaços extra das strings
     print(repr(string))
+
+#############################################################################
+###### acessando as tags pai ###################
+
+with open('arquivo02.html', 'r') as f:
+    soup = BeautifulSoup(f, 'lxml')
+
+tag_tittle = soup.title
+tag_tittle2 = soup.title.get_text()
+print(tag_tittle)
+print(tag_tittle.parent)#imprime o pai da tag title e a tag
+print(tag_tittle2)#imprime o texto da tag
+#############################################################################
+'''
