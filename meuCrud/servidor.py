@@ -83,4 +83,4 @@ def delete(nID):
     return template('verifica.html', sucesso = True, acao = "foi excluido(a) ", nome = nome)
 
 if __name__ == '__main__':
-    run(host='192.168.0.104', port=8080, debug=True, reloader=True)
+    run(host='192.168.0.158', port=8080, debug=True, reloader=True)
