@@ -61,5 +61,4 @@ def deletar_post():
 	dados = marca.deletar(id)
 	return redirect ('/marcas')
 
-
 run(host='localhost', port=7000, reloader = True)

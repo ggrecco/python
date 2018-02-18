@@ -58,7 +58,7 @@ with open('arquivo.html', 'r') as f:
 print(soup.p.b.string)#imprime o texto dentro da tag pai e da tag filho
 
 ###################################################
-
+####
 with open('arquivo02.html', 'r') as f:
     soup = BeautifulSoup(f, 'lxml')
 
@@ -115,4 +115,67 @@ print(tag_tittle)
 print(tag_tittle.parent)#imprime o pai da tag title e a tag
 print(tag_tittle2)#imprime o texto da tag
 #############################################################################
+######## acessando tags irmãs #################
+
+with open('arquivo02.html', 'r') as f:
+    soup = BeautifulSoup(f, 'lxml')
+
+#print(soup.next_sibling)# não imprime nada pois não existe irmao para html
+#print(soup.td.parent)#imprime o pai
+#print(soup.td.next_sibling.next_sibling)#2 next_sibiling pois existe um espaço entre os td
+#irmão próximos
+for sibling in soup.p.next_siblings:
+    print(repr(sibling))
+#irmao anterior
+for sibling in soup.p.previous_siblings:
+    print(repr(sibling))
+#################################################
+###### Navegando entre elementos(tags)#######
+with open('arquivo03.html', 'r') as f:
+    soup = BeautifulSoup(f, 'lxml')
+
+#print(soup.div.next_element.next_element)#2 next para pular tags acessada
+for e in sup.ul.next_elements:
+    if isinstance(e, Tag):
+        print(e)
+#########################################################
+######## Função Find #################
+with open('arquivo04.html', 'r') as f:
+    soup = BeautifulSoup(f, 'lxml')
+#tag = soup.find('li')#procura tags li
+#print(tag)
+#tag = soup.find(string = 'plants')#procura pela string plants
+#print(tag)
+#tag = soup.find(id = "secondaryconsumers")#encontra pelo id
+#print(tag)
+#tag = soup.find(attrs = {'class' : 'primaryconsumerlist'})#encontra pela classe
+#print(tag)
+#tag = soup.find('li', attrs = {'class' : 'producerlist'})#filtro com mais de um elemento
+#print(tag)
+
+def is_secondary_consumers(tag):
+    return tag.has_attr('id') and tag.get('id') == 'secondaryconsumers'
+secondary_consumer = soup.find(is_secondary_consumers)
+print(secondary_consumer.li.div.string)
+#############################################################################
+########## Função find_all ######################
+with open('arquivo03.html', 'r') as f:
+     soup = BeautifulSoup(f, 'lxml')
+#tag_list = soup.find_all('ul')#imprime todas as ocorrencias ul em uma lista
+#tag_list = soup.find_all(['ul', 'div'])
+#tag_list = soup.find_all('ul', limit = 2)#limita em duas occorrencias
+#tag_list = soup.find_all(string = 'rabbit')#procura a string
+#tag_list = soup.find_all(string = True)#imprime todas as strings em formato de lista
+#tag_list = soup.find_all(string = ['rabbit', 'bear'])#procura uma lista de string
+#tag_list = soup.find_all(class_=['producerlist', 'primaryconsumerlist'])#procura pelas classes
+tag_list = soup.ul.find_all('div')#procura por
+print(tag_list)
+##############################################################
+################# Buscando elementos com o find_parents #########
+with open('arquivo04.html', 'r') as f:
+    soup = BeautifulSoup(f, 'lxml')
+primaryconsumers = soup.find_all(class_='primaryconsumerlist')
+primaryconsumer = primaryconsumers[0]
+print(primaryconsumer)
+#################################################################
 '''
