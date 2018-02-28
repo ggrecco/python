@@ -1,0 +1,32 @@
+% rebase('base.html')
+<h3>Medicos</h3>
+<hr>
+<a href="/medico/inserir">Inserir Novo Medico</a>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Crm</th>
+        <th>Especialidade</th>
+        <th>Endereço</th>
+        <th>Valor da Consulta</th>
+        <th>Funções</th>
+    </tr>
+    </thead>
+        % for dado in dados:
+        <tr>
+            <td>{{dado[0]}}</td>
+            <td>{{dado[1]}}</td>
+            <td>{{dado[2]}}</td>
+            <td>{{dado[3]}}</td>
+            <td>{{dado[4]}}</td>
+            <td>{{dado[5]}}</td>
+            <td><a href="/medico/alterar/{{dado[0]}}" class="btn btn-primary">Alterar</a>
+            <a href="/medico/deletar/{{dado[0]}}" class="btn btn-primary">Deletar</a>
+					  <a href="/medico/visualizar/{{dado[0]}}" class="btn btn-primary">Vizualizar</a></td>
+
+        </tr>
+        % end
+
+</table>

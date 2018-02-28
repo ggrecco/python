@@ -1,0 +1,27 @@
+% rebase('base.html')
+<h2> Deletar Médico </h2>
+
+<h3> VOCÊ TEM CERTEZA? </h3>
+
+<ul>
+	<li>
+		<p>Nome: {{dados[1]}}</p>
+	</li>
+	<li>
+		<p>Crm: {{dados[2]}}</p>
+	</li>
+	<li>
+		<p>Especialidade: {{dados[3]}}</p>
+	</li>
+	<li>
+		<p>Endereço: {{dados[4]}}</p>
+	</li>
+	<li>
+		<p>Valor da Consulta: {{dados[5]}}</p>
+	</li>
+</ul>
+
+<form action="/medico/deletar" method="post">
+	<input type="hidden" name="id" value="{{dados[0]}}">
+	<button type="submit" class="btn">Deletar</button>
+</form>

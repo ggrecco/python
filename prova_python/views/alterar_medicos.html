@@ -1,0 +1,24 @@
+% rebase('base.html')
+<h2> Alterar Medico </h2>
+
+<form action="/medico/alterar" method="post">
+		<input value="{{dados[0]}}" name="id" type="hidden" />
+		<ul>
+			    <li>
+			        	<input value="{{dados[1]}}" name="nome" type="text" placeholder="MARCA" />
+			    </li>
+			    <li>
+						<input value="{{dados[2]}}" name="crm" type="text" placeholder="Crm" />
+			    </li>
+			    <li>
+						<input value="{{dados[3]}}" name="especialidade" type="text" placeholder="Especialidade" />
+			    </li>
+			    <li>
+						<input value="{{dados[4]}}" name="endereco" type="text" placeholder="Endereço" />
+			    </li>
+			    <li>
+						<input value="{{dados[5]}}" name="valor_consulta" type="text" placeholder="Valor da Consulta" />
+			    </li>
+		</ul>
+		<button type="submit" class="btn">Registrar</button>
+</form>
