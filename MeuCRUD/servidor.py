@@ -18,6 +18,12 @@ def imagens(filename):
 def fonts(filename):
     return static_file(filename, root='static/fonts')
 #---------------------------------------------------------
+@route('/')
+def index():
+	tpl = 'Hello, Buddy!{{d}} You are at medicos app. If you want to see the content, click here'
+	d = ''
+	return template('inicio.html',d=d)
+
 @route('/index')
 def home_page():
     return template('index')
