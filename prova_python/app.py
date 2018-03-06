@@ -1,6 +1,7 @@
 import sqlite3
 from bottle import route, run, template, request, redirect, response, post, get, static_file
 from medicos import *
+
 @get('/<filename:re:.*\.css>')
 def stylesheets(filename):
     return static_file(filename, root='static/css')
