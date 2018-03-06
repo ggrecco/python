@@ -1,5 +1,7 @@
 from bottle import route, run, request, response, post, get, template, static_file
 from busca import *
+from panela import *
+
 
 @get('/<filename:re:.*\.css>')
 def stylesheets(filename):
@@ -17,11 +19,6 @@ def imagens(filename):
 def fonts(filename):
     return static_file(filename, root='static/fonts')
 #---------------------------------------------------------
-
-@route('/')
-def home_page():
-    return template('login.html')
-
 def check_login(username,password):
     login = Login()
     d = {}
@@ -36,6 +33,12 @@ def check_login(username,password):
         return False
     else:
         return False
+#-----------------------------------------------------------------
+panela = Panelas()
+
+@route('/')
+def home_page():
+    return template('login.html')
 
 @post('/retornoLogin')
 def teste():
@@ -43,5 +46,21 @@ def teste():
     senha = str(request.forms.get('password'))
     return template('retornoLogin.html', sucesso = check_login(usuario, senha))
 
-if __name__ == '__main__':
-    run(host='localhost', port=8080, debug=True, reloader=True)
+@get('/panelas')
+def listar_panelas():
+    dados = panela.listarTodos()
+    return template('listar_panelas.html', dados = dados)
+
+@get('/panela/inserir')
+def medico_inserir_get():
+	return template('inserir_panela.html')
+
+@post('/panela/inserir')
+def panela_inserir_post():
+	marca = request.POST.marca.strip()
+	tipo = request.POST.tipo.strip()
+	valor = request.POST.valor.strip()
+	panela.inserir(marca, tipo, valor)
+	return redirect("/panelas")
+
+run(host='localhost', port=8080, debug=True, reloader=True)

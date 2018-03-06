@@ -1,0 +1,27 @@
+% rebase('base.html')
+<hr>
+<a href="/panela/inserir">Inserir Nova Panela</a>
+    <table class="table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Marca</th>
+        <th>Tipo</th>
+        <th>Valor</th>
+        <th>Funções</th>
+    </tr>
+    </thead>
+        % for dado in dados:
+        <tr>
+            <td>{{dado[0]}}</td>
+            <td>{{dado[1]}}</td>
+            <td>{{dado[2]}}</td>
+            <td>{{dado[3]}}</td>
+            <td><a href="/panela/alterar/{{dado[0]}}" class="btn btn-primary">Alterar</a>
+            <a href="/panela/deletar/{{dado[0]}}" class="btn btn-primary">Deletar</a>
+					  <a href="/panela/visualizar/{{dado[0]}}" class="btn btn-primary">Vizualizar</a></td>
+
+        </tr>
+        % end
+
+</table>
