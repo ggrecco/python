@@ -63,4 +63,36 @@ def panela_inserir_post():
 	panela.inserir(marca, tipo, valor)
 	return redirect("/panelas")
 
+
+@get('/panela_alterar_<id>')
+def alterar_get(id):
+	dados = panela.listar1(id)
+	return template('alterar_panela.html',dados=dados)
+
+@post('/panela_alterar')
+def alterar_post():
+	id=request.POST.id
+	marca=request.POST.marca
+	tipo=request.POST.tipo
+	valor=request.POST.valor
+	panela.alterar(id,marca,tipo,valor)
+	return redirect ('/panelas')
+
+@get('/panela_deletar_<id>')
+def deletar_get(id):
+	dados=panela.listar1(id)
+	return template('deletar_panela.html',dados=dados)
+
+@post('/panela_deletar')
+def deletar_post():
+	id=request.POST.id
+	dados=panela.deletar(id)
+	return redirect ('/panelas')
+
+@get('/panela_visualizar_<id>')
+def visualizar_get(id):
+	dados=panela.listar1(id)
+	return template('visualizar_panela.html',dados=dados)
+
+
 run(host='localhost', port=8080, debug=True, reloader=True)
