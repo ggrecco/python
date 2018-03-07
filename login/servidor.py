@@ -1,4 +1,4 @@
-from bottle import route, run, request, response, post, get, template, static_file
+from bottle import route, run, request, response, post, get, template, static_file, redirect
 from busca import *
 from panela import *
 
@@ -51,11 +51,11 @@ def listar_panelas():
     dados = panela.listarTodos()
     return template('listar_panelas.html', dados = dados)
 
-@get('/panela/inserir')
+@get('/inserir_panela')
 def medico_inserir_get():
 	return template('inserir_panela.html')
 
-@post('/panela/inserir')
+@post('/inserir_panela')
 def panela_inserir_post():
 	marca = request.POST.marca.strip()
 	tipo = request.POST.tipo.strip()
