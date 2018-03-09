@@ -94,5 +94,4 @@ def visualizar_get(id):
 	dados=panela.listar1(id)
 	return template('visualizar_panela.html',dados=dados)
 
-
 run(host='localhost', port=8080, debug=True, reloader=True)
