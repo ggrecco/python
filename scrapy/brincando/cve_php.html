@@ -1,0 +1,1763 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<meta name="viewport" content="width=900">
+<title>PHP PHP : List of security vulnerabilities</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="description" content="Security vulnerabilities of PHP PHP : List of all related CVE security vulnerabilities.
+			CVSS Scores, vulnerability details and links to full CVE details and references."/>
+<meta name="keywords" content="security, cve, nvd, security vulnerability, vulnerability, exploit, cvss, cwe, information security, vulnerability database" />
+<link rel="stylesheet" type="text/css" href="/cvedetails.css" />
+<link rel="canonical" href="http://www.cvedetails.com/vulnerability-list.php?vendor_id=74&product_id=128&version_id=0&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"/><meta name="google-signin-client_id" content="349381870180-eaoug67mdrnbmuink9n43t3b8silo5h0.apps.googleusercontent.com">
+<script type="text/javascript" src="/cvedetails.js"></script>
+</head>
+
+<body>
+	<div id="topcontainer">
+			<div id="topleft">
+				<a href="/" title="Go to cvedetails.com homepage"><img src="/img/logo2.png" border="0" alt="CVEdetails.com the ultimate security vulnerability data source" title="CVEdetails.com the ultimate security vulnerability data source"></a>
+			</div>
+			<div id="topright">
+									<div>
+						<form action="/google-search-results.php" id="cse-search-box">
+							<input type="text" name="q" size="18" />
+							<input type="submit" name="sa" value="Search" />
+						</form>
+					</div>
+								<div>
+					<form action="/cve-details.php" method="get">
+						<span>(e.g.: CVE-2009-1234 or 2010-1234 or 20101234)</span>
+						<input type="hidden" name="t" value="1"/>
+						<input type="text"  title="Allowed formats are: CVE-2009-1234 or 2010-1234 or 20101234" name="cve_id" value="" maxlength="15">
+						<input type="submit" value="View CVE"/>
+					</form>
+				</div>
+			</div>
+	</div>
+	<table id="maintable">
+		<tr>
+			<td id="topmenubar" colspan="2">
+				<div style="float:left; ">
+								<a class="fancylink" href="/openid-login.php" title="Login">Log In</a>
+				&nbsp;
+				<a class="fancylink" href="/register.php" title="New user registration">Register</a>
+								</div>
+				</div>
+
+				<div style="float:right;">
+				<a style="vertical-align: top; background-color:red; color:white; padding:2px 2px 2px 2px; border:2px solid #dd3300; font-weight:bold; text-decoration:none" class="fancylink" href="/vulnerability-feeds-form.php" title="Vulnerability feeds and widgets - Free customizable vulnerability rss feeds and widgets">Vulnerability Feeds &amp; Widgets<sup>New</sup></a>
+				&nbsp;
+				<a class="fancylink" href="http://www.itsecdb.com" title="IT Security Database, OVAL definitions">www.itsecdb.com</a>
+				&nbsp;
+				</div>
+			</td>
+		</tr>
+		<tr>
+		<td  valign="top" id="mainmenutd">
+			<div id="mainmenu">
+
+				<a href="javascript:switchtohttps()" title="Click to view the same content over https." style="color:red;">Switch to https://</a>
+					<script type="text/javascript">
+					function switchtohttps(){
+						if (window.location.protocol != "https:"){
+							window.location.href = "https:" + window.location.href.substring(window.location.protocol.length);
+						}
+					}
+					</script>
+							<a href="/index.php" title="Home page">Home</a>
+				<b>Browse :</b><br/>
+				<a href="/vendor.php" title="Browse software and hardware vendors">Vendors</a>
+				<a href="/product-list.php" title="Browse software and hardware products">Products</a>
+				<a href="/browse-by-date.php" title="Browse security vulnerabilities by date">Vulnerabilities By Date</a>
+				<a href="/vulnerabilities-by-types.php" title="Vulnerability distribution by type">Vulnerabilities By Type</a>
+				<b>Reports :</b><br/>
+				<a href="/cvss-score-charts.php" title="CVSS score distribution report">CVSS Score Report</a>
+				<a href="/cvss-score-distribution.php" title="CVSS score distribution for all vulnerabilities">CVSS Score Distribution</a>
+				<b>Search :</b><br/>
+				<a href="/vendor-search.php" title="Search for software and hardware vendors">Vendor Search</a>
+				<a href="/product-search.php" title="Search for software and hardware products">Product Search</a>
+				<a href="/version-search.php" title="Fast search by vendor, product and version">Version Search</a>
+								<a href="/vulnerability-search.php" title="(Really) Advanced search for security vulnerabilities">Vulnerability Search</a>
+				<a href="/search-by-microsoft-refid.php" title="Search For Vulnerabilities By Microsoft References">By Microsoft References</a>
+				<b>Top 50 :</b><br/>
+				<a href="/top-50-vendors.php" title="Top 50 vendors having highest number of security vulnerabilities">Vendors</a>
+				<a href="/top-50-vendor-cvssscore-distribution.php" title="Cvss score distribution for top 50 vendors">Vendor Cvss Scores</a>
+				<a href="/top-50-products.php" title="Top 50 products having highest number of security vulnerabilities">Products</a>
+				<a href="/top-50-product-cvssscore-distribution.php" title="Cvss score distribution for top 50 products">Product Cvss Scores</a>
+				<a href="/top-50-versions.php" title="Top 50 versions of products having highest number of security vulnerabilities related to them">Versions</a>
+				<b>Other :</b><br/>
+				<a href="/microsoft-bulletins.php" title="Microsoft security bulletins">Microsoft Bulletins</a>
+				<a href="/bugtraq-list/" title="Bugtraq entries">Bugtraq Entries</a>
+				<a href="/cwe-definitions.php" title="Browse CWE Definitions">CWE Definitions</a>
+				<a href="/about-contact.php" title="About cvedetails.com">About &amp; Contact</a>
+				<a title="Uservoice forum" href="http://cvedetails.uservoice.com">Feedback</a>
+				<a title="Help topics and more information about CVE" href="/cve-help.php">CVE Help</a>
+				<a title="Frequently asked questions" href="/faq.php">FAQ</a>
+				<a title="Articles" href="/article.php">Articles</a>
+				<b>External Links :</b><br/>
+				<a href="http://nvd.nist.gov" title="National vulnerability database web site - External link " target="_blank">NVD Website</a>
+				<a href="http://cwe.mitre.org/" title="Common weakness enumeration at mitre.org - External link " target="_blank">CWE Web Site</a>
+			</div>
+
+			<form action="/cve-details.php" method="get">
+			<table class="menuformtable">
+				<tr>
+					<th>View CVE :</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text"  name="cve_id" value="" size="10" maxlength="15">
+						<input type="submit" value="Go">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					(e.g.: CVE-2009-1234 or 2010-1234 or 20101234)
+					</td>
+				</tr>
+			</table>
+			</form>
+
+			<form action="/bugtraq-bid.php" method="get">
+			<table class="menuformtable">
+				<tr>
+					<th>View BID :</th>
+				</tr>
+				<tr>
+					<td>
+						<input type="text"  name="bidno" value="" size="10" maxlength="13">
+						<input type="submit" value="Go">
+					</td>
+				</tr>
+				<tr>
+					<td>
+					(e.g.: 12345)
+					</td>
+				</tr>
+			</table>
+			</form>
+
+			<form method="get" action="/search-by-microsoft-refid.php">
+				<table class="menuformtable">
+					<tr>
+						<th>Search By Microsoft Reference ID:</th>
+					</tr>
+					<tr>
+						<td><input type="text" name="msid" size="10" value=""> <input type="submit" value="Go">
+						</td>
+					</tr>
+					<tr>
+						<td>(e.g.: ms10-001 or 979352)</td>
+					</tr>
+				</table>
+			</form>
+
+					</td>
+		<td align="left" valign="top">
+			<div id="contentdiv">
+<h1>
+	<a href="//www.cvedetails.com/vendor/74/PHP.html" title="Details for PHP">PHP</a> &raquo; <a href="//www.cvedetails.com/product/128/PHP-PHP.html?vendor_id=74" title="Product Details PHP PHP">PHP</a> : Security Vulnerabilities
+</h1>
+<div class="submenu">
+<div style="float:left">CVSS Scores Greater Than:
+	<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 0">
+	0</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=1&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 1">
+	1</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=2&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 2">
+	2</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=3&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 3">
+	3</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=4&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 4">
+	4</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=5&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 5">
+	5</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=6&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 6">
+	6</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=7&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 7">
+	7</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=8&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 8">
+	8</a>
+		&nbsp;
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=9&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Show only vulnerabilities with a cvss score greater than 9">
+	9</a>
+		&nbsp;
+	</div>
+	<div style="clear:both;">
+	Sort Results By :
+		<a href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Order by CVE number in descending order (Default)">
+	CVE Number Descending</a>
+	&nbsp;
+	<a  href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=2&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Order by CVE number in ascending order">
+	CVE Number Ascending</a>
+	&nbsp;
+	<a  href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=3&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Order by CVSS score in descending order">
+	CVSS Score Descending</a>
+	&nbsp;
+	<a  href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=4&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a" title="Order by number of exploitsin descending order">
+	Number Of Exploits Descending</a>
+	</div>
+</div>
+<div class="paging" id="pagingt" style="display:none; clear:both;"></div>
+<div style="display:block;">
+</div>
+<div style="display:block;">
+<a href="javascript:sertabletotsv('vulnslisttable',true,false,'downloadoverlaydivtxtarea')" title="View results in copy-paste ready tab seperated values format">Copy Results</a>
+<a href="javascript:sertabletotsv('vulnslisttable',true,true,null)" title="Chrome and Firefox only- Download results in tab seperated values format">Download Results</a>
+</div>
+<form>
+	<div id="downloadoverlaydiv">
+		<div>
+			<input type="button" onclick="selecttextareatext('downloadoverlaydivtxtarea')" value="Select All">
+			<input type="button" onclick="hdwnoldiv()" value="Close Dialog" title="Close dialog and return to previous page">
+			<span>Press ESC to close</span>
+		</div>
+		<textarea wrap="off" autocomplete="off" id="downloadoverlaydivtxtarea" cols="50" rows="40"></textarea>
+	</div>
+</form>
+<div id="searchresults">
+	<table class="searchresults sortable" id="vulnslisttable">
+		<tr>
+			<th class="num">#</th>
+						<th>
+				CVE ID
+			</th>
+			<th>
+				CWE ID
+			</th>
+			<th>
+				# of Exploits
+			</th>
+			<th >
+				Vulnerability Type(s)
+			</th>
+						<th>
+				Publish Date
+			</th>
+			<th>
+				Update Date
+			</th>
+			<th>
+				Score
+			</th>
+			<th>
+				Gained Access Level
+			</th>
+			<th>
+				Access
+			</th>
+			<th>
+				Complexity
+			</th>
+			<th>
+				Authentication
+			</th>
+			<th title="Confidentiality">
+				Conf.
+			</th>
+			<th title="Integrity">
+				Integ.
+			</th>
+			<th title="Availability">
+				Avail.
+			</th>
+		</tr>
+						<tr class="srrowns">
+					<td class="num">
+											<a name="y2018"> </a>
+											1					</td>
+										<td nowrap><a href="/cve/CVE-2018-5712/"  title="CVE-2018-5712 security vulnerability details">CVE-2018-5712</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/79/cwe.html" title="CWE-79 - CWE definition">79</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						XSS 					</td>
+										<td>2018-01-16</td>
+					<td>2018-02-16</td>
+					<td><div class="cvssbox" style="background-color:#ffe000">4.3</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in PHP before 5.6.33, 7.0.x before 7.0.27, 7.1.x before 7.1.13, and 7.2.x before 7.2.1. There is Reflected XSS on the PHAR 404 error page via the URI of a request for a .phar file.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2018"> </a>
+											2					</td>
+										<td nowrap><a href="/cve/CVE-2018-5711/"  title="CVE-2018-5711 security vulnerability details">CVE-2018-5711</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/400/cwe.html" title="CWE-400 - CWE definition">400</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2018-01-16</td>
+					<td>2018-02-05</td>
+					<td><div class="cvssbox" style="background-color:#ffe000">4.3</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						gd_gif_in.c in the GD Graphics Library (aka libgd), as used in PHP before 5.6.33, 7.0.x before 7.0.27, 7.1.x before 7.1.13, and 7.2.x before 7.2.1, has an integer signedness error that leads to an infinite loop via a crafted GIF file, as demonstrated by a call to the imagecreatefromgif or imagecreatefromstring PHP function. This is related to GetCode_ and gdImageCreateFromGifCtx.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											3					</td>
+										<td nowrap><a href="/cve/CVE-2017-16642/"  title="CVE-2017-16642 security vulnerability details">CVE-2017-16642</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/125/cwe.html" title="CWE-125 - CWE definition">125</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						+Info 					</td>
+										<td>2017-11-07</td>
+					<td>2018-01-09</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.32, 7.x before 7.0.25, and 7.1.x before 7.1.11, an error in the date extension&#039;s timelib_meridian handling of &#039;front of&#039; and &#039;back of&#039; directives could be used by attackers able to supply date strings to leak information from the interpreter, related to ext/date/lib/parse_date.c out-of-bounds reads affecting the php_parse_date function. NOTE: this is a different issue than CVE-2017-11145.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											4					</td>
+										<td nowrap><a href="/cve/CVE-2017-12934/"  title="CVE-2017-12934 security vulnerability details">CVE-2017-12934</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-08-17</td>
+					<td>2018-01-09</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/standard/var_unserializer.re in PHP 7.0.x before 7.0.21 and 7.1.x before 7.1.7 is prone to a heap use after free while unserializing untrusted data, related to the zval_get_type function in Zend/zend_types.h. Exploitation of this issue can have an unspecified impact on the integrity of PHP.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											5					</td>
+										<td nowrap><a href="/cve/CVE-2017-12933/"  title="CVE-2017-12933 security vulnerability details">CVE-2017-12933</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Overflow 					</td>
+										<td>2017-08-17</td>
+					<td>2018-01-09</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The finish_nested_data function in ext/standard/var_unserializer.re in PHP before 5.6.31, 7.0.x before 7.0.21, and 7.1.x before 7.1.7 is prone to a buffer over-read while unserializing untrusted data. Exploitation of this issue can have an unspecified impact on the integrity of PHP.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											6					</td>
+										<td nowrap><a href="/cve/CVE-2017-12932/"  title="CVE-2017-12932 security vulnerability details">CVE-2017-12932</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-08-17</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/standard/var_unserializer.re in PHP 7.0.x through 7.0.22 and 7.1.x through 7.1.8 is prone to a heap use after free while unserializing untrusted data, related to improper use of the hash API for key deletion in a situation with an invalid array size. Exploitation of this issue can have an unspecified impact on the integrity of PHP.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											7					</td>
+										<td nowrap><a href="/cve/CVE-2017-11628/"  title="CVE-2017-11628 security vulnerability details">CVE-2017-11628</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2017-07-25</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffbc10">6.8</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.31, 7.x before 7.0.21, and 7.1.x before 7.1.7, a stack-based buffer overflow in the zend_ini_do_op() function in Zend/zend_ini_parser.c could cause a denial of service or potentially allow executing code. NOTE: this is only relevant for PHP applications that accept untrusted input (instead of the system&#039;s php.ini file) for the parse_ini_string or parse_ini_file function, e.g., a web application for syntax validation of php.ini directives.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											8					</td>
+										<td nowrap><a href="/cve/CVE-2017-11362/"  title="CVE-2017-11362 security vulnerability details">CVE-2017-11362</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2017-07-17</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP 7.x before 7.0.21 and 7.1.x before 7.1.7, ext/intl/msgformat/msgformat_parse.c does not restrict the locale length, which allows remote attackers to cause a denial of service (stack-based buffer overflow and application crash) or possibly have unspecified other impact within International Components for Unicode (ICU) for C/C++ via a long first argument to the msgfmt_parse_message function.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											9					</td>
+										<td nowrap><a href="/cve/CVE-2017-11147/"  title="CVE-2017-11147 security vulnerability details">CVE-2017-11147</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Overflow 					</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffbc10">6.4</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.30 and 7.x before 7.0.15, the PHAR archive handler could be used by attackers supplying malicious archive files to crash the PHP interpreter or potentially disclose information due to a buffer over-read in the phar_parse_pharfile function in ext/phar/phar.c.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											10					</td>
+										<td nowrap><a href="/cve/CVE-2017-11145/"  title="CVE-2017-11145 security vulnerability details">CVE-2017-11145</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/200/cwe.html" title="CWE-200 - CWE definition">200</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						+Info 					</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.31, 7.x before 7.0.21, and 7.1.x before 7.1.7, an error in the date extension&#039;s timelib_meridian parsing code could be used by attackers able to supply date strings to leak information from the interpreter, related to ext/date/lib/parse_date.c out-of-bounds reads affecting the php_parse_date function. NOTE: the correct fix is in the e8b7698f5ee757ce2c8bd10a192a491a498f891c commit, not the bd77ac90d3bdf31ce2a5251ad92e9e75 gist.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											11					</td>
+										<td nowrap><a href="/cve/CVE-2017-11144/"  title="CVE-2017-11144 security vulnerability details">CVE-2017-11144</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/754/cwe.html" title="CWE-754 - CWE definition">754</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.31, 7.x before 7.0.21, and 7.1.x before 7.1.7, the openssl extension PEM sealing code did not check the return value of the OpenSSL sealing function, which could lead to a crash of the PHP interpreter, related to an interpretation conflict for a negative number in ext/openssl/openssl.c, and an OpenSSL documentation omission.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											12					</td>
+										<td nowrap><a href="/cve/CVE-2017-11143/"  title="CVE-2017-11143 security vulnerability details">CVE-2017-11143</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/502/cwe.html" title="CWE-502 - CWE definition">502</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.31, an invalid free in the WDDX deserialization of boolean parameters could be used by attackers able to inject XML for deserialization to crash the PHP interpreter, related to an invalid free for an empty boolean element in ext/wddx/wddx.c.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											13					</td>
+										<td nowrap><a href="/cve/CVE-2017-11142/"  title="CVE-2017-11142 security vulnerability details">CVE-2017-11142</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/400/cwe.html" title="CWE-400 - CWE definition">400</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.8</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Complete</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.31, 7.x before 7.0.17, and 7.1.x before 7.1.3, remote attackers could cause a CPU consumption denial of service attack by injecting long form variables, related to main/php_variables.c.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											14					</td>
+										<td nowrap><a href="/cve/CVE-2017-9229/"  title="CVE-2017-9229 security vulnerability details">CVE-2017-9229</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/476/cwe.html" title="CWE-476 - CWE definition">476</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-05-24</td>
+					<td>2017-06-02</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A SIGSEGV occurs in left_adjust_char_head() during regular expression compilation. Invalid handling of reg-&gt;dmax in forward_search_range() could result in an invalid pointer dereference, normally as an immediate denial-of-service condition.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											15					</td>
+										<td nowrap><a href="/cve/CVE-2017-9228/"  title="CVE-2017-9228 security vulnerability details">CVE-2017-9228</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/787/cwe.html" title="CWE-787 - CWE definition">787</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Mem. Corr. 					</td>
+										<td>2017-05-24</td>
+					<td>2017-06-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A heap out-of-bounds write occurs in bitset_set_range() during regular expression compilation due to an uninitialized variable from an incorrect state transition. An incorrect state transition in parse_char_class() could create an execution path that leaves a critical local variable uninitialized until it&#039;s used as an index, resulting in an out-of-bounds write memory corruption.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											16					</td>
+										<td nowrap><a href="/cve/CVE-2017-9227/"  title="CVE-2017-9227 security vulnerability details">CVE-2017-9227</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/125/cwe.html" title="CWE-125 - CWE definition">125</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-05-24</td>
+					<td>2017-10-12</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A stack out-of-bounds read occurs in mbc_enc_len() during regular expression searching. Invalid handling of reg-&gt;dmin in forward_search_range() could result in an invalid pointer dereference, as an out-of-bounds read from a stack buffer.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											17					</td>
+										<td nowrap><a href="/cve/CVE-2017-9226/"  title="CVE-2017-9226 security vulnerability details">CVE-2017-9226</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/787/cwe.html" title="CWE-787 - CWE definition">787</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Mem. Corr. 					</td>
+										<td>2017-05-24</td>
+					<td>2017-06-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A heap out-of-bounds write or read occurs in next_state_val() during regular expression compilation. Octal numbers larger than 0xff are not handled correctly in fetch_token() and fetch_token_in_cc(). A malformed regular expression containing an octal number in the form of &#039;\700&#039; would produce an invalid code point value larger than 0xff in next_state_val(), resulting in an out-of-bounds write memory corruption.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											18					</td>
+										<td nowrap><a href="/cve/CVE-2017-9225/"  title="CVE-2017-9225 security vulnerability details">CVE-2017-9225</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/787/cwe.html" title="CWE-787 - CWE definition">787</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Overflow 					</td>
+										<td>2017-05-24</td>
+					<td>2017-06-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A stack out-of-bounds write in onigenc_unicode_get_case_fold_codes_by_str() occurs during regular expression compilation. Code point 0xFFFFFFFF is not properly handled in unicode_unfold_key(). A malformed regular expression could result in 4 bytes being written off the end of a stack buffer of expand_case_fold_string() during the call to onigenc_unicode_get_case_fold_codes_by_str(), a typical stack buffer overflow.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											19					</td>
+										<td nowrap><a href="/cve/CVE-2017-9224/"  title="CVE-2017-9224 security vulnerability details">CVE-2017-9224</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/125/cwe.html" title="CWE-125 - CWE definition">125</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-05-24</td>
+					<td>2017-06-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						An issue was discovered in Oniguruma 6.2.0, as used in Oniguruma-mod in Ruby through 2.4.1 and mbstring in PHP through 7.1.5. A stack out-of-bounds read occurs in match_at() during regular expression searching. A logical error involving order of validation and access in match_at() could result in an out-of-bounds read from a stack buffer.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											20					</td>
+										<td nowrap><a href="/cve/CVE-2017-9119/"  title="CVE-2017-9119 security vulnerability details">CVE-2017-9119</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/400/cwe.html" title="CWE-400 - CWE definition">400</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-05-21</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The i_zval_ptr_dtor function in Zend/zend_variables.h in PHP 7.1.5 allows attackers to cause a denial of service (memory consumption and application crash) or possibly have unspecified other impact by triggering crafted operations on array data structures.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											21					</td>
+										<td nowrap><a href="/cve/CVE-2017-9067/"  title="CVE-2017-9067 security vulnerability details">CVE-2017-9067</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/22/cwe.html" title="CWE-22 - CWE definition">22</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Dir. Trav. 					</td>
+										<td>2017-05-18</td>
+					<td>2017-05-31</td>
+					<td><div class="cvssbox" style="background-color:#ffe000">4.4</div></td>
+					<td align="center">None</td>
+					<td align="center">Local</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In MODX Revolution before 2.5.7, when PHP 5.3.3 is used, an attacker is able to include and execute arbitrary files on the web server due to insufficient validation of the action parameter to setup/index.php, aka directory traversal.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											22					</td>
+										<td nowrap><a href="/cve/CVE-2017-8923/"  title="CVE-2017-8923 security vulnerability details">CVE-2017-8923</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/20/cwe.html" title="CWE-20 - CWE definition">20</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-05-12</td>
+					<td>2017-05-24</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The zend_string_extend function in Zend/zend_string.h in PHP through 7.1.5 does not prevent changes to string objects that result in a negative length, which allows remote attackers to cause a denial of service (application crash) or possibly have unspecified other impact by leveraging a script&#039;s use of .= with a long string.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											23					</td>
+										<td nowrap><a href="/cve/CVE-2017-7963/"  title="CVE-2017-7963 security vulnerability details">CVE-2017-7963</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/399/cwe.html" title="CWE-399 - CWE definition">399</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-04-19</td>
+					<td>2017-04-28</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						** DISPUTED ** The GNU Multiple Precision Arithmetic Library (GMP) interfaces for PHP through 7.1.4 allow attackers to cause a denial of service (memory consumption and application crash) via operations on long strings. NOTE: the vendor disputes this, stating &quot;There is no security issue here, because GMP safely aborts in case of an OOM condition. The only attack vector here is denial of service. However, if you allow attacker-controlled, unbounded allocations you have a DoS vector regardless of GMP&#039;s OOM behavior.&quot;					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											24					</td>
+										<td nowrap><a href="/cve/CVE-2017-7890/"  title="CVE-2017-7890 security vulnerability details">CVE-2017-7890</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/200/cwe.html" title="CWE-200 - CWE definition">200</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						+Info 					</td>
+										<td>2017-08-02</td>
+					<td>2018-03-07</td>
+					<td><div class="cvssbox" style="background-color:#ffe000">4.3</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The GIF decoding function gdImageCreateFromGifCtx in gd_gif_in.c in the GD Graphics Library (aka libgd), as used in PHP before 5.6.31 and 7.x before 7.1.7, does not zero colorMap arrays before use. A specially crafted GIF image could use the uninitialized tables to read ~700 bytes from the top of the stack, potentially disclosing sensitive information.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											25					</td>
+										<td nowrap><a href="/cve/CVE-2017-7272/"  title="CVE-2017-7272 security vulnerability details">CVE-2017-7272</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/918/cwe.html" title="CWE-918 - CWE definition">918</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2017-03-27</td>
+					<td>2018-02-25</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.8</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						PHP through 7.1.11 enables potential SSRF in applications that accept an fsockopen or pfsockopen hostname argument with an expectation that the port number is constrained. Because a :port syntax is recognized, fsockopen will use the port number that is specified in the hostname argument, instead of the port number in the second argument of the function.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											26					</td>
+										<td nowrap><a href="/cve/CVE-2017-6441/"  title="CVE-2017-6441 security vulnerability details">CVE-2017-6441</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/476/cwe.html" title="CWE-476 - CWE definition">476</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-04-03</td>
+					<td>2017-04-10</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						** DISPUTED ** The _zval_get_long_func_ex in Zend/zend_operators.c in PHP 7.1.2 allows attackers to cause a denial of service (NULL pointer dereference and application crash) via crafted use of &quot;declare(ticks=&quot; in a PHP script. NOTE: the vendor disputes the classification of this as a vulnerability, stating &quot;Please do not request CVEs for ordinary bugs. CVEs are relevant for security issues only.&quot;					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											27					</td>
+										<td nowrap><a href="/cve/CVE-2017-5340/"  title="CVE-2017-5340 security vulnerability details">CVE-2017-5340</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/190/cwe.html" title="CWE-190 - CWE definition">190</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Exec Code Overflow 					</td>
+										<td>2017-01-11</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Zend/zend_hash.c in PHP before 7.0.15 and 7.1.x before 7.1.1 mishandles certain cases that require large array allocations, which allows remote attackers to execute arbitrary code or cause a denial of service (integer overflow, uninitialized memory access, and use of arbitrary destructor function pointers) via crafted serialized data.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2018"> </a>
+											28					</td>
+										<td nowrap><a href="/cve/CVE-2016-10712/"  title="CVE-2016-10712 security vulnerability details">CVE-2016-10712</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/20/cwe.html" title="CWE-20 - CWE definition">20</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+											</td>
+										<td>2018-02-09</td>
+					<td>2018-03-10</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.5.32, 5.6.x before 5.6.18, and 7.x before 7.0.3, all of the return values of stream_get_meta_data can be controlled if the input can be controlled (e.g., during file uploads). For example, a &quot;$uri = stream_get_meta_data(fopen($file, &quot;r&quot;))[&#039;uri&#039;]&quot; call mishandles the case where $file is data:text/plain;uri=eviluri, -- in other words, metadata can be set by an attacker.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											29					</td>
+										<td nowrap><a href="/cve/CVE-2016-10397/"  title="CVE-2016-10397 security vulnerability details">CVE-2016-10397</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/20/cwe.html" title="CWE-20 - CWE definition">20</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Bypass 					</td>
+										<td>2017-07-10</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+					<td align="center">None</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In PHP before 5.6.28 and 7.x before 7.0.13, incorrect handling of various URI components in the URL parser could be used by attackers to bypass hostname-specific URL checks, as demonstrated by evil.example.com:80#@good.example.com/ and evil.example.com:<a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="ebd3dbd4ab8c84848fc58e938a869b878ec5888486">[email&#160;protected]</a>/ inputs to the parse_url function (implemented in the php_url_parse_ex function in ext/standard/url.c).					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											30					</td>
+										<td nowrap><a href="/cve/CVE-2016-10162/"  title="CVE-2016-10162 security vulnerability details">CVE-2016-10162</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/476/cwe.html" title="CWE-476 - CWE definition">476</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-24</td>
+					<td>2017-07-25</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The php_wddx_pop_element function in ext/wddx/wddx.c in PHP 7.0.x before 7.0.15 and 7.1.x before 7.1.1 allows remote attackers to cause a denial of service (NULL pointer dereference and application crash) via an inapplicable class name in a wddxPacket XML document, leading to mishandling in a wddx_deserialize call.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											31					</td>
+										<td nowrap><a href="/cve/CVE-2016-10161/"  title="CVE-2016-10161 security vulnerability details">CVE-2016-10161</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/125/cwe.html" title="CWE-125 - CWE definition">125</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-24</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The object_common1 function in ext/standard/var_unserializer.c in PHP before 5.6.30, 7.0.x before 7.0.15, and 7.1.x before 7.1.1 allows remote attackers to cause a denial of service (buffer over-read and application crash) via crafted serialized data that is mishandled in a finish_nested_data call.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											32					</td>
+										<td nowrap><a href="/cve/CVE-2016-10160/"  title="CVE-2016-10160 security vulnerability details">CVE-2016-10160</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Exec Code Overflow Mem. Corr. 					</td>
+										<td>2017-01-24</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Off-by-one error in the phar_parse_pharfile function in ext/phar/phar.c in PHP before 5.6.30 and 7.0.x before 7.0.15 allows remote attackers to cause a denial of service (memory corruption) or possibly execute arbitrary code via a crafted PHAR archive with an alias mismatch.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											33					</td>
+										<td nowrap><a href="/cve/CVE-2016-10159/"  title="CVE-2016-10159 security vulnerability details">CVE-2016-10159</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/190/cwe.html" title="CWE-190 - CWE definition">190</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2017-01-24</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Integer overflow in the phar_parse_pharfile function in ext/phar/phar.c in PHP before 5.6.30 and 7.0.x before 7.0.15 allows remote attackers to cause a denial of service (memory consumption or application crash) via a truncated manifest entry in a PHAR archive.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											34					</td>
+										<td nowrap><a href="/cve/CVE-2016-10158/"  title="CVE-2016-10158 security vulnerability details">CVE-2016-10158</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/189/cwe.html" title="CWE-189 - CWE definition">189</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-24</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The exif_convert_any_to_int function in ext/exif/exif.c in PHP before 5.6.30, 7.0.x before 7.0.15, and 7.1.x before 7.1.1 allows remote attackers to cause a denial of service (application crash) via crafted EXIF data that triggers an attempt to divide the minimum representable negative integer by -1.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											35					</td>
+										<td nowrap><a href="/cve/CVE-2016-9936/"  title="CVE-2016-9936 security vulnerability details">CVE-2016-9936</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-04</td>
+					<td>2017-01-17</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The unserialize implementation in ext/standard/var.c in PHP 7.x before 7.0.14 allows remote attackers to cause a denial of service (use-after-free) or possibly have unspecified other impact via crafted serialized data.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2015-6834.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											36					</td>
+										<td nowrap><a href="/cve/CVE-2016-9935/"  title="CVE-2016-9935 security vulnerability details">CVE-2016-9935</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/125/cwe.html" title="CWE-125 - CWE definition">125</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Mem. Corr. 					</td>
+										<td>2017-01-04</td>
+					<td>2017-06-30</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The php_wddx_push_element function in ext/wddx/wddx.c in PHP before 5.6.29 and 7.x before 7.0.14 allows remote attackers to cause a denial of service (out-of-bounds read and memory corruption) or possibly have unspecified other impact via an empty boolean element in a wddxPacket XML document.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											37					</td>
+										<td nowrap><a href="/cve/CVE-2016-9934/"  title="CVE-2016-9934 security vulnerability details">CVE-2016-9934</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/476/cwe.html" title="CWE-476 - CWE definition">476</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-04</td>
+					<td>2017-01-17</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/wddx/wddx.c in PHP before 5.6.28 and 7.x before 7.0.13 allows remote attackers to cause a denial of service (NULL pointer dereference) via crafted serialized data in a wddxPacket XML document, as demonstrated by a PDORow string.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											38					</td>
+										<td nowrap><a href="/cve/CVE-2016-9138/"  title="CVE-2016-9138 security vulnerability details">CVE-2016-9138</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-04</td>
+					<td>2017-01-06</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						PHP through 5.6.27 and 7.x through 7.0.12 mishandles property modification during __wakeup processing, which allows remote attackers to cause a denial of service or possibly have unspecified other impact via crafted serialized data, as demonstrated by Exception::__toString with DateInterval::__wakeup.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											39					</td>
+										<td nowrap><a href="/cve/CVE-2016-9137/"  title="CVE-2016-9137 security vulnerability details">CVE-2016-9137</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-04</td>
+					<td>2017-11-03</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Use-after-free vulnerability in the CURLFile implementation in ext/curl/curl_file.c in PHP before 5.6.27 and 7.x before 7.0.12 allows remote attackers to cause a denial of service or possibly have unspecified other impact via crafted serialized data that is mishandled during __wakeup processing.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											40					</td>
+										<td nowrap><a href="/cve/CVE-2016-7480/"  title="CVE-2016-7480 security vulnerability details">CVE-2016-7480</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Exec Code Overflow 					</td>
+										<td>2017-01-11</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The SplObjectStorage unserialize implementation in ext/spl/spl_observer.c in PHP before 7.0.12 does not verify that a key is an object, which allows remote attackers to execute arbitrary code or cause a denial of service (uninitialized memory access) via crafted serialized data.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											41					</td>
+										<td nowrap><a href="/cve/CVE-2016-7479/"  title="CVE-2016-7479 security vulnerability details">CVE-2016-7479</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						Exec Code 					</td>
+										<td>2017-01-11</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						In all versions of PHP 7, during the unserialization process, resizing the &#039;properties&#039; hash table of a serialized object may lead to use-after-free. A remote attacker may exploit this bug to gain arbitrary code execution.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2017"> </a>
+											42					</td>
+										<td nowrap><a href="/cve/CVE-2016-7478/"  title="CVE-2016-7478 security vulnerability details">CVE-2016-7478</a></td>
+					<td></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2017-01-11</td>
+					<td>2018-01-13</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Zend/zend_exceptions.c in PHP, possibly 5.x before 5.6.28 and 7.x before 7.0.13, allows remote attackers to cause a denial of service (infinite loop) via a crafted Exception object in serialized data, a related issue to CVE-2015-8876.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											43					</td>
+										<td nowrap><a href="/cve/CVE-2016-7418/"  title="CVE-2016-7418 security vulnerability details">CVE-2016-7418</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The php_wddx_push_element function in ext/wddx/wddx.c in PHP before 5.6.26 and 7.x before 7.0.11 allows remote attackers to cause a denial of service (invalid pointer access and out-of-bounds read) or possibly have unspecified other impact via an incorrect boolean element in a wddxPacket XML document, leading to mishandling in a wddx_deserialize call.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											44					</td>
+										<td nowrap><a href="/cve/CVE-2016-7417/"  title="CVE-2016-7417 security vulnerability details">CVE-2016-7417</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/20/cwe.html" title="CWE-20 - CWE definition">20</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/spl/spl_array.c in PHP before 5.6.26 and 7.x before 7.0.11 proceeds with SplArray unserialization without validating a return value and data type, which allows remote attackers to cause a denial of service or possibly have unspecified other impact via crafted serialized data.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											45					</td>
+										<td nowrap><a href="/cve/CVE-2016-7416/"  title="CVE-2016-7416 security vulnerability details">CVE-2016-7416</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ffcc00">5.0</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">None</td>
+					<td align="center">None</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/intl/msgformat/msgformat_format.c in PHP before 5.6.26 and 7.x before 7.0.11 does not properly restrict the locale length provided to the Locale class in the ICU library, which allows remote attackers to cause a denial of service (application crash) or possibly have unspecified other impact via a MessageFormatter::formatMessage call with a long first argument.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											46					</td>
+										<td nowrap><a href="/cve/CVE-2016-7414/"  title="CVE-2016-7414 security vulnerability details">CVE-2016-7414</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						The ZIP signature-verification feature in PHP before 5.6.26 and 7.x before 7.0.11 does not ensure that the uncompressed_filesize field is large enough, which allows remote attackers to cause a denial of service (out-of-bounds memory access) or possibly have unspecified other impact via a crafted PHAR archive, related to ext/phar/util.c and ext/phar/zip.c.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											47					</td>
+										<td nowrap><a href="/cve/CVE-2016-7413/"  title="CVE-2016-7413 security vulnerability details">CVE-2016-7413</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/416/cwe.html" title="CWE-416 - CWE definition">416</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						Use-after-free vulnerability in the wddx_stack_destroy function in ext/wddx/wddx.c in PHP before 5.6.26 and 7.x before 7.0.11 allows remote attackers to cause a denial of service or possibly have unspecified other impact via a wddxPacket XML document that lacks an end-tag for a recordset field element, leading to mishandling in a wddx_deserialize call.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											48					</td>
+										<td nowrap><a href="/cve/CVE-2016-7412/"  title="CVE-2016-7412 security vulnerability details">CVE-2016-7412</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2016-09-17</td>
+					<td>2017-11-02</td>
+					<td><div class="cvssbox" style="background-color:#ffbc10">6.8</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Medium</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/mysqlnd/mysqlnd_wireprotocol.c in PHP before 5.6.26 and 7.x before 7.0.11 does not verify that a BIT field has the UNSIGNED_FLAG flag, which allows remote MySQL servers to cause a denial of service (heap-based buffer overflow) or possibly have unspecified other impact via crafted field metadata.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											49					</td>
+										<td nowrap><a href="/cve/CVE-2016-7411/"  title="CVE-2016-7411 security vulnerability details">CVE-2016-7411</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow Mem. Corr. 					</td>
+										<td>2016-09-17</td>
+					<td>2017-07-29</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/standard/var_unserializer.re in PHP before 5.6.26 mishandles object-deserialization failures, which allows remote attackers to cause a denial of service (memory corruption) or possibly have unspecified other impact via an unserialize call that references a partially constructed object.					</td>
+				</tr>
+
+							<tr class="srrowns">
+					<td class="num">
+											<a name="y2016"> </a>
+											50					</td>
+										<td nowrap><a href="/cve/CVE-2016-7134/"  title="CVE-2016-7134 security vulnerability details">CVE-2016-7134</a></td>
+					<td><a href="//www.cvedetails.com/cwe-details/119/cwe.html" title="CWE-119 - CWE definition">119</a></td>
+					<td class="num">
+						<b style="color:red">
+												</b>
+					</td>
+					<td>
+						DoS Overflow 					</td>
+										<td>2016-09-11</td>
+					<td>2017-08-15</td>
+					<td><div class="cvssbox" style="background-color:#ff9c20">7.5</div></td>
+					<td align="center">None</td>
+					<td align="center">Remote</td>
+					<td align="center">Low</td>
+					<td align="center">Not required</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+					<td align="center">Partial</td>
+				</tr>
+								<tr>
+					<td class="cvesummarylong" colspan="20">
+						ext/curl/interface.c in PHP 7.x before 7.0.10 does not work around a libcurl integer overflow, which allows remote attackers to cause a denial of service (allocation error and heap-based buffer overflow) or possibly have unspecified other impact via a long string that is mishandled in a curl_escape call.					</td>
+				</tr>
+
+				</table>
+</div>
+
+<div class="paging" id="pagingb">
+	Total number of vulnerabilities : <b>564</b> &nbsp;
+Page :
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=1&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 1">1</a>
+(This Page)<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=2&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 2">2</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=3&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 3">3</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=4&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 4">4</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=5&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 5">5</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=6&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 6">6</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=7&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 7">7</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=8&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 8">8</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=9&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 9">9</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=10&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 10">10</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=11&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 11">11</a>
+<a	href="/vulnerability-list.php?vendor_id=74&product_id=128&version_id=&page=12&hasexp=0&opdos=0&opec=0&opov=0&opcsrf=0&opgpriv=0&opsqli=0&opxss=0&opdirt=0&opmemc=0&ophttprs=0&opbyp=0&opfileinc=0&opginf=0&cvssscoremin=0&cvssscoremax=0&year=0&month=0&cweid=0&order=1&trc=564&sha=d8a9f07b702ae6252893a7ef73f2f2812bbcbb8a"	 title="Go to page 12">12</a>
+</div>
+<script data-cfasync="false" src="/cdn-cgi/scripts/d07b1474/cloudflare-static/email-decode.min.js"></script><script language="javascript" type="text/javascript">
+	function copypaging(){
+		var t=document.getElementById('pagingt');
+		var b=document.getElementById('pagingb');
+		t.innerHTML=b.innerHTML;
+		t.style.display='';
+	}
+	copypaging();
+</script>
+</div>
+		</td>
+		<td align="left" valign="top">
+					</td>
+	</tr>
+</table>
+<div id="footer">
+	<a href="/how-does-it-work.php" title="Technical details">
+		How does it work? Known limitations &amp; technical details</a>
+	&nbsp;
+	<a href="/privacy.php" title="User agreement and privacy statement">
+		User agreement, disclaimer and privacy statement</a>
+	&nbsp;
+	<a href="/about-contact.php" title="About the web site">
+		About &amp; Contact</a>
+	&nbsp;
+	<a title="Uservoice forum" href="http://cvedetails.uservoice.com">Feedback</a>
+</div>
+
+<div class="disclaimer">
+	 CVE is a registred trademark of the MITRE Corporation and the     authoritative  source of CVE content is
+	 <a href="http://cve.mitre.org/" target="_blank">MITRE's CVE web site</a>.
+
+	 CWE is a registred trademark of the MITRE Corporation and the     authoritative  source of CWE content is
+	 <a href="http://cwe.mitre.org/" target="_blank">MITRE's CWE web site</a>.
+
+	OVAL is a registered trademark of The MITRE Corporation and the authoritative  source of OVAL content is
+	<a href="http://oval.mitre.org" target="_blank">MITRE's OVAL web site</a>.
+</div>
+<div class="disclaimer">
+Use of this information constitutes acceptance for use in an AS IS condition.
+There are NO warranties, implied or otherwise, with regard to this information or its use.
+Any use of this information is at the user's risk.
+It is the responsibility of user to evaluate the accuracy, completeness or usefulness of any information, opinion, advice or other content.
+EACH USER WILL BE SOLELY RESPONSIBLE FOR ANY consequences of his or her direct or indirect use of this web site.
+ALL WARRANTIES OF ANY KIND ARE EXPRESSLY DISCLAIMED. This site will NOT BE LIABLE FOR ANY DIRECT,
+INDIRECT or any other kind of loss.
+</div>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7227721-2");
+pageTracker._setDomainName("none");
+pageTracker._setAllowLinker(true);
+pageTracker._trackPageview();
+} catch(err) {}</script>
+<script>
+  (function() {
+		var cx = '001970827437957689766:wsv7kcniwgs';
+		var gcse = document.createElement('script');
+		gcse.type = 'text/javascript';
+		gcse.async = true;
+		gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+			'//cse.google.com/cse.js?cx=' + cx;
+		var s = document.getElementsByTagName('script')[0];
+		s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+</body>
+</html>
