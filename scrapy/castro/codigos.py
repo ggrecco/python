@@ -159,6 +159,7 @@ secondary_consumer = soup.find(is_secondary_consumers)
 print(secondary_consumer.li.div.string)
 #############################################################################
 ########## Função find_all ######################
+
 with open('arquivo03.html', 'r') as f:
      soup = BeautifulSoup(f, 'lxml')
 #tag_list = soup.find_all('ul')#imprime todas as ocorrencias ul em uma lista
@@ -170,6 +171,7 @@ with open('arquivo03.html', 'r') as f:
 #tag_list = soup.find_all(class_=['producerlist', 'primaryconsumerlist'])#procura pelas classes
 tag_list = soup.ul.find_all('div')#procura por
 print(tag_list)
+
 ##############################################################
 ################# Buscando elementos com o find_parents #########
 with open('arquivo04.html', 'r') as f:
