@@ -1,8 +1,8 @@
 from requests import get
 
 base_url = 'http://www.pyjobs.com.br/'
-jobs = f'{base_url}jobs/'
-job_pages = f'{jobs}page='
+jobs = '{}jobs/'.format(base_url)
+job_pages = '{}page='.format(jobs)
 
 pyjobs = get(jobs)
 pyjobs

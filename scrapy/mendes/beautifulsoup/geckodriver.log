@@ -193,3 +193,11 @@ JavaScript warning: https://www.reclameaqui.com.br/_Incapsula_Resource?SWJIYLWA=
 [Child 13210, Chrome_ChildThread] WARNING: pipe error: Pipe quebrado: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 709
 [Child 13210, Chrome_ChildThread] WARNING: pipe error (31): Conexão fechada pela outra ponta: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
 [Child 13210, Chrome_ChildThread] WARNING: pipe error (3): Conexão fechada pela outra ponta: file /build/firefox-GBiM4z/firefox-58.0.2+linuxmint1+sylvia/ipc/chromium/src/chrome/common/ipc_channel_posix.cc, line 353
+1521120545934	geckodriver	INFO	geckodriver 0.18.0
+1521120545943	geckodriver	INFO	Listening on 127.0.0.1:52309
+1521120547106	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox with args ["-marionette"]
+1521120547978	Marionette	INFO	Enabled via --marionette
+1521120549801	Marionette	INFO	Listening on port 44161
+1521120549857	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: resource://shield-recipe-client/lib/RecipeRunner.jsm, line 137: TypeError: prefs is undefined
+*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
