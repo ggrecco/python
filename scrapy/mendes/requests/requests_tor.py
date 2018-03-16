@@ -1,7 +1,7 @@
 from requests import Session
 
 s = Session()
-s.proxies = {'http': 'socks5h://127.0.0.1:60050'}
+s.proxies = {'http://127.0.0.1:60050': 'socks5'}
 
 #com o tor
 h = s.get('http://httpbin.org/ip')
