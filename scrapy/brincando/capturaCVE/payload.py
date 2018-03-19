@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup as bs
 def busca_tabelas():
     url = "https://www.cvedetails.com/vulnerability-search.php"
 
-    lingua = 'php'
+    linguagem = 'php'
 
     payload = {'bidno': '',
                 'cveid': '',
@@ -16,7 +16,7 @@ def busca_tabelas():
                 'msid': '',
                 'pem': '',
                 'pey': '',
-                'product': lingua,
+                'product': linguagem,
                 'psm': '',
                 'psy': '',
                 'sp[1]': '1',
