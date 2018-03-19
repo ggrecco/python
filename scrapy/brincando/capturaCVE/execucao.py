@@ -14,7 +14,7 @@ coment = busca_tabelas().findAll('td', {'class':'cvesummarylong'})
 
 #a = tabelas
 #b = coment
-'''
+
 while i < len(tabelas):
     f.append(tabelas[i].find_all('td')[9].text)
     #f.append(a[i].find_all('td')[9].text)
@@ -24,4 +24,3 @@ while i < len(tabelas):
     d.append(c)
     captura.inserir(f[i], g[i])
     i = i + 1
-'''
