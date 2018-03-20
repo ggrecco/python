@@ -2,8 +2,8 @@ import sqlite3
 
 class Cve(object):
     def __init__(self):
-        self.table = "cve"
-        self.conn = sqlite3.connect('cve.db')
+        self.table = "cvedetails"
+        self.conn = sqlite3.connect('cvedetails.db')
         self.c = self.conn.cursor()
 
     def listarTodos(self):
@@ -12,9 +12,9 @@ class Cve(object):
         dados = self.c.fetchall()
         return dados
 
-    def inserir(self, nota, comentarios):
-        sql = "INSERT INTO "+ self.table +" (nota, comentarios) VALUES (?,?)"
-        self.c.execute(sql,( nota, comentarios))
+    def inserir(self, produto, cveid, tipo, datacorrecao, nota, acesso, comentarios):
+        sql = "INSERT INTO "+ self.table +" (produto, cveid, tipo, datacorrecao, nota, acesso, comentarios) VALUES (?,?,?,?,?,?,?)"
+        self.c.execute(sql,(produto, cveid, tipo, datacorrecao, nota, acesso, comentarios))
         self.conn.commit()
 
     def listar1(self,id):
