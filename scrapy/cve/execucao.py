@@ -1,21 +1,28 @@
 from requests import get
 from payload import *
-from captura import *
+from dml import *
 
-d = []
-f = []
-g = []
 i = 0
+db = Cve()
 
-captura = Cve()
+variavel = 'Mysql'
 
-tabelas = busca_tabelas().findAll('tr', {'class':'srrowns'})
-coment = busca_tabelas().findAll('td', {'class':'cvesummarylong'})
+tabelas = busca_tabelas(variavel).findAll('tr', {'class':'srrowns'})
+coment = busca_tabelas(variavel).findAll('td', {'class':'cvesummarylong'})
 
 while i < len(tabelas):
-    f.append(tabelas[i].find_all('td')[9].text)
-    g.append(coment[i].text.split('\t')[6])
-    c = (f[i], g[i])
-    d.append(c)
-    captura.inserir(f[i], g[i])
+    coluna = tabelas[i].find_all('td')
+    produto = coluna[2].text
+    cveid = coluna[3].text
+    tipo = coluna[6].text
+    datacorrecao = coluna[8].text
+    nota = coluna[9].text
+    acesso = coluna[10].text
+    comentario = coment[i].text.split('\t')[6]
+    if '\n\t' in tipo:
+        tipo = tipo.split('\t')[6]
+        db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
+    elif '\n' in tipo:
+        tipo = tipo.split('\n')[0]
+        db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
     i = i + 1
