@@ -26,7 +26,7 @@ def busca_tabelas():
                 'usy': '',
                 'vendor': ''
 
-    }
+    } #sp[1] : 1 indica que está selecionado a caixa Admin Acess 
 
     response = requests.post(url, data = payload)
 
