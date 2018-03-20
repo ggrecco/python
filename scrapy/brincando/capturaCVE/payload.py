@@ -10,7 +10,7 @@ def busca_tabelas():
     payload = {'bidno': '',
                 'cveid': '',
                 'cvssscoremax': '',
-                'cvssscoremin': '',
+                'cvssscoremin': '9',
                 'cweid': '',
                 'f':'1',
                 'msid': '',
@@ -19,14 +19,13 @@ def busca_tabelas():
                 'product': linguagem,
                 'psm': '',
                 'psy': '',
-                'sp[1]': '1',
                 'uem': '',
                 'uey': '',
                 'usm': '',
                 'usy': '',
                 'vendor': ''
 
-    } #sp[1] : 1 indica que está selecionado a caixa Admin Acess 
+    } #sp[1] : 1 indica que está selecionado a caixa Admin Acess
 
     response = requests.post(url, data = payload)
 
