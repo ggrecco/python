@@ -24,7 +24,7 @@ def check_login(username,password):
 
     if type(dados) is tuple:
         for dado in dados:
-            d[dados[1]] = dados[2]
+            d[dados[3]] = dados[2]
 
         if username in d.keys() and d[username] == password:
             return True

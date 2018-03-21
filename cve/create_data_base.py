@@ -2,13 +2,10 @@ import sqlite3
 
 c = sqlite3.connect('cvedetails.db')
 
-tabela_cvedetails = """CREATE TABLE login(
-id integer primary key,
-nome varchar(50),
-senha varchar(50),
-email varchar(150)
-)"""
+sql_many_inserts = "INSERT INTO `login` ( `nome`, `senha`, `email`) VALUES (?,?,?)"
 
-c.execute(tabela_cvedetails)
+values_to_insert = [('teste','123','teste@teste')]
+
+c.executemany(sql_many_inserts,values_to_insert)
 
 c.commit()
