@@ -1,5 +1,7 @@
+from scrapy import *
 from bottle import route, run, request, response, post, get, template, static_file, redirect
 from dml import *
+
 
 @get('/<filename:re:.*\.css>')
 def stylesheets(filename):
@@ -44,6 +46,22 @@ def teste():
     senha = str(request.forms.get('password'))
     return template('retornoLogin.html', sucesso = check_login(usuario, senha))
 
+##################################################################################################################
+@get('/scrapy1')
+def scrapy2():
+    return template('scrapy.html')
+
+@post('/scrapy')
+def scrapy():
+    linguagem = str(request.forms.get('software'))
+    scrapy(linguagem)
+    return template('deseja.html')
+####################################################################################################################################################################
+
+@post('/pesquisar')
+def pesquisar():
+    return template('visualizar_cve.html')
+
 @get('/cve')
 def listar_cve():
     dados = cve.listarTodos()
@@ -86,3 +104,4 @@ def visualizar_get(id):
 	return template('visualizar_cve.html',dados=dados)
 
 run(host='localhost', port=8080, debug=True, reloader=True)
+#run(host='192.168.43.7', port=8080, debug=True, reloader=True)
