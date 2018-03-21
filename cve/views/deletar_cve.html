@@ -1,0 +1,32 @@
+% rebase('base2.html')
+<class="table" class="text-center">
+<h1> VOCÊ TEM CERTEZA QUE DESEJA DELETAR O REGISTRO? </h1>
+<ul>
+  <li>
+		<p>Linguagem: {{dados[1]}}</p>
+	</li>
+	<li>
+		<p>Código CVE: {{dados[2]}}</p>
+	</li>
+	<li>
+		<p>Tipo de Falha: {{dados[3]}}</p>
+	</li>
+	<li>
+		<p>Data da Correção: {{dados[4]}}</p>
+	</li>
+	<li>
+		<p>Nota: {{dados[5]}}</p>
+	</li>
+	<li>
+		<p>Permissão de Acesso: {{dados[6]}}</p>
+	</li>
+	<li>
+		<p>Resumo: {{dados[7]}}</p>
+	</li>
+</ul>
+
+<form action="/cve_deletar" method="post">
+	<input type="hidden" name="id" value="{{dados[0]}}">
+	<button type="submit" class="btn btn-danger text-center">Sim</button><br />
+	<a role="button" class="btn btn-lg btn-primary text-center" href="/cve">Não</a>
+</form>

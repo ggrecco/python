@@ -1,0 +1,40 @@
+% rebase('base2.html')
+
+<div class="form-container" data-form-container style="color: rgb(0, 0, 0); background: rgb(255, 255, 255);">
+	<div class="row">
+		<div class="form-title text-center">
+			<span><h1>Dados Cadastrados</h1></span>
+		</div>
+	</div>
+</div>
+<hr />
+<div class="table-responsive col-md-12">
+	<table class="table table-striped" cellspacing="0" cellpadding="0">
+	<thead>
+		<tr class="text-center">
+        <th>ID</th>
+        <th>Linguagem</th>
+        <th>Código CVE</th>
+        <th>Tipo de Falha</th>
+        <th>Data da Correção</th>
+        <th>Nota</th>
+        <th>Permissão de Acesso</th>
+        <th>Resumo</th>
+    </tr>
+  </thead>
+% for dado in dados:
+<tr>
+    <td>{{dado[0]}}</td>
+    <td>{{dado[1]}}</td>
+    <td><a href="/cve_visualizar_{{dado[0]}}">{{dado[2]}}</td>
+    <td>{{dado[3]}}</td>
+    <td>{{dado[4]}}</td>
+    <td>{{dado[5]}}</td>
+    <td>{{dado[6]}}</td>
+    <td>{{dado[7]}}</td>
+		<td><a href="/cve_visualizar_{{dado[0]}}"><button class="btn btn-warning">Visualizar </button></a>
+		<a href="/cve_deletar_{{dado[0]}}"><button class="btn btn-danger">Deletar</button></a></td>
+	</tr>
+	%end
+  </table>
+</div>
