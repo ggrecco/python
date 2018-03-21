@@ -23,12 +23,24 @@ class Cve(object):
         dados=self.c.fetchone()
         return dados
 
-    def alterar(self,id, nota, comentarios):
-        sql=" UPDATE "+self.table+" set nota=?,comentarios=? where id=?"
-        self.c.execute(sql,( nota, comentarios,id))
+    def alterar(self,id,produto, cveid, tipo, datacorrecao, nota, acesso, comentarios):
+        sql=" UPDATE "+self.table+" set roduto=? cveid=? tipo=? datacorrecao=? nota=? acesso=? comentarios=? where id=?"
+        self.c.execute(sql,(produto, cveid, tipo, datacorrecao, nota, acesso, comentarios,id))
         self.conn.commit()
 
     def deletar(self,id):
         sql=" DELETE FROM " +self.table+" where id=? "
         self.c.execute(sql,(id,))
         self.conn.commit()
+
+class Login(object):
+    def __init__(self):
+        self.table = "login"
+        self.conn = sqlite3.connect('cvedetails.db')
+        self.c = self.conn.cursor()
+
+    def busca(self,email):
+        sql = " SELECT * FROM " +self.table+ " where email=? "
+        self.c.execute(sql,(email,))
+        dados = self.c.fetchone()
+        return dados
