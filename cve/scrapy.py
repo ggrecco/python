@@ -2,12 +2,12 @@ from requests import get
 from payload import *
 from dml import *
 
-def scrapy(procura):
+def scrapy(procura, mini = '9', maxi = ''):
     i = 0
     db = Cve()
 
-    tabelas = busca_tabelas(procura).findAll('tr', {'class':'srrowns'})
-    coment = busca_tabelas(procura).findAll('td', {'class':'cvesummarylong'})
+    tabelas = busca_tabelas(procura, mini, maxi).findAll('tr', {'class':'srrowns'})
+    coment = busca_tabelas(procura, mini, maxi).findAll('td', {'class':'cvesummarylong'})
 
     while i < len(tabelas):
         coluna = tabelas[i].find_all('td')

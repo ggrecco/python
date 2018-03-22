@@ -39,7 +39,9 @@ def scrapy2():
 @post('/scrapy')
 def scr():
     linguagem = str(request.forms.get('software'))
-    scrapy(linguagem)
+    minimo = str(request.forms.get('mini'))
+    maximo = str(request.forms.get('maxi'))
+    scrapy(linguagem, minimo, maximo)
     #tratar o dado se retorno positivo ou negativo
     return template('deseja.html')
 
