@@ -1,7 +1,9 @@
 from scrapy import *
 from bottle import route, run, request, response, post, get, template, static_file, redirect
 from dml import *
+from check_login import check_login
 
+cve = Cve()
 
 @get('/<filename:re:.*\.css>')
 def stylesheets(filename):
@@ -18,23 +20,7 @@ def imagens(filename):
 @get('/<filename:re:.*\.(eot|ttf|woff|svg)')
 def fonts(filename):
     return static_file(filename, root='static/fonts')
-#---------------------------------------------------------
-def check_login(username,password):
-    login = Login()
-    d = {}
-    dados = login.busca(username)
 
-    if type(dados) is tuple:
-        for dado in dados:
-            d[dados[3]] = dados[2]
-
-        if username in d.keys() and d[username] == password:
-            return True
-        return False
-    else:
-        return False
-#-----------------------------------------------------------------
-cve = Cve()
 
 @route('/')
 def home_page():
