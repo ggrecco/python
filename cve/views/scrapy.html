@@ -1,8 +1,12 @@
-% rebase('base2.html')
-<h1>O que deseja pesquisar</h1>
-  <ul>
-    <form action="/scrapy" method="post"> <br />
-      Software:<br /><input type="text" name="software" /><br />
-            <input type="submit" value="Enviar" /><br />
-    </form>
-  </ul>
+% rebase('base.html')
+<form class="form-signin text-center" action="/scrapy" method="post">
+  <img class="mb-4" src="perguntas.png" alt="" width="191" height="197">
+  <h1 class="h3 mb-3 font-weight-normal text-center">Qual serviço deseja pesquisar?</h1>
+  <input type="text" name="software" id="Software" class="form-control" placeholder="Serviço" required autofocus><br />
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Pesquisar</button>
+  <a href="/cve" class="btn btn-lg btn-primary btn-block">visualizar db</a>
+  <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
+</form>
+<!--
+http://mercadosimples.com/img/user_dirs/silmarajacarezinho/anel_de_formatura_em_ouro_18k/perguntas.png?1503190104178
+-->

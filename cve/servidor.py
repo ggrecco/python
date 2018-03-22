@@ -46,17 +46,16 @@ def teste():
     senha = str(request.forms.get('password'))
     return template('retornoLogin.html', sucesso = check_login(usuario, senha))
 
-##################################################################################################################
 @get('/scrapy1')
 def scrapy2():
     return template('scrapy.html')
 
 @post('/scrapy')
-def scrapy():
+def scr():
     linguagem = str(request.forms.get('software'))
     scrapy(linguagem)
+    #tratar o dado se retorno positivo ou negativo
     return template('deseja.html')
-####################################################################################################################################################################
 
 @post('/pesquisar')
 def pesquisar():
