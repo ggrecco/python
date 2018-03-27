@@ -1,6 +1,5 @@
 from dml import *
 
-
 def check_login(username,password):
     login = Login()
     d = {}

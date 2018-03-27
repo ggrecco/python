@@ -1,6 +1,7 @@
 from scrapy import *
 from bottle import route, run, request, response, post, get, template, static_file, redirect
 from dml import *
+import hashlib
 from check_login import check_login
 
 cve = Cve()
@@ -29,7 +30,9 @@ def home_page():
 @post('/retornoLogin')
 def teste():
     usuario = str(request.forms.get('email'))
-    senha = str(request.forms.get('password'))
+    senha = request.forms.get('password')
+    senha = hashlib.md5(senha.encode())
+    senha = senha.hexdigest()
     return template('retornoLogin.html', sucesso = check_login(usuario, senha))
 
 @get('/scrapy1')
