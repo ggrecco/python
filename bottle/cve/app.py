@@ -1,5 +1,5 @@
 from scrapy import *
-from bottle import route, run, request, response, post, get, template, static_file, redirect
+from bottle import route, run, request, response, post, get, template, static_file, redirect, jinja2_view
 from dml import *
 import hashlib
 from check_login import check_login
@@ -92,6 +92,11 @@ def deletar_post():
 def visualizar_get(id):
 	dados=cve.listar1(id)
 	return template('visualizar_cve.html',dados=dados)
+
+@get('/teste')
+def teste():
+    links = ['cve', 'scrapy1']
+    return template('teste.html',dict(links=links))
 
 run(host='localhost', port=8080, debug=True, reloader=True)
 #run(host='192.168.43.7', port=8080, debug=True, reloader=True)
