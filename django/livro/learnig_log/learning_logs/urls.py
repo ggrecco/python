@@ -7,4 +7,5 @@ urlpatterns = [
     path('', views.index, name='index'),
     #Mostra todos os assuntos
     path('topics/', views.topics, name='topics'),
+
 ]
