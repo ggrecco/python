@@ -1,11 +1,12 @@
-from bottle import *
+from bottle, check_login import *
 
-@route('/')
-def home_page():
-    return 'Olá Mundo!'
 
-@error(404)
-def erro404(error):
-    return 'Página não encontrada'
+pagina = """<h1> olá {}!!</h1>""".format(nome)
 
-run(host='localhost', port=8080, debug=True)
+senha = '123'
+nome = teste
+
+def teste()
+
+
+# run(host='localhost', port=8080, debug=True, reloader=True)

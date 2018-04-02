@@ -1,8 +1,7 @@
 from scrapy import *
-from bottle import route, run, request, response, post, get, template, static_file, redirect, jinja2_view
+from bottle import route, run, request, response, post, get, template, static_file, redirect, Bottle
 from dml import *
-import hashlib
-from check_login import check_login
+from check_login import *
 
 cve = Cve()
 
@@ -28,12 +27,12 @@ def home_page():
     return template('login.html')
 
 @post('/retornoLogin')
-def teste():
+def login():
     usuario = str(request.forms.get('email'))
     senha = request.forms.get('password')
-    senha = hashlib.md5(senha.encode())
-    senha = senha.hexdigest()
-    return template('retornoLogin.html', sucesso = check_login(usuario, senha))
+    sucesso = check_login(usuario, senha)
+    global sucesso
+    return template('retornoLogin.html', sucesso = sucesso)
 
 @get('/scrapy1')
 def scrapy2():
@@ -55,8 +54,7 @@ def pesquisar():
 @get('/cve')
 def listar_cve():
     dados = cve.listarTodos()
-    return template('listar_cve.html', dados = dados)
-
+    return template('listar_cve.html', dados = dados, sucesso = sucesso)
 
 @get('/cve_alterar_<id>')
 def alterar_get(id):
@@ -91,7 +89,7 @@ def deletar_post():
 @get('/cve_visualizar_<id>')
 def visualizar_get(id):
 	dados=cve.listar1(id)
-	return template('visualizar_cve.html',dados=dados)
+	return template('visualizar_cve.html',dados=dados, sucesso = sucesso)
 
 @get('/teste')
 def teste():
