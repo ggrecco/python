@@ -1,6 +1,8 @@
 from bottle import route, run, request, response, post, get, template, static_file, redirect
 from busca import *
 from panela import *
+from bottle_jwt import JWTProviderPlugin, jwt_auth_required
+import bottle
 
 
 @get('/<filename:re:.*\.css>')
@@ -18,21 +20,46 @@ def imagens(filename):
 @get('/<filename:re:.*\.(eot|ttf|woff|svg)')
 def fonts(filename):
     return static_file(filename, root='static/fonts')
-#---------------------------------------------------------
-def check_login(username,password):
-    login = Login()
-    d = {}
-    dados = login.busca(username)
 
-    if type(dados) is tuple:
-        for dado in dados:
-            d[dados[1]] = dados[2]
+#-----------------------------------------------------------------
+app = bottle.Bottle()
 
-        if username in d.keys() and d[username] == password:
-            return True
-        return False
-    else:
-        return False
+server_secret = '*Y*^%JHg7623'
+
+
+class AuthBackend(object):
+    def authenticate_user(self, username, password):
+        login = Login()
+        d = {}
+        dados = login.busca(username)
+
+        if type(dados) is tuple:
+            for dado in dados:
+                d[dados[1]] = dados[2]
+
+            if username in d.keys() and d[username] == password:
+                return True
+            return False
+        else:
+            return False
+
+    def get_user(self, user_id):
+        if user_id == self.d['id']:
+            return {k: self.d[k] for k in self.d if k != 'password'}
+        return None
+
+
+provider_plugin = JWTProviderPlugin(
+    keyword='jwt',
+    auth_endpoint='/auth',
+    backend=AuthBackend(),
+    fields=('username', 'password'),
+    secret=server_secret,
+    ttl=30
+)
+
+app.install(provider_plugin)
+
 #-----------------------------------------------------------------
 panela = Panelas()
 
@@ -41,6 +68,7 @@ def home_page():
     return template('login.html')
 
 @post('/retornoLogin')
+@jwt_auth_required
 def teste():
     usuario = str(request.forms.get('email'))
     senha = str(request.forms.get('password'))
