@@ -97,4 +97,4 @@ def teste():
     return template('teste.html',dict(links=links))
 
 run(host='localhost', port=8080, debug=True, reloader=True)
-#run(host='192.168.43.7', port=8080, debug=True, reloader=True)
+# run(host='10.0.2.15', port=8080, debug=True, reloader=True)
