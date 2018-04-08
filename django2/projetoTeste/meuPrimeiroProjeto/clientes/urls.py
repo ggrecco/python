@@ -1,11 +1,8 @@
-from django.contrib import admin
-from django.urls import path, include
-from .views import *
-from django.conf import settings
-from django.conf.urls.static import static
-from clientes import urls as clientes_urls
+from django.urls import path
+from .views import persons_list, persons_new
 
 urlpatterns = [
-    path('list/', persons_list),
+    path('list/', persons_list, name='persons_list'),
+    path('new/', persons_new, name='persons_new'),
 
 ]

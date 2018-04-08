@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="{% url 'persons_new' %}" action="index.html" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">Salvar</button>
+        </form>
+    </body>
+</html>
