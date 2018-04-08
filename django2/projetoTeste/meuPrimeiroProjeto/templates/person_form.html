@@ -5,7 +5,7 @@
         <title></title>
     </head>
     <body>
-        <form class="{% url 'persons_new' %}" action="index.html" method="post">
+        <form action="{% url 'person_new' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
             <button type="submit">Salvar</button>
