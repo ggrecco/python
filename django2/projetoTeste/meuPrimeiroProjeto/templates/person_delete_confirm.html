@@ -5,11 +5,11 @@
         <title></title>
     </head>
     <body>
-        <!-- removido action="{% url 'person_new' %}" pois o proprio django determina o caminho -->
+        <h1>Está certo em deletar {{ person.first_name }}?</h1>
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form }}
-            <button type="submit">Salvar</button>
+            <button type="submit">Delete</button>
         </form>
     </body>
 </html>
