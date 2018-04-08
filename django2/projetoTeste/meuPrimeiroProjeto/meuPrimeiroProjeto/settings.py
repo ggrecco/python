@@ -122,4 +122,9 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     'estaticos',
+    ("login", "/home/ggrecco/Documentos/python/bottle/login/static/img/"),
 ]
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = 'media'
