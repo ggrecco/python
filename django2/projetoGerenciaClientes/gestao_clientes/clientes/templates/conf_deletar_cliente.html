@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block title %}Cadastrar Cliente{% endblock %}
+{% block main %}
+<h1>Deseja realmente excluir {{ cliente.nome }} ?</h1>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <button type="submit">Excluir</button>
+        <a href="{% url 'listar_cliente' %}">Voltar</a>
+    </form>
+{% endblock %}

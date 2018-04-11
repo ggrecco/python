@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Cadastrar Cliente{% endblock %}
+{% block main %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Salvar</button>
+    </form>
+{% endblock %}
