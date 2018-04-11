@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Página index</title>
-    </head>
-    <body>
-        <h1>olá mundo</h1>
-    </body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} Ola Mundo {% endblock %}
+{% block main %}
+<h1>olá mundo</h1>
+<img src="{% static 'img/wat.jpg' %}" alt="cachorro" />
+{% endblock %}

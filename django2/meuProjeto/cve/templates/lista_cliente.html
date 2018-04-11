@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Listar Cliente{% endblock %}
+{% block main %}
+<h1>Testando listar_cliente</h1>
+    <ul>
+        {% for cliente in clientes %}
+            <li>
+                <a href="{% url 'atualizar_cliente' cliente.id %} ">{{ cliente.id }}</a> - {{ cliente.nome }} - {{ cliente.email }}<a class="btn btn-danger" href="{% url 'excluir_cliente'  cliente.id %}">Deletar</a>
+
+            </li>
+        {% endfor %}
+    </ul>
+<a href="{% url 'cadastrar_cliente' %}">Novo Cliente</a>
+{% endblock %}
