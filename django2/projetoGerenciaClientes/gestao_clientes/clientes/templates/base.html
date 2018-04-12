@@ -4,11 +4,11 @@
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-        <link rel="stylesheet" href="{% static 'css/sucess.png' %}">
         <title>{% block title %}{% endblock %}</title>
     </head>
     <body>
         <div class="container">
+            <a href="{% url 'logout' %}">Sair</a>
             {% block main %}
             {% endblock %}
         </div>

@@ -5,7 +5,7 @@
     <ul>
         {% for cliente in clientes %}
             <li>
-                <a href="{% url 'atualizar_cliente' cliente.id %} ">{{ cliente.id }}</a> - {{ cliente.nome }} - {{ cliente.email }}<a class="btn btn-danger" href="{% url 'excluir_cliente'  cliente.id %}">Deletar</a>
+                <a href="{% url 'atualizar_cliente' cliente.id %} ">{{ cliente.id }}</a> - {{ cliente.nome }} - {{ cliente.email }}<a class="btn btn-danger" href="{% url 'excluir_cliente'  cliente.id %}">Deletar</a><a class="btn btn-warning" href="{% url 'atualizar_cliente' cliente.id  %}">Alterar</a>
 
             </li>
         {% endfor %}
