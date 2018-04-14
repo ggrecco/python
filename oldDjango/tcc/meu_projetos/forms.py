@@ -1,5 +1,5 @@
 from django import forms
-from .models import Servidor
+from .models import Servidor, Entrada
 
 class ServidorForm(forms.ModelForm):
     class Meta:
