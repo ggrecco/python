@@ -1,0 +1,14 @@
+{% extends 'meu_projetos/base.html' %}
+{% block content %}
+<p>Servidores</p>
+    <ul>
+        {% for servidor in servidores %}
+        <li>
+            <a href="{% url 'meu_projetos:servidor' servidor.id %}">{{ servidor }}</a>
+        </li>
+        {% empty %}
+        <li>Não servidores cadastrados.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'meu_projetos:novo_servidor' %}">Adicionar Servidor</a>
+{% endblock content %}

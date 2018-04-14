@@ -1,3 +1,5 @@
+#bcript para encriptar
+#beaker seesions
 from dml import *
 import hashlib
 

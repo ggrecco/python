@@ -1,8 +1,34 @@
-from bottle import route, run, request, response, post, get, template, static_file, redirect
+from bottle import route, run, request, response, post, get, template, static_file, redirect, app
 from busca import *
 from panela import *
-from bottle_jwt import JWTProviderPlugin, jwt_auth_required
+from check_login import *
 import bottle
+from beaker.middleware import SessionMiddleware
+
+_session_opts = {'session.type':'memory','_session.cookie_expires':600,'_session.auto': True}
+app = SessionMiddleware(app(), _session_opts)
+
+
+def has_session():
+	_session = request.environ.get('beaker.session')
+	if not _session or 'usuario_id' not in _session:
+		return redirect('/login')
+
+def set_session(key,value):
+	_session = request.environ['beaker.session']
+	_session[key] = value
+	_session.save()
+
+def del_session():
+	_session = request.environ['beaker.session']
+	_session.delete()
+
+def get_session():
+    try:
+        _session = request.environ['beaker.session']
+        return _session['usuario_id']
+    except Exception:
+        return 0
 
 
 @get('/<filename:re:.*\.css>')
@@ -21,46 +47,7 @@ def imagens(filename):
 def fonts(filename):
     return static_file(filename, root='static/fonts')
 
-#-----------------------------------------------------------------
-app = bottle.Bottle()
 
-server_secret = '*Y*^%JHg7623'
-
-
-class AuthBackend(object):
-    def authenticate_user(self, username, password):
-        login = Login()
-        d = {}
-        dados = login.busca(username)
-
-        if type(dados) is tuple:
-            for dado in dados:
-                d[dados[1]] = dados[2]
-
-            if username in d.keys() and d[username] == password:
-                return True
-            return False
-        else:
-            return False
-
-    def get_user(self, user_id):
-        if user_id == self.d['id']:
-            return {k: self.d[k] for k in self.d if k != 'password'}
-        return None
-
-
-provider_plugin = JWTProviderPlugin(
-    keyword='jwt',
-    auth_endpoint='/auth',
-    backend=AuthBackend(),
-    fields=('username', 'password'),
-    secret=server_secret,
-    ttl=30
-)
-
-app.install(provider_plugin)
-
-#-----------------------------------------------------------------
 panela = Panelas()
 
 @route('/')
@@ -68,7 +55,6 @@ def home_page():
     return template('login.html')
 
 @post('/retornoLogin')
-@jwt_auth_required
 def teste():
     usuario = str(request.forms.get('email'))
     senha = str(request.forms.get('password'))
@@ -122,4 +108,4 @@ def visualizar_get(id):
 	dados=panela.listar1(id)
 	return template('visualizar_panela.html',dados=dados)
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+run(host='localhost', port=8080, debug=True, reloader=True, app=app)

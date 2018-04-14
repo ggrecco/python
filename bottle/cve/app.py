@@ -2,7 +2,36 @@ from scrapy import *
 from bottle import route, run, request, response, post, get, template, static_file, redirect, Bottle
 from dml import *
 from check_login import *
+from beaker.middleware import SessionMiddleware
+'''
+_session_opts = {'session.type':'memory','_session.cookie_expires':600,'_session.auto': True}
+#_session_opts = {'session.type': 'file','session.data_dir': '/openmining.data','session.lock_dir': '/openmining.lock','session.cookie_expires': 5000,'session.auto': True}
+app = SessionMiddleware(app(), _session_opts)
 
+
+
+def has_session():
+	_session = request.environ.get('beaker.session')
+	if not _session or 'usuario_id' not in _session:
+		return redirect('/login')
+
+def set_session(key,value):
+	_session = request.environ['beaker.session']
+	_session[key] = value
+	_session.save()
+
+def del_session():
+	_session = request.environ['beaker.session']
+	_session.delete()
+
+def get_session():
+    try:
+        _session = request.environ['beaker.session']
+        return _session['usuario_id']
+    except Exception:
+        return 0
+
+'''
 cve = Cve()
 
 @get('/<filename:re:.*\.css>')
@@ -20,7 +49,6 @@ def imagens(filename):
 @get('/<filename:re:.*\.(eot|ttf|woff|svg)')
 def fonts(filename):
     return static_file(filename, root='static/fonts')
-
 
 @route('/')
 def home_page():
@@ -96,5 +124,5 @@ def teste():
     links = ['cve', 'scrapy1']
     return template('teste.html',dict(links=links))
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+run(host='localhost', port=8000, debug=True, reloader=True)
 # run(host='10.0.2.15', port=8080, debug=True, reloader=True)

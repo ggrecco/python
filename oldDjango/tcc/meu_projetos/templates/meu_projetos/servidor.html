@@ -1,0 +1,17 @@
+{% extends 'meu_projetos/base.html' %}
+{% block content %}
+<p>Servidor: {{ servidor }}</p>
+<p>Resultados:</p>
+<ul>
+    {% for entrada in entradas %}
+        <li>
+            <p>{{ entrada.produto }}</p>
+            <p>{{ entrada.comentario }}</p>
+        </li>
+    {% empty %}
+        <li>
+            Não há registros.
+        </li>
+    {% endfor %}
+</ul>
+{% endblock content %}

@@ -1,0 +1,9 @@
+{% extends 'meu_projetos/base.html' %}
+{% block content %}
+    <p>Novo Servidor:</p>
+    <form action="{% url 'meu_projetos:novo_servidor' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="ssubmit">Adicionar</button>
+    </form>
+{% endblock content %}
