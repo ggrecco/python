@@ -6,3 +6,8 @@ class ServidorForm(forms.ModelForm):
         model = Servidor
         fields = ['nome']
         labels = {'nome' : ''}
+
+class EntradaForm(forms.ModelForm):
+    class Meta:
+        model = Entrada
+        fields = ['produto']

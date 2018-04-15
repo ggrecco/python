@@ -4,6 +4,13 @@
     <form action="{% url 'meu_projetos:novo_servidor' %}" method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="ssubmit">Adicionar</button>
+        <button type="submit">Adicionar</button>
     </form>
 {% endblock content %}
+<!--
+<form action="{% url 'meu_projetos:scrapy' %}" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit">Pesquisar</button>
+</form>
+-->

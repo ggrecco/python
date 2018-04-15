@@ -4,7 +4,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 
 from .models import Servidor, Entrada
-from .forms import ServidorForm
+from .forms import ServidorForm, EntradaForm
+from .scrapy import scrapy
 
 
 def index(request):
@@ -38,3 +39,17 @@ def novo_servidor(request):
             return HttpResponseRedirect(reverse('meu_projetos:servidores'))
     context = {'form':form}
     return render(request, 'meu_projetos/novo_servidor.html', context)
+
+@login_required
+def scrapy(request):
+    if request.method != 'POST':
+        form = EntradaForm()
+    else:
+        form = EntradaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return HttpResponseRedirect(reverse('meu_projetos:servidores'))
+        else:
+            print(form.errors)
+    context = {'form':form}
+    return render(request, 'meu_projetos/scrapy.html', context)
