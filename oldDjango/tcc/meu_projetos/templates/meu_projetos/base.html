@@ -1,7 +1,7 @@
 <p>
     <a href="{% url 'meu_projetos:index' %}">Home</a> -
     <a href="{% url 'meu_projetos:servidores' %}">Servidores</a> -
-    <a href="{% url 'meu_projetos:scrapy' %}">Scrapy</a> -
+    <a href="">Scrapy</a> -
     {% if user.is_authenticated %}
         Olá, {{ user.username }}<a href="{% url 'users:logout' %}">(logout).</a>
     {% else %}

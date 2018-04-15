@@ -1,11 +1,5 @@
 {% extends 'meu_projetos/base.html' %}
 {% block content %}
-    <h1>Qual serviço deseja pesquisar?</h1>
-    <form action="{% url 'meu_projetos:scrapy' %}" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Pesquisar</button>
-      <a href="{% url 'meu_projetos:servidores' %}" class="btn btn-lg btn-primary btn-block">visualizar Servidores</a>
-      <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2018</p>
-    </form>
+    <h1>Feito!</h1>
+    {{ scr }}
 {% endblock content %}

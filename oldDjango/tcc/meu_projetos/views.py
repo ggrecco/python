@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Servidor, Entrada
 from .forms import ServidorForm, EntradaForm
-from .scrapy import scrapy
+from meu_projetos.scraping import scrapyt
 
 
 def index(request):
@@ -16,6 +16,15 @@ def servidores(request):
     servidores = Servidor.objects.filter(owner=request.user).order_by('id')
     context = {'servidores':servidores}
     return render(request, 'meu_projetos/servidores.html', context )
+
+@login_required
+def scrapy(request, servidor_id):
+    servidor = Servidor.objects.get(id=servidor_id)
+    scr = str(servidor.entrada_set.get(id=servidor_id).produto)
+    print(scr)
+    scrapyt(scr)
+    context = {'scr':scr}
+    return render(request, 'meu_projetos/scrapy.html', context)
 
 @login_required
 def servidor(request, servidor_id):
@@ -41,16 +50,27 @@ def novo_servidor(request):
     context = {'form':form}
     return render(request, 'meu_projetos/novo_servidor.html', context)
 
-@login_required
-def scrapy(request):
-    if request.method != 'POST':
-        form = EntradaForm()
-    else:
-        form = EntradaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('meu_projetos:servidores'))
-        else:
-            print(form.errors)
-    context = {'form':form}
-    return render(request, 'meu_projetos/scrapy.html', context)
+def scrapy2(procura):
+    i = 0
+
+    tabelas = busca_tabelas(procura).findAll('tr', {'class':'srrowns'})
+    coment = busca_tabelas(procura).findAll('td', {'class':'cvesummarylong'})
+
+    while i < len(tabelas):
+        coluna = tabelas[i].find_all('td')
+        produto = coluna[2].text
+        cveid = coluna[3].text
+        tipo = coluna[6].text
+        datacorrecao = coluna[8].text
+        nota = coluna[9].text
+        acesso = coluna[10].text
+        comentario = coment[i].text.split('\t')[6]
+        if '\n\t' in tipo:
+            tipo = tipo.split('\t')[6]
+            # db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
+            print(produto,cveid, tipo, datacorrecao, nota, acesso)
+        elif '\n' in tipo:
+            tipo = tipo.split('\n')[0]
+            # db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
+            print(produto,cveid, tipo, datacorrecao, nota, acesso)
+        i = i + 1
