@@ -20,9 +20,10 @@ def servidores(request):
 @login_required
 def servidor(request, servidor_id):
     servidor = Servidor.objects.get(id=servidor_id)
+    entradas = servidor.entrada_set.all()
     if servidor.owner != request.user:
         raise Http404
-    entradas = servidor.entrada_set.order_by('-id')
+    # entradas = servidor.entrada_set.order_by('-id')
     context = {'servidor':servidor, 'entradas':entradas}
     return render(request, 'meu_projetos/servidor.html', context)
 
