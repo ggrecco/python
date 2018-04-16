@@ -17,15 +17,6 @@ def servidores(request):
     context = {'servidores':servidores}
     return render(request, 'meu_projetos/servidores.html', context )
 
-'''@login_required
-def scrapy(request, servidor_id):
-    servidor = Servidor.objects.get(id=servidor_id)
-    scr = str(servidor.entrada_set.get(id=servidor_id).produto)
-    print(scr)
-    scrapyt(scr)
-    context = {'scr':scr}
-    return render(request, 'meu_projetos/scrapy.html', context)'''
-
 @login_required
 def servidor(request, servidor_id):
     servidor = Servidor.objects.get(id=servidor_id)
@@ -46,9 +37,10 @@ def novo_servidor(request):
             novo_servidor = form.save(commit=False)
             novo_servidor.owner = request.user
             novo_servidor.save()
-            #pegar o nome do servidor e realiza scrapy
+            #pega o nome do servidor e realiza scrapy
             s = Servidor.objects.all()
-            scrapy(nome)
+            lista = str(list(s)[-1]) #captura último elemento inserido no banco de dados
+            scrapy(lista)
             return HttpResponseRedirect(reverse('meu_projetos:servidores'))
     context = {'form':form}
     return render(request, 'meu_projetos/novo_servidor.html', context)
