@@ -1,8 +1,8 @@
 from requests import get
 from .payload import *
-from .models import Servidor
+from .models import Servidor, Entrada
 
-def scrapyt(procura):
+def scrapy(procura):
     i = 0
 
     tabelas = busca_tabelas(procura).findAll('tr', {'class':'srrowns'})
@@ -21,8 +21,12 @@ def scrapyt(procura):
             tipo = tipo.split('\t')[6]
             # db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
             print(produto,cveid, tipo, datacorrecao, nota, acesso)
+            e = Entrada(produto=produto, cveid=cveid, tipo=tipo, dataCorrecao=datacorrecao, nota=nota, tipoAcesso=acesso, comentario=comentario)
+            e.save()
         elif '\n' in tipo:
             tipo = tipo.split('\n')[0]
             # db.inserir(produto,cveid, tipo, datacorrecao, nota, acesso, comentario)
             print(produto,cveid, tipo, datacorrecao, nota, acesso)
+            e = Entrada(produto=produto, cveid=cveid, tipo=tipo, dataCorrecao=datacorrecao, nota=nota, tipoAcesso=acesso, comentario=comentario)
+            e.save()
         i = i + 1
