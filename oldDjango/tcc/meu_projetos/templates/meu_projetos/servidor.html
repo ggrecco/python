@@ -5,8 +5,13 @@
 <ul>
     {% for entrada in entradas %}
         <li>
-            <p><a href="{% url 'meu_projetos:scrapy' entrada.id %}">{{ entrada.produto }}</a></p>
-            <p>{{ entrada.comentario }}</p>
+            <p>{{ entrada.produto }}</p>
+            <p>cveid: {{ entrada.cveid }}</p>
+            <p>tipo: {{ entrada.tipo }}</p>
+            <p>dataCorrecao: {{ entrada.dataCorrecao }}</p>
+            <p>nota: {{ entrada.nota }}</p>
+            <p>tipoAcesso: {{ entrada.tipoAcesso }}</p>
+            <p>comentario: {{ entrada.comentario }}</p>
         </li>
     {% empty %}
         <li>
