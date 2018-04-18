@@ -26,7 +26,7 @@ class Post(db.Model):
     content = db.Column(db.Text)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))#importa chave de usuário
     #pesquisa de relacionamento entre tabelas e usuário
-    user = db.relationship('User', foreign_key=user_id)
+    user = db.relationship('User', foreign_key=id)
 
     def __init__(self, content, user_id):
         self.content = content
@@ -42,5 +42,5 @@ class Follow(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     follower_id = db.Column(db.Integer, db.ForeignKey('user_id'))
 
-    user = db.relationship('User', foreign_key=user_id)
-    follower = db.Column('User', foreign_key=follower_id)
+    user = db.relationship('User', foreign_key=id)
+    follower = db.Column('User', foreign_key=id)
