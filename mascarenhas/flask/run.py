@@ -1,13 +1,16 @@
-from flask import Flask
+from flask import Flask, request
+
 
 app = Flask(__name__)
 
 @app.route("/")
-def index():
-    return "Hello word"
+def index(name = 'world'):
+    name = request.args.get('name')
+    return "Hello " + name
 
+@app.route('/hello')
 @app.route('/hello/<name>')
-def hello(name):
+def hello(name='Ze'):
     return 'hello ' + name
 
 if __name__ == '__main__':
