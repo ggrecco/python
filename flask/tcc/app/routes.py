@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
+from app.forms import LoginForm, RegistrationForm, ScrapyForm
 
 
 @app.route('/')
@@ -60,3 +60,13 @@ def register():
         flash('Parabéns, você foi registrado com suceso!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Registro', form=form)
+
+
+@app.route('/scrapy', methods=['GET', 'POST'])
+@login_required
+def scrapy():
+    form = ScrapyForm()
+    if form.validate_on_submit():
+        flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
+        return redirect(url_for('index'))
+    return render_template('scrapy.html', title='Scrapy', form=form)

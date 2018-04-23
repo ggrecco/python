@@ -26,3 +26,7 @@ class RegistrationForm(FlaskForm):
         user = Usuario.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+
+class ScrapyForm(FlaskForm):
+    servidor = StringField('Servidor', validators=[DataRequired()])
+    submit = SubmitField('Pesquisar')
