@@ -1,9 +1,10 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app.models import Usuario
+from app.models import Usuario, Servidor
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ScrapyForm
+from app.scrapy import scraper
 
 
 @app.route('/')
@@ -68,5 +69,9 @@ def scrapy():
     form = ScrapyForm()
     if form.validate_on_submit():
         flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
+        a = form.servidor.data
+        sc = scraper(a)
+        print(a)
+        print(sc)
         return redirect(url_for('index'))
     return render_template('scrapy.html', title='Scrapy', form=form)

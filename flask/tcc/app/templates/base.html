@@ -10,10 +10,10 @@
         <div>
             Tcc:
             <a href="{{ url_for('index') }}">Home - </a>
-            <a href="{{ url_for('scrapy') }}">Scrapy - </a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
             {% else %}
+            <a href="{{ url_for('scrapy') }}">Scrapy - </a>
             <a href="{{ url_for('logout') }}">Logout({{ current_user.nome }})</a>
             {% endif %}
         </div>
