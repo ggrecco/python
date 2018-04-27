@@ -11,7 +11,6 @@ from app.scrapy import scraper
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Gustavo'}
     #chamar banco de dados
     posts = [
         {
@@ -69,7 +68,7 @@ def scrapy():
     form = ScrapyForm()
     if form.validate_on_submit():
         flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
-        a = form.servidor.data
+        a = form.servidor.data #pega do formulario(template) o dado inserido e enviado
         sc = scraper(a)
         print(a)
         print(sc)
