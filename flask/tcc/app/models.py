@@ -9,8 +9,8 @@ class Usuario(UserMixin, db.Model):
     nome = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    resultados = db.relationship('Resultado', backref='autor_usuario', lazy='dynamic')
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
+    resultados = db.relationship('Resultado', backref='autor_usuario', lazy='dynamic')
 
     def __repr__(self):
         return '<Usuario {}>'.format(self.nome)
