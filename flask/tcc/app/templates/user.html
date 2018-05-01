@@ -2,5 +2,8 @@
 
 {% block content %}
     <h1>Usuário: {{ user.nome }}</h1>
+    {% if user.last_seen %}
+        <p>Último visualização: {{ user.last_seen }}</p>
+    {% endif %}
     <hr>
 {% endblock %}

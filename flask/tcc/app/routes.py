@@ -5,6 +5,14 @@ from app.models import Usuario, Servidor
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ScrapyForm
 from app.scrapy import scraper
+from datetime import datetime
+
+# verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
+@app.before_request
+def before_request():
+    if current_user.is_authenticated:
+        current_user.last_seen = datetime.utcnow()
+        db.session.commit()
 
 
 @app.route('/')
