@@ -69,7 +69,7 @@ def user(username):
     return render_template('user.html', user=user )
 
 
-@app.route('/scrapy/<username>', methods=['GET', 'POST'])
+@app.route('/scrapy', methods=['GET', 'POST'])
 @login_required
 def scrapy():
     form = ScrapyForm()
