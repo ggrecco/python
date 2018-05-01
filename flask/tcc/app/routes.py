@@ -85,7 +85,7 @@ def scrapy():
         flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
         a = form.servidor.data #pega do formulario(template) o dado inserido e enviado
         sc = scraper(a)
-        print(a)
-        print(sc)
+        # print(a)
+        # print(sc)
         return redirect(url_for('index'))
     return render_template('scrapy.html', title='Scrapy', form=form)
