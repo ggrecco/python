@@ -8,6 +8,7 @@ from flask_login import current_user
 def scraper(procura, mini = '9', maxi = ''):
     i = 0
     lista = []
+    #captura o id do usuario logado
     u = Usuario.query.filter_by(id=current_user.id).first()
 
     tabelas = busca_tabelas(procura, mini, maxi).findAll('tr', {'class':'srrowns'})
