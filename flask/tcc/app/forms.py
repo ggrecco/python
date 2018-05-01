@@ -28,5 +28,5 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class ScrapyForm(FlaskForm):
-    servidor = StringField('Servidor', validators=[DataRequired()])
+    linguagem = StringField('Linguagem', validators=[DataRequired()])
     submit = SubmitField('Pesquisar')

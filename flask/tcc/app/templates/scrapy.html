@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Olá, {{ current_user.nome }}!</h1>
+<h1>Olá {{ current_user.nome }}, pode pesquisar:</h1>
 <form class="" action="" method="post">
     {{ form.hidden_tag() }}
     <p>
-        {{ form.servidor.label }}<br>
-        {{ form.servidor(size=32) }}<br>
-        {% for error in form.servidor.errors %}
+        {{ form.linguagem.label }}<br>
+        {{ form.linguagem(size=32) }}<br>
+        {% for error in form.linguagem.errors %}
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
     </p>

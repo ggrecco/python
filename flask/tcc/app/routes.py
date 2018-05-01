@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
-from app.models import Usuario, Servidor
+from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ScrapyForm
 from app.scrapy import scraper
@@ -74,7 +74,8 @@ def register():
 @login_required
 def user(username):
     user = Usuario.query.filter_by(nome=username).first_or_404()
-    return render_template('user.html', user=user )
+    dados = Dados.query.filter_by(usuario_id=current_user.id)
+    return render_template('user.html', user=user, dados=dados)
 
 
 @app.route('/scrapy', methods=['GET', 'POST'])
@@ -83,9 +84,6 @@ def scrapy():
     form = ScrapyForm()
     if form.validate_on_submit():
         flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
-        a = form.servidor.data #pega do formulario(template) o dado inserido e enviado
-        sc = scraper(a)
-        # print(a)
-        # print(sc)
+        scraper(form.linguagem.data)#pega do formulario(template) o dado inserido e enviado
         return redirect(url_for('index'))
     return render_template('scrapy.html', title='Scrapy', form=form)

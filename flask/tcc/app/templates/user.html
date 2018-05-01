@@ -6,4 +6,22 @@
         <p>Último visualização: {{ user.last_seen }}</p>
     {% endif %}
     <hr>
+    <hr>
+        <h1>Dados no Banco - (Servidores)</h1>
+    <hr>
+    <table>
+        {% for dado in dados %}
+        <tr>
+            <td>
+                <p>
+                    {{ dado.usuario_id }} -
+                    {{ dado.produto }} -
+                    {{ dado.cveid }} -
+                    {{ dado.nota }}
+                    <!--{{ dado.comentario }}-->
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
 {% endblock %}
