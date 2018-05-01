@@ -62,7 +62,14 @@ def register():
     return render_template('register.html', title='Registro', form=form)
 
 
-@app.route('/scrapy', methods=['GET', 'POST'])
+@app.route('/usuario/<username>')
+@login_required
+def user(username):
+    user = Usuario.query.filter_by(nome=username).first_or_404()
+    return render_template('user.html', user=user )
+
+
+@app.route('/scrapy/<username>', methods=['GET', 'POST'])
 @login_required
 def scrapy():
     form = ScrapyForm()
