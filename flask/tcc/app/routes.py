@@ -75,7 +75,8 @@ def register():
 def user(username):
     user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
-    return render_template('user.html', user=user, dados=dados)
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id)
+    return render_template('user.html', user=user, dados=dados, servidores=servidores)
 
 
 @app.route('/scrapy', methods=['GET', 'POST'])
@@ -95,7 +96,8 @@ def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
         flash('O servidor foi registrado, só precisa ser implementado...heheh!')
-        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=form.ip.data)
+        u = Usuario.query.filter_by(id=current_user.id).first()
+        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=form.ip.data, rel_usuario=u)
         db.session.add(s)
         db.session.commit()
         return redirect(url_for('index'))

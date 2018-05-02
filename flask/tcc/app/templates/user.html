@@ -6,8 +6,22 @@
         <p>Último visualização: {{ user.last_seen }}</p>
     {% endif %}
     <hr>
+        <h1>Dados no Banco - Servidores</h1>
+    <table>
+        {% for servidor in servidores %}
+        <tr>
+            <td>
+                <p>
+                    {{ servidor.nome }} -
+                    {{ servidor.url }} -
+                    {{ servidor.ip }} 
+                </p>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
     <hr>
-        <h1>Dados no Banco - (Servidores)</h1>
+        <h1>Dados no Banco - Dados</h1>
     <hr>
     <table>
         {% for dado in dados %}
@@ -25,3 +39,9 @@
         {% endfor %}
     </table>
 {% endblock %}
+
+<td>
+    <p>
+        {{ servidor.nome }}
+    </p>
+</td>

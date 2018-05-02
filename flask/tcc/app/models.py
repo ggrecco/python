@@ -11,6 +11,7 @@ class Usuario(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     resultados = db.relationship('Dados', backref='autor_usuario', lazy='dynamic')
+    rel_servidor = db.relationship('Servidor', backref='rel_usuario', lazy='dynamic')
 
     def __repr__(self):
         return '<Usuario {}>'.format(self.nome)
@@ -24,9 +25,10 @@ class Usuario(UserMixin, db.Model):
 
 class Servidor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(140))
+    nome = db.Column(db.String(140))#remover esta coluna
     url = db.Column(db.String(255))
     ip = db.Column(db.String(25))
+    usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
     # resultados = db.relationship('Resultado', backref='autor_servidor', lazy='dynamic')
 
     def __repr__(self):
