@@ -30,3 +30,10 @@ class RegistrationForm(FlaskForm):
 class ScrapyForm(FlaskForm):
     linguagem = StringField('Linguagem', validators=[DataRequired()])
     submit = SubmitField('Pesquisar')
+
+
+class ServidorForm(FlaskForm):
+    servidor = StringField('Servidor', validators=[DataRequired()])
+    url = StringField('Url', validators=[DataRequired()])
+    ip = StringField('Ip', validators=[DataRequired()])
+    registro = SubmitField('Registrar')

@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ScrapyForm
+from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm
 from app.scrapy import scraper
 from datetime import datetime
 
@@ -83,7 +83,18 @@ def user(username):
 def scrapy():
     form = ScrapyForm()
     if form.validate_on_submit():
-        flash('O scrapy foi realizado, só precisa ser implementado...heheh!')
+        flash('O scrapy foi realizado!')
         scraper(form.linguagem.data)#pega do formulario(template) o dado inserido e enviado
         return redirect(url_for('index'))
     return render_template('scrapy.html', title='Scrapy', form=form)
+
+
+@app.route('/servidor', methods=['GET', 'POST'])
+@login_required
+def servidor():
+    form = ServidorForm()
+    if form.validate_on_submit():
+        flash('O servidor foi registrado, só precisa ser implementado...heheh!')
+
+        return redirect(url_for('index'))
+    return render_template('servidor.html', title='Servidor', form=form)
