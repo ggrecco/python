@@ -11,6 +11,20 @@
         {% endfor %}
     </p>
     <p>
+        {{ form.url.label }}<br>
+        {{ form.url(size=32) }}<br>
+        {% for error in form.url.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
+        {{ form.ip.label }}<br>
+        {{ form.ip(size=32) }}<br>
+        {% for error in form.ip.errors %}
+        <span style="color: red;">[{{ error }}]</span>
+        {% endfor %}
+    </p>
+    <p>
         {{ form.registro() }}
     </p>
 </form>

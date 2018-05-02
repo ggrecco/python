@@ -95,6 +95,8 @@ def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
         flash('O servidor foi registrado, só precisa ser implementado...heheh!')
-
+        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=form.ip.data)
+        db.session.add(s)
+        db.session.commit()
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Servidor', form=form)

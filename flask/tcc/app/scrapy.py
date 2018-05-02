@@ -1,7 +1,7 @@
 from requests import get
 from app import db
 from app.payload import *
-from app.models import Dados, Servidor, Usuario
+from app.models import Dados, Usuario
 from flask_login import current_user
 
 #passar por parametro o id do usuario
