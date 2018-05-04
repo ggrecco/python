@@ -3,13 +3,6 @@ from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import Usuario
 
-class LoginForm(FlaskForm):
-    username = StringField('Usuário', validators=[DataRequired()])
-    password = PasswordField('Senha', validators=[DataRequired()])
-    remember_me = BooleanField('Lembrar')
-    submit = SubmitField('Entrar')
-
-
 class RegistrationForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
@@ -22,10 +15,29 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different username.')
 
-    def validate_email(self, email):
-        user = Usuario.query.filter_by(email=email.data).first()
-        if user is not None:
-            raise ValidationError('Please use a different email address.')
+            def validate_email(self, email):
+                user = Usuario.query.filter_by(email=email.data).first()
+                if user is not None:
+                    raise ValidationError('Please use a different email address.')
+
+
+class DeletarForm(FlaskForm):
+    submit = SubmitField('Deletar')
+
+
+class LoginForm(FlaskForm):
+    username = StringField('Usuário', validators=[DataRequired()])
+    password = PasswordField('Senha', validators=[DataRequired()])
+    remember_me = BooleanField('Lembrar')
+    submit = SubmitField('Entrar')
+
+
+class EditProfileForm(FlaskForm):
+    username = StringField('Nome de Usuario', validators=[DataRequired()])
+    email = StringField('E-mail', validators=[DataRequired()])
+    email2 = StringField('Repita o e-mail', validators=[DataRequired(), EqualTo('email')])
+    submit = SubmitField('alterar')
+
 
 class ScrapyForm(FlaskForm):
     linguagem = StringField('Linguagem', validators=[DataRequired()])
