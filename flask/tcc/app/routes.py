@@ -100,9 +100,7 @@ def deletar():
         s.delete()
         db.session.delete(u)
         db.session.commit()
-        # print('\n\nprint u==>{}\nprint d==>{}\nprint u==>{}\n\n'.format(u,d,s))
         return redirect(url_for('logout'))
-        # return redirect(url_for('index'))
     return render_template('deletar.html', title='Deletar', form=form )
 
 
