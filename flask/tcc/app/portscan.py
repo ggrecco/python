@@ -1,16 +1,28 @@
 import nmap
+import os
 
+#site pra teste -> 'testphp.vulnweb.com'
+#site pra teste -> 'scanme.nmap.org'
+def portScan(site):
+    a = nmap.PortScanner()
+    s = str(site)
+    #scaneia as portas
+    d = a.scan(s,'21,23,25,53,63,70,79,80,110,119', '-sV')
+    #captura apenas o campo de ip e salva em um arquivo txt
+    os.system("host " + s + " | awk '{print $4}' > ip.txt")
 
-a = nmap.PortScanner()
+    arq = open('/home/ggrecco/Documentos/python/flask/tcc/ip.txt', 'r')
+    ip = arq.read()
+    b = ip.split("\n")
+    ip = b[0]
 
-#testphp.vulnweb.com site deverá ser passado por parametro como string
-d = a.scan('testphp.vulnweb.com','21,23,25,53,63,70,79,80,110,119', '-sV')
+    l = [21,23,25,53,63,70,79,80,110,119]#portas padrão que serão analisadas
+    i = 0
 
-
-l = [21,23,25,53,63,70,79,80,110,119]#portas padrão que serão analisadas
-i = 0
-
-while i < len(l):
-    j = l[i]
-    d['scan']['176.28.50.165']['tcp'][j]['product']
-    i = i + 1
+    while i < len(l):
+        j = d['scan'][ip]['tcp'][l[i]]['product']
+        if j in '':
+            pass
+        else:
+            print(j)
+        i = i + 1
