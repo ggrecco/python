@@ -132,8 +132,8 @@ def servidor():
     if form.validate_on_submit():
         flash('O servidor foi registrado, só precisa ser implementado...heheh!')
         u = Usuario.query.filter_by(id=current_user.id).first()
-        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=form.ip.data, rel_usuario=u)
-        p = portScan(form.servidor.data)
+        p = portScan(form.url.data)
+        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
         db.session.add(s)
         db.session.commit()
         return redirect(url_for('index'))
