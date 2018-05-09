@@ -5,7 +5,7 @@ from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, EditProfileForm, DeletarForm
 from app.scrapy import scraper
-from app.portscan import portScan, busca_ip
+from app.portscan import portScan
 from datetime import datetime
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
@@ -132,10 +132,9 @@ def servidor():
     if form.validate_on_submit():
         flash('O servidor foi registrado, só precisa ser implementado...heheh!')
         u = Usuario.query.filter_by(id=current_user.id).first()
-        p = busca_ip(form.url.data)
+        p = portScan(form.url.data)
         s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
         db.session.add(s)
         db.session.commit()
-        portScan(form.url.data)
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Servidor', form=form)

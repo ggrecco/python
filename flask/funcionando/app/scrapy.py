@@ -1,21 +1,18 @@
 from requests import get
 from app import db
 from app.payload import *
-from app.models import Dados, Usuario, Servidor
+from app.models import Dados, Usuario
 from flask_login import current_user
 
-#retirar nota minima e máxima nas pesquisas
-def scraper(procura,nome):
+#passar por parametro o id do usuario
+def scraper(procura, mini = '9', maxi = ''):
     i = 0
     lista = []
-
     #captura o id do usuario logado
     u = Usuario.query.filter_by(id=current_user.id).first()
-    s = Servidor.query.filter_by(nome=nome, usuario_id=current_user.id).first()
 
-
-    tabelas = busca_tabelas(procura).findAll('tr', {'class':'srrowns'})
-    coment = busca_tabelas(procura).findAll('td', {'class':'cvesummarylong'})
+    tabelas = busca_tabelas(procura, mini, maxi).findAll('tr', {'class':'srrowns'})
+    coment = busca_tabelas(procura, mini, maxi).findAll('td', {'class':'cvesummarylong'})
 
     while i < len(tabelas):
         coluna = tabelas[i].find_all('td')
@@ -28,13 +25,13 @@ def scraper(procura,nome):
         comentario = coment[i].text.split('\t')[6]
         if '\n\t' in tipo:
             tipo = tipo.split('\t')[6]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
+            d = Dados(autor_usuario=u, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
             db.session.add(d)
             db.session.commit()
 
         elif '\n' in tipo:
             tipo = tipo.split('\n')[0]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
+            d = Dados(autor_usuario=u, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
             db.session.add(d)
             db.session.commit()
 

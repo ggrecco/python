@@ -2,13 +2,13 @@ import requests
 from requests import post, get
 from bs4 import BeautifulSoup as bs
 
-def busca_tabelas(linguagem):
+def busca_tabelas(linguagem, mini, maxi):
     url = "https://www.cvedetails.com/vulnerability-search.php"
 
     payload = {'bidno': '',
                 'cveid': '',
-                'cvssscoremax': '',
-                'cvssscoremin': '',
+                'cvssscoremax': maxi,
+                'cvssscoremin': mini,
                 'cweid': '',
                 'f':'1',
                 'msid': '',

@@ -25,11 +25,11 @@ class Usuario(UserMixin, db.Model):
 
 class Servidor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(140), unique=True)#remover esta coluna
+    nome = db.Column(db.String(140))#remover esta coluna
     url = db.Column(db.String(255))
     ip = db.Column(db.String(25))
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    resultados = db.relationship('Dados', backref='autor_servidor', lazy='dynamic')
+    # resultados = db.relationship('Resultado', backref='autor_servidor', lazy='dynamic')
 
     def __repr__(self):
         return '<Servidor {}>'.format(self.nome)
@@ -40,10 +40,20 @@ def load_user(id):
     return Usuario.query.get(int(id))
 
 
+# class Resultado(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+#     servidor_id = db.Column(db.Integer, db.ForeignKey('servidor.id'))
+#     datas = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+#     resultados = db.relationship('Dados', backref='autor_resultado', lazy='dynamic')
+#
+#     def __repr_(self):
+#         return '<Resultado {}>'.format(self.datas)
+
 class Dados(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    servidor_id = db.Column(db.Integer, db.ForeignKey('servidor.id'))
+    # id_resultado = db.Column(db.Integer, db.ForeignKey('resultado.id'))
     produto = db.Column(db.String(20))
     cveid = db.Column(db.String(25))
     tipo = db.Column(db.String(25))
