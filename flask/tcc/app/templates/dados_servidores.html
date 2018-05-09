@@ -1,27 +1,23 @@
 {% extends "base.html" %}
-
 {% block content %}
 
 {% for servidor in servidores %}
-<h1>Dados em {{servidor.url}}</h1>
-{% endfor %}
-</table>
-<hr>
-<h1>Dados no Banco - Dados</h1>
+<h1>Dados do site: >>> {{servidor.url}} <<< </h1>
 <hr>
 <table>
 {% for dado in dados %}
 <tr>
     <td>
+        <a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">
         <p>
-            {{ dado.usuario_id }} -
             {{ dado.produto }} -
             {{ dado.cveid }} -
             {{ dado.nota }}
-            <!--{{ dado.comentario }}-->
         </p>
+        </a>
     </td>
 </tr>
+{% endfor %}
 {% endfor %}
 </table>
 {% endblock %}

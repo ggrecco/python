@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<table>
+    <thead>
+        <tr class="text-center">
+        <th>Serviço</th>
+        <th>CVEID</th>
+        <th>Tipo de Falha</th>
+        <th>Data da Correção</th>
+        <th>Nota</th>
+        <th>Permissão de Acesso</th>
+        <th>Resumo</th>
+    </thead>
+{% for dado in dados %}
+<tr class="text-center">
+    <!-- {{ dado.usuario_id }} - -->
+    <td>{{ dado.produto }}</td>
+    <td>{{ dado.cveid }}</td>
+    <td>{{ dado.tipo }}</td>
+    <td>{{ dado.datacorrecao }}</td>
+    <td>{{ dado.nota }}</td>
+    <td>{{ dado.acesso }}</td>
+    <td>{{ dado.comentario }}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

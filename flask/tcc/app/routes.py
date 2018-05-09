@@ -114,17 +114,6 @@ def user(username):
     return render_template('user.html', user=user, dados=dados, servidores=servidores)
 
 
-@app.route('/scrapy', methods=['GET', 'POST'])
-@login_required
-def scrapy():
-    form = ScrapyForm()
-    if form.validate_on_submit():
-        flash('O scrapy foi realizado!')
-        scraper(form.linguagem.data)#pega do formulario(template) o dado inserido e enviado
-        return redirect(url_for('index'))
-    return render_template('scrapy.html', title='Scrapy', form=form)
-
-
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():
@@ -148,3 +137,13 @@ def dados(nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
     return render_template('dados_servidores.html', dados=dados, servidores=servidores)
+
+
+
+@app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
+@login_required
+def vul(cveid, nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
+    return render_template('vul.html', dados=dados)
