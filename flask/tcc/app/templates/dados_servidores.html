@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for servidor in servidores %}
+<h1>Dados em {{servidor.url}}</h1>
+{% endfor %}
+</table>
+<hr>
+<h1>Dados no Banco - Dados</h1>
+<hr>
+<table>
+{% for dado in dados %}
+<tr>
+    <td>
+        <p>
+            {{ dado.usuario_id }} -
+            {{ dado.produto }} -
+            {{ dado.cveid }} -
+            {{ dado.nota }}
+            <!--{{ dado.comentario }}-->
+        </p>
+    </td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}

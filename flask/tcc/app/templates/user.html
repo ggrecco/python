@@ -16,11 +16,13 @@
         {% for servidor in servidores %}
         <tr>
             <td>
+                <a href="{{ url_for('dados', nome=servidor.nome) }}">
                 <p>
                     {{ servidor.nome }} -
                     {{ servidor.url }} -
                     {{ servidor.ip }}
                 </p>
+                </a>
             </td>
         </tr>
         {% endfor %}
@@ -44,9 +46,3 @@
         {% endfor %}
     </table>
 {% endblock %}
-
-<td>
-    <p>
-        {{ servidor.nome }}
-    </p>
-</td>

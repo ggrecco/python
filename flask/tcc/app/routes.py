@@ -139,3 +139,12 @@ def servidor():
         portScan(form.url.data)
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Servidor', form=form)
+
+
+@app.route('/dados_<nome>', methods=['GET', 'POST'])
+@login_required
+def dados(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
+    return render_template('dados_servidores.html', dados=dados, servidores=servidores)
