@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from app.models import Usuario
+from app.models import Usuario, Servidor
 
 class RegistrationForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])
@@ -48,3 +48,8 @@ class ServidorForm(FlaskForm):
     servidor = StringField('Nome para o servidor:', validators=[DataRequired()])
     url = StringField('Url (site do servidor):', validators=[DataRequired()])
     registro = SubmitField('Pesquisar')
+
+    def validate_servidor(self, servidor):
+        server = Servidor.query.filter_by(nome=servidor.data).first()
+        if server is not None:
+            raise ValidationError('Indisponível, por favor use outro nome para o servidor.')
