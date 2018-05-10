@@ -15,16 +15,15 @@ def before_request():
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-
+#página inicial
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    #chamar banco de dados
     posts = [
         {
             'author': {'username': 'Bem Vindo '},
-            'body': 'Escrever aqui as funcioanlidades do software e um breve resumo.(com links)'
+            'body': 'Escrever aqui um breve resumo das funcioanlidades do software.(com links)'
         }
     ]
     return render_template('index.html', title='Home', posts=posts)
