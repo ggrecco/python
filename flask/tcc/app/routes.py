@@ -80,12 +80,12 @@ def edit_profile():
         current_user.email = form.email.data
         db.session.commit()
         flash('Suas alterações foram salvas')
-        return redirect(url_for('edit_profile'))
+        return redirect(url_for('index'))
     elif request.method == 'GET':
         #busca do banco os dados para exibir ao usuário o que está salvo
         form.username.data = current_user.nome
         form.email.data = current_user.email
-    return render_template('editar.html', title='Editar Profile', form=form)
+    return render_template('editar.html', title='Editar Perfil', form=form)
 
 
 @app.route("/deletar", methods=['GET', 'POST'])
@@ -102,7 +102,7 @@ def deletar():
         db.session.delete(u)
         db.session.commit()
         return redirect(url_for('logout'))
-    return render_template('deletar.html', title='Deletar', form=form )
+    return render_template('deletar.html', title='Deletar usuario', form=form )
 
 
 @app.route('/usuario/<username>')
@@ -111,7 +111,7 @@ def user(username):
     user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
-    return render_template('user.html', user=user, dados=dados, servidores=servidores)
+    return render_template('user.html', title='Perfil de usuário', user=user, dados=dados, servidores=servidores)
 
 #tratar o erro para nome unico(igual login)
 @app.route('/servidor', methods=['GET', 'POST'])
@@ -119,7 +119,7 @@ def user(username):
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado, só precisa ser implementado...heheh!')
+        flash('O servidor foi registrado e pesquisado.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
         s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
@@ -127,7 +127,7 @@ def servidor():
         db.session.commit()
         portScan(form.url.data)
         return redirect(url_for('index'))
-    return render_template('servidor.html', title='Servidor', form=form)
+    return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
 
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
@@ -136,7 +136,7 @@ def dados(nome):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
-    return render_template('dados_servidores.html', dados=dados, servidores=servidores)
+    return render_template('dados_servidores.html',title='Vulnerabilidades', dados=dados, servidores=servidores)
 
 
 
@@ -146,4 +146,4 @@ def vul(cveid, nome):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
-    return render_template('vul.html', dados=dados)
+    return render_template('vul.html',title='Detalhes', dados=dados)

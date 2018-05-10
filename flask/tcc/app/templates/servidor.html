@@ -2,26 +2,10 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<h1>Olá {{ current_user.nome }}, pode cadastrar:</h1>
-<form class="" action="" method="post">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.servidor.label }}<br>
-        {{ form.servidor(size=32) }}<br>
-        {% for error in form.servidor.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.url.label }}<br>
-        {{ form.url(size=32) }}<br>
-        {% for error in form.url.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
-        {{ form.registro() }}
-    </p>
-</form>
-
+<h1>Olá {{ current_user.nome }}, informe os dados abaixos:</h1>
+<div class="row">
+   <div class="col-md-4">
+       {{ wtf.quick_form(form, button_map={'registro' : 'btn btn-primary'}) }}
+   </div>
+</div>
 {% endblock %}

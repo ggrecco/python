@@ -8,17 +8,17 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Senha', validators=[DataRequired()])
     password2 = PasswordField('Repita a senha', validators=[DataRequired(), EqualTo('password')])
-    submit = SubmitField('Register')
+    submit = SubmitField('Registrar')
 
     def validate_username(self, username):
         user = Usuario.query.filter_by(nome=username.data).first()
         if user is not None:
-            raise ValidationError('Please use a different username.')
+            raise ValidationError('Indisponível, por favor use outro nome de usuário.')
 
             def validate_email(self, email):
                 user = Usuario.query.filter_by(email=email.data).first()
                 if user is not None:
-                    raise ValidationError('Please use a different email address.')
+                    raise ValidationError('Já cadastrado, por favor use outro e-mail.')
 
 
 class DeletarForm(FlaskForm):
@@ -45,6 +45,6 @@ class ScrapyForm(FlaskForm):
 
 
 class ServidorForm(FlaskForm):
-    servidor = StringField('Servidor', validators=[DataRequired()])
-    url = StringField('Url', validators=[DataRequired()])
-    registro = SubmitField('Registrar')
+    servidor = StringField('Nome para o servidor:', validators=[DataRequired()])
+    url = StringField('Url (site do servidor):', validators=[DataRequired()])
+    registro = SubmitField('Pesquisar')

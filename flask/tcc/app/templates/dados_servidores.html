@@ -3,22 +3,35 @@
 
 {% block app_content %}
 {% for servidor in servidores %}
-<h1>Dados do site: >>> {{servidor.url}} <<< </h1>
-<hr>
-<table>
+<div class="text-center">
+    <h1>Dados do site:  {{servidor.url}}  </h1>
+    <hr>
+</div>
+
+<div class="table-responsive col-md-12">
+	<table class="table table-striped border-spacing padding">
+	<thead>
+		<tr>
+            <th class="text-center">Serviço</th>
+            <th class="text-center">CVEID</th>
+            <th class="text-center">Nota</th>
+            <th class="text-center">Resumo</th>
+
+        </tr>
+    </thead>
 {% for dado in dados %}
 <tr>
-    <td>
-        <a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">
-        <p>
-            {{ dado.produto }} -
-            {{ dado.cveid }} -
-            {{ dado.nota }}
-        </p>
-        </a>
-    </td>
+
+    <p>
+        <td  class="text-center">{{ dado.produto }}</td>
+        <td  class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</td>
+        <td  class="text-center">{{ dado.nota }}</td>
+        <td>{{ dado.comentario }}</td>
+    </p>
+    </a>
 </tr>
 {% endfor %}
 {% endfor %}
 </table>
+</div>
 {% endblock %}
