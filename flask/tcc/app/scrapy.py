@@ -5,7 +5,7 @@ from app.models import Dados, Usuario, Servidor
 from flask_login import current_user
 
 #retirar nota minima e máxima nas pesquisas
-def scraper(procura,nome):
+def scraper(procura,nome,porta):
     i = 0
     lista = []
 
@@ -28,13 +28,13 @@ def scraper(procura,nome):
         comentario = coment[i].text.split('\t')[6]
         if '\n\t' in tipo:
             tipo = tipo.split('\t')[6]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
+            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario, porta=porta)
             db.session.add(d)
             db.session.commit()
 
         elif '\n' in tipo:
             tipo = tipo.split('\n')[0]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario)
+            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto, cveid=cveid, tipo=tipo, datacorrecao=datacorrecao, nota=nota, acesso=acesso, comentario=comentario, porta=porta)
             db.session.add(d)
             db.session.commit()
 

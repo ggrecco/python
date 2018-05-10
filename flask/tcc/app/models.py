@@ -50,6 +50,7 @@ class Dados(db.Model):
     datacorrecao = db.Column(db.String(50))
     nota = db.Column(db.String(10))
     acesso = db.Column(db.String(100))
+    porta = db.Column(db.String(10))
     comentario = db.Column(db.String(5000))
     def __repr__(self):
         return '<Dados {}>'.format(self.produto)

@@ -113,7 +113,7 @@ def user(username):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     return render_template('user.html', user=user, dados=dados, servidores=servidores)
 
-
+#tratar o erro para nome unico(igual login)
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():

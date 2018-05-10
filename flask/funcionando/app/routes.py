@@ -35,6 +35,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = LoginForm()
+    flash('Utilize seu usuário e senha registrados para logar no sistema.')
     if form.validate_on_submit():
         usuario = Usuario.query.filter_by(nome=form.username.data).first()
         if usuario is None or not usuario.check_password(form.password.data):
@@ -61,6 +62,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RegistrationForm()
+    flash('Crie seu login para poder acessar o sistema.')
     if form.validate_on_submit():
         user = Usuario(nome=form.username.data, email=form.email.data)
         user.set_password(form.password.data)

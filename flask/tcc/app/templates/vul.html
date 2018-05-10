@@ -1,7 +1,7 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
-
+{% block app_content %}
 <table>
     <thead>
         <tr class="text-center">
@@ -11,6 +11,7 @@
         <th>Data da Correção</th>
         <th>Nota</th>
         <th>Permissão de Acesso</th>
+        <th>Porta</th>
         <th>Resumo</th>
     </thead>
 {% for dado in dados %}
@@ -22,6 +23,7 @@
     <td>{{ dado.datacorrecao }}</td>
     <td>{{ dado.nota }}</td>
     <td>{{ dado.acesso }}</td>
+    <td>{{ dado.porta }}</td>
     <td>{{ dado.comentario }}</td>
 </tr>
 {% endfor %}

@@ -26,7 +26,7 @@ def portScan(site):
             pass
         else:
             print(j)
-            scraper(j, nome)
+            scraper(j, nome, l[i])
         i = i + 1
 
 
