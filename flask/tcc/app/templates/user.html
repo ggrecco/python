@@ -20,6 +20,7 @@
                     <th class="text-center">Nome</th>
                     <th class="text-center">Site</th>
                     <th class="text-center">IP</th>
+                    <th class="text-center">Refazer Scan</th>
                 </tr>
             </thead>
         {% for servidor in servidores %}
@@ -27,6 +28,7 @@
             <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
+            <td><a href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url) }}">clique aqui</a></td>
         </tr>
         {% endfor %}
     </table>
