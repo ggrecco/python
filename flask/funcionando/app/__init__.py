@@ -4,15 +4,17 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
-from flask_celery import make_celery
+# from flask_redis import FlaskRedis
+# from flask_celery import make_celery
 
 app = Flask(__name__)
-app.config.from_object(Config)
-app.config['CELERY_BROKER_URL'] = 'amqp://localhost//'
-app.config['CELERY_RESULT_BACKEND'] = '/home/ggrecco/Documentos/python/flask/funcionando/app.db'
+# redis_store = FlaskRedis(app)
+# app.config.from_object(Config)
+# app.config['CELERY_BROKER_URL'] = 'redis://localhost:6379/0'
+# app.config['CELERY_RESULT_BACKEND'] = '/home/ggrecco/Documentos/python/flask/funcionando/app.db'
 
-celery = make_celery(app)
-celery.conf.update(app.config)
+# celery = make_celery(app)
+# celery.conf.update(app.config)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)

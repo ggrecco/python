@@ -7,7 +7,9 @@ from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, Edi
 from app.scrapy import scraper
 from app.portscan import portScan
 from datetime import datetime
-from celery import Celery
+# from celery import Celery
+
+
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
 @app.before_request
@@ -130,7 +132,6 @@ def scrapy():
 
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
-# @Celery.task
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
