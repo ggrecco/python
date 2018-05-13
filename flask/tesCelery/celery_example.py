@@ -2,7 +2,7 @@ from flask import Flask
 from flask_celery import make_celery
 from flask_sqlalchemy import SQLAlchemy
 from random import choice
-import os
+
 
 app = Flask(__name__)
 app.config['CELERY_BROKER_URL'] = 'amqp://localhost//'
@@ -13,9 +13,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///banco.db'
 celery = make_celery(app)
 db = SQLAlchemy(app)
 
-class Results(db.Model):
-    id = db.Column('id', db.Integer, primary_key=True)
-    data = db.Column('data', db.String(50))
+# class Results(db.Model):
+#     id = db.Column('id', db.Integer, primary_key=True)
+#     data = db.Column('data', db.String(50))
 
 @app.route('/process/<name>')
 def process(name):

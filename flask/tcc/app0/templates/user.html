@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+
+    <h1>Usuário: {{ user.nome }}</h1>
+    <p>Email: {{ user.email }}</p>
+    {% if user.last_seen %}
+        <p>Última visualização: {{ user.last_seen }}</p>
+    {% endif %}
+    <a href="{{ url_for('deletar') }}">Excluir perfil</a>
+    {% if user == current_user %}
+        <p><a href="{{ url_for('edit_profile') }}">Editar perfil</a></p>
+    {% endif %}
+    <hr>
+        <h1>Servidores</h1>
+        <div class="table-responsive col-md-6">
+        	<table class="table table-striped border-spacing padding">
+        	<thead>
+        		<tr>
+                    <th class="text-center">Nome</th>
+                    <th class="text-center">Site</th>
+                    <th class="text-center">IP</th>
+                    <th class="text-center">Refazer Scan</th>
+                </tr>
+            </thead>
+        {% for servidor in servidores %}
+        <tr class="text-center">
+            <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
+            <td>{{ servidor.url }}</td>
+            <td>{{ servidor.ip }}</td>
+            <td><a href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url) }}">clique aqui</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+{% endblock %}

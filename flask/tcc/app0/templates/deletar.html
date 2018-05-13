@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Deseja realmente Excluir seu Perfil?</h1>
+    <div class="row">
+       <div class="col-md-4">
+           {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-danger btn-lg'}) }}
+       </div>
+   </div>
+        <p>
+            clique aqui para <a type="button" class="" href="{{ url_for('index') }}">voltar</a>
+        </p>
+{% endblock %}
