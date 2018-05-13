@@ -24,6 +24,10 @@ def process(name):
 
     return 'Eu enviei uma solicitação assincrona'
 
+@celery.task(name='celery_example.reverse')
+def reverse(string):
+    return string[::-1]
+
 @app.route('/insertData')
 def insertData():
 
@@ -31,10 +35,6 @@ def insertData():
 
     return 'request para inserir dados aleatorios no banco'
 
-
-@celery.task(name='celery_example.reverse')
-def reverse(string):
-    return string[::-1]
 
 @celery.task(name='celery_example.insert')
 def insert():
