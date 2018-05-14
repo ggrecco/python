@@ -62,12 +62,15 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = Usuario(nome=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Parabéns, você foi registrado com suceso!')
-        return redirect(url_for('login'))
+        username = form.username.data
+        if username in 'AabBCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890':
+            user = Usuario(nome=username, email=form.email.data)
+            user.set_password(form.password.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Parabéns, você foi registrado com suceso!')
+            return redirect(url_for('login'))
+        flash('Por favor, não utilize caractéres especiais como "/ $ #" ou palavras acentuádas.')
     return render_template('register.html', title='Registro', form=form)
 
 

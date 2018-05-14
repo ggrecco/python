@@ -8,6 +8,7 @@ from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
 from datetime import datetime
 from tcc import *
+import unidecode
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
 @app.before_request
@@ -36,7 +37,8 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        usuario = Usuario.query.filter_by(nome=form.username.data).first()
+        username = unidecode.unidecode(form.username.data)
+        usuario = Usuario.query.filter_by(nome=username).first()
         if usuario is None or not usuario.check_password(form.password.data):
             flash('Usuário ou Senha Inválido, tente novamente.')
             return redirect(url_for('login'))
@@ -62,12 +64,15 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = Usuario(nome=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
-        flash('Parabéns, você foi registrado com suceso!')
-        return redirect(url_for('login'))
+        username = unidecode.unidecode(form.username.data)
+        if username.isalpha():
+            user = Usuario(nome=username, email=form.email.data)
+            user.set_password(form.password.data)
+            db.session.add(user)
+            db.session.commit()
+            flash('Parabéns, você foi registrado com suceso!')
+            return redirect(url_for('login'))
+        flash('Por favor, não utilize caractéres especiais como "/ $ #" ou palavras acentuádas.')
     return render_template('register.html', title='Registro', form=form)
 
 
@@ -76,7 +81,7 @@ def register():
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.nome = form.username.data
+        current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
         flash('Suas alterações foram salvas')
