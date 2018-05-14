@@ -84,7 +84,7 @@ def edit_profile():
         current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas')
+        flash('Suas alterações foram salvas(e automaticamente removido as acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
         #busca do banco os dados para exibir ao usuário o que está salvo
@@ -124,7 +124,7 @@ def user(username):
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado e pesquisado.')
+        flash('O servidor foi registrado,alguarde alguns minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
         s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
@@ -136,12 +136,13 @@ def servidor():
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
-@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
+@app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip):
-    flash('Refeito teste com sucesso!')
+def refazer(nome, url, ip, user):
+    flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
-    portScan(url)
+    portScanCel.delay(url, user)
+    # portScan(url, user)
     return redirect(url_for('index'))
 
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
