@@ -7,6 +7,7 @@ from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, Edi
 from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
 from datetime import datetime
+from tcc import *
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
 @app.before_request
@@ -124,7 +125,9 @@ def servidor():
         s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
         db.session.add(s)
         db.session.commit()
-        portScan(form.url.data)
+        url = form.url.data
+        user = current_user.id
+        portScanCel.delay(url, user)
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 

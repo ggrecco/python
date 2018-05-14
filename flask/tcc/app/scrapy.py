@@ -5,13 +5,13 @@ from app.models import Dados, Usuario, Servidor
 from flask_login import current_user
 
 #retirar nota minima e máxima nas pesquisas
-def scraper(procura,nome,porta):
+def scraper(procura,nome,porta,user):
     i = 0
     lista = []
 
     #captura o id do usuario logado
-    u = Usuario.query.filter_by(id=current_user.id).first()
-    s = Servidor.query.filter_by(nome=nome, usuario_id=current_user.id).first()
+    u = Usuario.query.filter_by(id=user).first()
+    s = Servidor.query.filter_by(nome=nome, usuario_id=user).first()
 
 
     tabelas = busca_tabelas(procura).findAll('tr', {'class':'srrowns'})
