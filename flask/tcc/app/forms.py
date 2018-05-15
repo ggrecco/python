@@ -53,7 +53,7 @@ class ServidorForm(FlaskForm):
     def validate_servidor(self, servidor):
         servidor = Servidor.query.filter_by(nome=servidor.data).first()
         if servidor is not None:
-            raise ValidationError('Indisponível, por favor use outro nome para o servidor.')
+            raise ValidationError('Indisponível, por favor use outro nome para seu servidor.')
 
     def validate_url(self, url):
         url = Servidor.query.filter_by(url=url.data, usuario_id=current_user.id).first()

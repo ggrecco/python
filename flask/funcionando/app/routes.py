@@ -134,12 +134,13 @@ def servidor():
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
-@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
+@app.route('/refazer_<nome>_<url>_<ip>_<userid>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip):
+def refazer(nome, url, ip, userid):
     flash('Refeito teste com sucesso!')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
-    portScan(url)
+    portScanCel.delay(url, userid)
+    # portScan(url, userid)
     return redirect(url_for('index'))
 
 @app.route('/dados_<nome>', methods=['GET', 'POST'])

@@ -9,6 +9,7 @@ from app.portscan import portScan, busca_ip
 from datetime import datetime
 from tcc import *
 import unidecode
+import time
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
 @app.before_request
@@ -118,6 +119,7 @@ def user(username):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     return render_template('user.html', title='Perfil de usuário', user=user, dados=dados, servidores=servidores)
 
+
 #tratar o erro para nome unico(igual login)
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
@@ -136,14 +138,20 @@ def servidor():
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
-@app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
+
+@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip, user):
+def refazer(nome, url, ip):
+    i = 0
     flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
-    portScanCel.delay(url, user)
+    result = portScanCel.delay(url, user)
+    # while result.ready() == False:
+    #     print(result.status)
+    #     time.sleep(1)
     # portScan(url, user)
     return redirect(url_for('index'))
+
 
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
@@ -152,7 +160,6 @@ def dados(nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
     return render_template('dados_servidores.html',title='Vulnerabilidades', dados=dados, servidores=servidores)
-
 
 
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
