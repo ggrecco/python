@@ -33,11 +33,12 @@ def portScan(site, user):
 def busca_ip(site):
     #captura apenas o campo de ip e salva em um arquivo txt
     s = str(site)
-    os.system("host " + s + " | awk '{print $4}' > ip.txt")
-
+    # os.system("host " + s + " | awk '{print $4}' > ip.txt")
+    os.system('ping -c1 ' + s + " | awk '{print $3}' > ip.txt")
     arq = open('/home/ggrecco/Documentos/python/flask/tcc/ip.txt', 'r')
     ip = arq.read()
-    b = ip.split("\n")
-    ip = b[0]
+    b = ip.split("(")
+    c = b[1].split(")")
+    ip = c[0]
 
     return ip
