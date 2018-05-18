@@ -42,4 +42,3 @@ def scraper(procura,nome,porta,user):
         i = i + 1
 
     return lista
-# produto=, cveid=, tipo=, datacorrecao=, nota=, acesso= , comentario=

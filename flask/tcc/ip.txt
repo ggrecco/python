@@ -1,6 +1,0 @@
-(176.28.50.165)
-from
-
-ping
-transmitted,
-=
