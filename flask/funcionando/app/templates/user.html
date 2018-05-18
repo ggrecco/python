@@ -28,7 +28,7 @@
             <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
-            <td><a href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url, userid=current_user.id) }}">clique aqui</a></td>
+            <td><a href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url, user=current_user.id) }}">clique aqui</a></td>
         </tr>
         {% endfor %}
     </table>

@@ -1,3 +1,4 @@
+from tcc import *
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
@@ -7,7 +8,6 @@ from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, Edi
 from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
 from datetime import datetime
-from tcc import *
 import unidecode
 import time
 
@@ -139,9 +139,9 @@ def servidor():
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
 
-@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
+@app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip):
+def refazer(nome, url, ip, user):
     i = 0
     flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)

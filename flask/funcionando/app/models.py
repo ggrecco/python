@@ -54,6 +54,3 @@ class Dados(db.Model):
     comentario = db.Column(db.String(5000))
     def __repr__(self):
         return '<Dados {}>'.format(self.produto)
-
-
-# produto='JAVA', cveid='testeasd', tipo='coisaChata', datacorrecao='12-12-1234', nota='7.9', acesso='facil', comentario='teste de comentarios gigante que nao quero escrever, pois escrever tem que usar a caneta e aqui digitamos com o teclado'

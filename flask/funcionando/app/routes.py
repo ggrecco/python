@@ -8,6 +8,8 @@ from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
 from datetime import datetime
 from tcc import *
+import unidecode
+import time
 
 # verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
 @app.before_request
@@ -36,7 +38,8 @@ def login():
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
-        usuario = Usuario.query.filter_by(nome=form.username.data).first()
+        username = unidecode.unidecode(form.username.data)
+        usuario = Usuario.query.filter_by(nome=username).first()
         if usuario is None or not usuario.check_password(form.password.data):
             flash('Usuário ou Senha Inválido, tente novamente.')
             return redirect(url_for('login'))
@@ -62,8 +65,8 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        username = form.username.data
-        if username in 'AabBCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz1234567890':
+        username = unidecode.unidecode(form.username.data)
+        if username.isalpha():
             user = Usuario(nome=username, email=form.email.data)
             user.set_password(form.password.data)
             db.session.add(user)
@@ -79,10 +82,10 @@ def register():
 def edit_profile():
     form = EditProfileForm()
     if form.validate_on_submit():
-        current_user.nome = form.username.data
+        current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas')
+        flash('Suas alterações foram salvas(e automaticamente removido as acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
         #busca do banco os dados para exibir ao usuário o que está salvo
@@ -116,13 +119,14 @@ def user(username):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     return render_template('user.html', title='Perfil de usuário', user=user, dados=dados, servidores=servidores)
 
+
 #tratar o erro para nome unico(igual login)
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado e pesquisado.')
+        flash('O servidor foi registrado,alguarde alguns minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
         s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
@@ -134,14 +138,20 @@ def servidor():
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
-@app.route('/refazer_<nome>_<url>_<ip>_<userid>', methods=['GET', 'POST'])
+
+@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip, userid):
-    flash('Refeito teste com sucesso!')
+def refazer(nome, url, ip):
+    i = 0
+    flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
-    portScanCel.delay(url, userid)
-    # portScan(url, userid)
+    result = portScanCel.delay(url, user)
+    # while result.ready() == False:
+    #     print(result.status)
+    #     time.sleep(1)
+    # portScan(url, user)
     return redirect(url_for('index'))
+
 
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
@@ -150,7 +160,6 @@ def dados(nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
     return render_template('dados_servidores.html',title='Vulnerabilidades', dados=dados, servidores=servidores)
-
 
 
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])

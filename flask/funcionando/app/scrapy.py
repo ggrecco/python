@@ -5,7 +5,7 @@ from app.models import Dados, Usuario, Servidor
 from flask_login import current_user
 
 #retirar nota minima e máxima nas pesquisas
-def scraper(procura,nome,porta, user):
+def scraper(procura,nome,porta,user):
     i = 0
     lista = []
 
@@ -42,4 +42,3 @@ def scraper(procura,nome,porta, user):
         i = i + 1
 
     return lista
-# produto=, cveid=, tipo=, datacorrecao=, nota=, acesso= , comentario=
