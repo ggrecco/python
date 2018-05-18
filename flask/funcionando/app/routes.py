@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, EditProfileForm, DeletarForm
+from app.forms import *
 from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
 from celeryF import *
@@ -12,14 +12,15 @@ from datetime import datetime
 import unidecode
 import time
 
-# verifica se a conta current_user está conectada e define o last_seen campo para a hora atual
+
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
 
-#página inicial
+
+# página inicial
 @app.route('/')
 @app.route('/index')
 @login_required
@@ -27,7 +28,8 @@ def index():
     posts = [
         {
             'author': {'username': 'Bem Vindo '},
-            'body': 'Escrever aqui um breve resumo das funcioanlidades do software.(com links)'
+            'body': 'Escrever aqui um breve resumo das' +
+            'funcioanlidades do software.( com links)'
         }
     ]
     return render_template('index.html', title='Home', posts=posts)
@@ -74,7 +76,8 @@ def register():
             db.session.commit()
             flash('Parabéns, você foi registrado com suceso!')
             return redirect(url_for('login'))
-        flash('Por favor, não utilize caractéres especiais como "/ $ #" ou palavras acentuádas.')
+        flash('Por favor, não utilize caractéres especiais como "/ $ #" ' +
+              'ou palavras acentuádas.')
     return render_template('register.html', title='Registro', form=form)
 
 
@@ -86,10 +89,11 @@ def edit_profile():
         current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas(e automaticamente removido as acentuações ;) )')
+        flash('Suas alterações foram salvas(e automaticamente' +
+              'removido as acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
-        #busca do banco os dados para exibir ao usuário o que está salvo
+        # busca do banco os dados para exibir ao usuário o que está salvo
         form.username.data = current_user.nome
         form.email.data = current_user.email
     return render_template('editar.html', title='Editar Perfil', form=form)
@@ -109,7 +113,7 @@ def deletar():
         db.session.delete(u)
         db.session.commit()
         return redirect(url_for('logout'))
-    return render_template('deletar.html', title='Deletar usuario', form=form )
+    return render_template('deletar.html', title='Deletar usuario', form=form)
 
 
 @app.route('/usuario/<username>')
@@ -118,26 +122,30 @@ def user(username):
     user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
-    return render_template('user.html', title='Perfil de usuário', user=user, dados=dados, servidores=servidores)
+    return render_template('user.html', title='Perfil de usuário',
+                           user=user, dados=dados, servidores=servidores)
 
 
-#tratar o erro para nome unico(igual login)
+# tratar o erro para nome unico(igual login)
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado,alguarde alguns minutos antes de consultar.')
+        flash('O servidor foi registrado,alguarde' +
+              'alguns minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
-        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p, rel_usuario=u)
+        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p,
+                     rel_usuario=u)
         db.session.add(s)
         db.session.commit()
         url = form.url.data
         user = current_user.id
         scaneando.delay(url, user)
         return redirect(url_for('index'))
-    return render_template('servidor.html', title='Pesquisar servidor', form=form)
+    return render_template('servidor.html', title='Pesquisar servidor',
+                           form=form)
 
 
 @app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
@@ -157,16 +165,21 @@ def refazer(nome, url, ip, user):
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
-    servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
     servidor_id = servidores.value('id')
-    dados = Dados.query.filter_by(usuario_id=current_user.id, servidor_id=servidor_id)
-    return render_template('dados_servidores.html',title='Vulnerabilidades', dados=dados, servidores=servidores)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    return render_template('dados_servidores.html',
+                           title='Vulnerabilidades', dados=dados,
+                           servidores=servidores)
 
 
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
 @login_required
 def vul(cveid, nome):
-    servidores = Servidor.query.filter_by(usuario_id=current_user.id, nome=nome)
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
-    return render_template('vul.html',title='Detalhes', dados=dados)
+    return render_template('vul.html', title='Detalhes', dados=dados)

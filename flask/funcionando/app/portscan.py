@@ -4,34 +4,35 @@ from app.models import Servidor, Usuario
 from app.scrapy import scraper
 from flask_login import current_user
 
-#site pra teste -> 'testphp.vulnweb.com'
-#site pra teste -> 'scanme.nmap.org'
+
+# site pra teste -> 'testphp.vulnweb.com'
+# site pra teste -> 'scanme.nmap.org'
 def portScan(site, user):
     a = nmap.PortScanner()
     s = str(site)
-    #scaneia as portas
-    d = a.scan(s,'21,22,23,25,53,63,70,79,80,110,119', '-sV')
-    #Busca servidor no banco de dados
+    # scaneia as portas
+    d = a.scan(s, '21, 22, 23, 25, 53, 63, 70, 79, 80, 110, 119', '-sV')
+    # Busca servidor no banco de dados
     ser = Servidor.query.filter_by(url=site, usuario_id=user)
     ip = ser.value('ip')
     nome = ser.value('nome')
 
-
-    l = [21,22,23,25,53,63,70,79,80,110,119]#portas padrão que serão analisadas
+    # portas padrão que serão analisadas
+    lista = [21, 22, 23, 25, 53, 63, 70, 79, 80, 110, 119]
     i = 0
 
-    while i < len(l):
-        j = d['scan'][ip]['tcp'][l[i]]['product']
+    while i < len(lista):
+        j = d['scan'][ip]['tcp'][lista[i]]['product']
         if j in '':
             pass
         else:
             print(j)
-            scraper(j, nome, l[i], user)
+            scraper(j, nome, lista[i], user)
         i = i + 1
 
 
 def busca_ip(site):
-    #captura apenas o campo de ip e salva em um arquivo txt
+    # captura apenas o campo de ip e salva em um arquivo txt
     s = str(site)
     # os.system("host " + s + " | awk '{print $4}' > ip.txt")
     os.system('ping -c1 ' + s + " | awk '{print $3}' > ip.txt")
