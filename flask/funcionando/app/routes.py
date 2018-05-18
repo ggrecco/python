@@ -6,8 +6,9 @@ from app import app, db
 from app.forms import LoginForm, RegistrationForm, ScrapyForm, ServidorForm, EditProfileForm, DeletarForm
 from app.scrapy import scraper
 from app.portscan import portScan, busca_ip
+from celeryF import *
 from datetime import datetime
-from tcc import *
+# from tcc import *
 import unidecode
 import time
 
@@ -134,18 +135,18 @@ def servidor():
         db.session.commit()
         url = form.url.data
         user = current_user.id
-        portScanCel.delay(url, user)
+        scaneando.delay(url, user)
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor', form=form)
 
 
-@app.route('/refazer_<nome>_<url>_<ip>', methods=['GET', 'POST'])
+@app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
 @login_required
-def refazer(nome, url, ip):
+def refazer(nome, url, ip, user):
     i = 0
     flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
-    result = portScanCel.delay(url, user)
+    result = scaneando.delay(url, user)
     # while result.ready() == False:
     #     print(result.status)
     #     time.sleep(1)
