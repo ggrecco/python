@@ -14,10 +14,8 @@ migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
 bootstrap = Bootstrap(app)
-app.config.update(
-    CELERY_BROKER_URL='amqp://localhost//',
-    CELERY_RESULT_BACKEND='db+sqlite:///app.db'
-)
+app.config.update(CELERY_BROKER_URL='amqp://localhost//',
+                  CELERY_RESULT_BACKEND='db+sqlite:///app.db')
 celery = make_celery(app)
 
 

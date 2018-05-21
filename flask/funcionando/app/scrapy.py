@@ -9,9 +9,11 @@ from flask_login import current_user
 def scraper(procura, nome, porta, user):
     i = 0
     lista = []
+
     # captura o id do usuario logado
     u = Usuario.query.filter_by(id=user).first()
     s = Servidor.query.filter_by(nome=nome, usuario_id=user).first()
+
     tabelas = busca_tabelas(procura).findAll('tr', {'class': 'srrowns'})
     coment = busca_tabelas(procura).findAll('td', {'class': 'cvesummarylong'})
 
@@ -26,19 +28,19 @@ def scraper(procura, nome, porta, user):
         comentario = coment[i].text.split('\t')[6]
         if '\n\t' in tipo:
             tipo = tipo.split('\t')[6]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto,
-                      cveid=cveid, tipo=tipo, datacorrecao=datacorrecao,
-                      nota=nota, acesso=acesso, comentario=comentario,
-                      porta=porta)
+            d = Dados(autor_usuario=u, autor_servidor=s,
+                      produto=produto, cveid=cveid, tipo=tipo,
+                      datacorrecao=datacorrecao, nota=nota, acesso=acesso,
+                      comentario=comentario, porta=porta)
             db.session.add(d)
             db.session.commit()
 
         elif '\n' in tipo:
             tipo = tipo.split('\n')[0]
-            d = Dados(autor_usuario=u, autor_servidor=s, produto=produto,
-                      cveid=cveid, tipo=tipo, datacorrecao=datacorrecao,
-                      nota=nota, acesso=acesso, comentario=comentario,
-                      porta=porta)
+            d = Dados(autor_usuario=u, autor_servidor=s,
+                      produto=produto, cveid=cveid, tipo=tipo,
+                      datacorrecao=datacorrecao, nota=nota, acesso=acesso,
+                      comentario=comentario, porta=porta)
             db.session.add(d)
             db.session.commit()
 

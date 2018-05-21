@@ -22,8 +22,7 @@ def busca_tabelas(linguagem):
                'uey': '',
                'usm': '',
                'usy': '',
-               'vendor': ''
-               }
+               'vendor': ''}
 
     response = requests.post(url, data=payload)
 

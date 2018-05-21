@@ -23,8 +23,8 @@ class RegistrationForm(FlaskForm):
             def validate_email(self, email):
                 user = Usuario.query.filter_by(email=email.data).first()
                 if user is not None:
-                    raise ValidationError('Já cadastrado, por favor' +
-                                          'use outro e-mail.')
+                    raise ValidationError('Já cadastrado,' +
+                                          'por favor use outro e-mail.')
 
 
 class DeletarForm(FlaskForm):
@@ -54,15 +54,14 @@ class ScrapyForm(FlaskForm):
 class ServidorForm(FlaskForm):
     servidor = StringField('Nome para o servidor:',
                            validators=[DataRequired()])
-    url = StringField('Url (site do servidor):',
-                      validators=[DataRequired()])
+    url = StringField('Url (site do servidor):', validators=[DataRequired()])
     registro = SubmitField('Pesquisar')
 
     def validate_servidor(self, servidor):
         servidor = Servidor.query.filter_by(nome=servidor.data).first()
         if servidor is not None:
-            raise ValidationError('Indisponível, por favor use' +
-                                  'outro nome para seu servidor.')
+            raise ValidationError('Indisponível, por favor' +
+                                  'use outro nome para seu servidor.')
 
     def validate_url(self, url):
         url = Servidor.query.filter_by(url=url.data,

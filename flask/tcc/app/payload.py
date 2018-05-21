@@ -2,6 +2,7 @@ import requests
 from requests import post, get
 from bs4 import BeautifulSoup as bs
 
+
 def busca_tabelas(linguagem):
     url = "https://www.cvedetails.com/vulnerability-search.php"
 

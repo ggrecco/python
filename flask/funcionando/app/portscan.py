@@ -16,8 +16,6 @@ def portScan(site, user):
     ser = Servidor.query.filter_by(url=site, usuario_id=user)
     ip = ser.value('ip')
     nome = ser.value('nome')
-
-    # portas padrão que serão analisadas
     lista = [21, 22, 23, 25, 53, 63, 70, 79, 80, 110, 119]
     i = 0
 

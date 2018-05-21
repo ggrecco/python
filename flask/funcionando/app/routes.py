@@ -3,14 +3,12 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
 from app import app, db
-from app.forms import *
-from app.scrapy import scraper
-from app.portscan import portScan, busca_ip
+from app.forms import LoginForm, RegistrationForm, \
+        ServidorForm, EditProfileForm, DeletarForm
+from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
-# from tcc import *
 import unidecode
-import time
 
 
 @app.before_request
@@ -29,7 +27,7 @@ def index():
         {
             'author': {'username': 'Bem Vindo '},
             'body': 'Escrever aqui um breve resumo das' +
-            'funcioanlidades do software.( com links)'
+            'funcioanlidades do software.(com links)'
         }
     ]
     return render_template('index.html', title='Home', posts=posts)
@@ -89,8 +87,8 @@ def edit_profile():
         current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas(e automaticamente' +
-              'removido as acentuações ;) )')
+        flash('Suas alterações foram salvas(e automaticamente removido as' +
+              'acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
         # busca do banco os dados para exibir ao usuário o que está salvo
@@ -113,7 +111,8 @@ def deletar():
         db.session.delete(u)
         db.session.commit()
         return redirect(url_for('logout'))
-    return render_template('deletar.html', title='Deletar usuario', form=form)
+    return render_template('deletar.html', title='Deletar usuario',
+                           form=form)
 
 
 @app.route('/usuario/<username>')
@@ -132,12 +131,12 @@ def user(username):
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado,alguarde' +
-              'alguns minutos antes de consultar.')
+        flash('O servidor foi registrado,alguarde alguns' +
+              'minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
-        s = Servidor(nome=form.servidor.data, url=form.url.data, ip=p,
-                     rel_usuario=u)
+        s = Servidor(nome=form.servidor.data, url=form.url.data,
+                     ip=p, rel_usuario=u)
         db.session.add(s)
         db.session.commit()
         url = form.url.data
@@ -155,10 +154,6 @@ def refazer(nome, url, ip, user):
     flash('Refazendo teste, alguarde alguns minutos antes de consultar.')
     s = Servidor.query.filter_by(nome=nome, url=url, ip=ip)
     result = scaneando.delay(url, user)
-    # while result.ready() == False:
-    #     print(result.status)
-    #     time.sleep(1)
-    # portScan(url, user)
     return redirect(url_for('index'))
 
 
@@ -170,9 +165,8 @@ def dados(nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidor_id)
-    return render_template('dados_servidores.html',
-                           title='Vulnerabilidades', dados=dados,
-                           servidores=servidores)
+    return render_template('dados_servidores.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
 
 
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
@@ -183,3 +177,30 @@ def vul(cveid, nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
     return render_template('vul.html', title='Detalhes', dados=dados)
+
+
+@app.route('/ver_servidor<username>', methods=['GET', 'POST'])
+@login_required
+def ver_servidor(username):
+    user = Usuario.query.filter_by(nome=username).first_or_404()
+    dados = Dados.query.filter_by(usuario_id=current_user.id)
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id)
+    return render_template('ver_servidor.html', title='Perfil de usuário',
+                           user=user, dados=dados, servidores=servidores)
+
+
+@app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
+def deleta_servidor(server, serverid):
+    form = DeletarForm()
+    if form.validate_on_submit():
+        user_id = current_user.id
+        # inserir o servidor id para excluir os dados certos do servidor
+        d = Dados.query.filter_by(usuario_id=user_id, servidor_id=serverid)
+        s = Servidor.query.filter_by(usuario_id=user_id, nome=server)
+        d.delete()
+        s.delete()
+        db.session.commit()
+        flash('Alterações realizadas com sucesso.')
+        return redirect(url_for('index'))
+    return render_template('deleta_servidor.html', title='Excluir',
+                           form=form)

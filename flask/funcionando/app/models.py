@@ -10,8 +10,10 @@ class Usuario(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
-    resultados = db.relationship('Dados', backref='autor_usuario', lazy='dynamic')
-    rel_servidor = db.relationship('Servidor', backref='rel_usuario', lazy='dynamic')
+    resultados = db.relationship('Dados', backref='autor_usuario',
+                                 lazy='dynamic')
+    rel_servidor = db.relationship('Servidor', backref='rel_usuario',
+                                   lazy='dynamic')
 
     def __repr__(self):
         return '<Usuario {}>'.format(self.nome)
@@ -25,11 +27,12 @@ class Usuario(UserMixin, db.Model):
 
 class Servidor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    nome = db.Column(db.String(140), unique=True)#remover esta coluna
+    nome = db.Column(db.String(140), unique=True)
     url = db.Column(db.String(255))
     ip = db.Column(db.String(25))
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
-    resultados = db.relationship('Dados', backref='autor_servidor', lazy='dynamic')
+    resultados = db.relationship('Dados', backref='autor_servidor',
+                                 lazy='dynamic')
 
     def __repr__(self):
         return '<Servidor {}>'.format(self.nome)
@@ -52,5 +55,6 @@ class Dados(db.Model):
     acesso = db.Column(db.String(100))
     porta = db.Column(db.String(10))
     comentario = db.Column(db.String(5000))
+
     def __repr__(self):
         return '<Dados {}>'.format(self.produto)
