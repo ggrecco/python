@@ -21,6 +21,8 @@
             <td>
                 <a class="btn btn-success" href="#">teste</a>
                 <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
+                <a class="btn btn-warning" href="{{ url_for('dados',
+                nome=servidor.nome) }}">Visualizar</a>
             </td>
         </tr>
     {% endfor %}
