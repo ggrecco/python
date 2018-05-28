@@ -4,7 +4,8 @@ from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, \
-        ServidorForm, EditProfileForm, DeletarForm
+        ServidorForm, EditProfileForm, DeletarForm, \
+        AlteraServidorForm
 from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
@@ -190,11 +191,11 @@ def ver_servidor(username):
 
 
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
+@login_required
 def deleta_servidor(server, serverid):
     form = DeletarForm()
     if form.validate_on_submit():
         user_id = current_user.id
-        # inserir o servidor id para excluir os dados certos do servidor
         d = Dados.query.filter_by(usuario_id=user_id, servidor_id=serverid)
         s = Servidor.query.filter_by(usuario_id=user_id, nome=server)
         d.delete()
@@ -204,3 +205,24 @@ def deleta_servidor(server, serverid):
         return redirect(url_for('index'))
     return render_template('deleta_servidor.html', title='Excluir',
                            form=form)
+
+
+@app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
+@login_required
+def altera_servidor(server, serverid):
+    # implementar alteração do nome do servidor
+    form = AlteraServidorForm()
+    user_id = current_user.id
+    servidor = Servidor.query.filter_by(nome=server,
+                                        usuario_id=user_id)
+
+    if form.validate_on_submit():
+        servidor[0].nome = form.servidor.data
+        db.session.commit()
+        flash('Atualizado com sucesso')
+        return redirect(url_for('index'))
+
+    elif request.method == 'GET':
+        form.servidor.data = servidor.value('nome')
+    return render_template('altera_servidor.html',
+                           title='Alterar Servidor', form=form)

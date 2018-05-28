@@ -68,3 +68,9 @@ class ServidorForm(FlaskForm):
                                        usuario_id=current_user.id).first()
         if url is not None:
             raise ValidationError('Site já cadastrado.')
+
+
+class AlteraServidorForm(FlaskForm):
+    servidor = StringField('Novo nome para o servidor',
+                           validators=[DataRequired()])
+    submit = SubmitField('alterar')
