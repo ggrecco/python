@@ -183,11 +183,18 @@ def vul(cveid, nome):
 @app.route('/ver_servidor<username>', methods=['GET', 'POST'])
 @login_required
 def ver_servidor(username):
+    lista = []
     user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
+    tamanho = len(list(dados))
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
+    for a in servidores:
+        sa = a.id
+        lista.append(len(list(Dados.query.filter_by(usuario_id=current_user.id,
+                                                    servidor_id=sa))))
     return render_template('ver_servidor.html', title='Perfil de usuário',
-                           user=user, dados=dados, servidores=servidores)
+                           user=user, dados=dados, servidores=servidores,
+                           tamanho=tamanho, lista=lista)
 
 
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])

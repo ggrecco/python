@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block app_content %}
     <h1 class="text-center">Servidores</h1>
+{% if tamanho != 0 %}
 <div class="table-responsive col-md-12">
     <table class="table table-striped border-spacing padding">
     <thead>
         <tr>
+            <th class="text-center">item</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Site</th>
             <th class="text-center">IP</th>
@@ -14,6 +16,7 @@
     </thead>
     {% for servidor in servidores %}
         <tr class="text-center">
+            <td>{{ servidor.id }}</td>
             <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
@@ -23,11 +26,15 @@
                 server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
                 <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
                 <a class="btn btn-success" href="{{ url_for('dados',
-                nome=servidor.nome) }}">Visualizar</a>
+                nome=servidor.nome) }}">Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
             </td>
         </tr>
     {% endfor %}
     </table>
 </div>
-
+{% else %}
+<div class="alert alert-info text-center">
+    Não há servidores pesquisados
+</div>
+{% endif %}
 {% endblock %}
