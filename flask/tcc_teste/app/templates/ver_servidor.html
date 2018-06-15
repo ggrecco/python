@@ -6,21 +6,21 @@
     <table class="table table-striped border-spacing padding">
     <thead>
         <tr>
-            <th class="text-center">item</th>
+            <th class="text-center">Data Scan</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Site</th>
             <th class="text-center">IP</th>
-            <th class="text-center">Scanear outra vez</th>
+            <!-- <th class="text-center">Scanear outra vez</th> -->
             <th class="text-center">Opções</th>
         </tr>
     </thead>
     {% for servidor in servidores %}
         <tr class="text-center">
-            <td>{{ servidor.id }}</td>
+            <td>{{ moment(servidor.timestamp).fromNow() }}</td>
             <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
-            <td><a class="btn btn-primary" type="submit" href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url, user=current_user.id) }}">Refazer</a></td>
+            <!-- <td><a class="btn btn-primary" type="submit" href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url, user=current_user.id) }}">Refazer</a></td>-->
             <td>
                 <a class="btn btn-warning" href="{{ url_for('altera_servidor',
                 server=servidor.nome, serverid=servidor.id) }}">Alterar</a>

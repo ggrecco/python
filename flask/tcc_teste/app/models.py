@@ -31,6 +31,7 @@ class Servidor(db.Model):
     url = db.Column(db.String(255))
     ip = db.Column(db.String(25))
     usuario_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+    timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     resultados = db.relationship('Dados', backref='autor_servidor',
                                  lazy='dynamic')
 

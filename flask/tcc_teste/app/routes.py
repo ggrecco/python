@@ -10,8 +10,10 @@ from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
 import unidecode
+from flask_babel import _
 
 
+# guia home
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -31,9 +33,12 @@ def index():
             'funcioanlidades do software.(com links)'
         }
     ]
+    flash(_('bem vindo! first'))
+    flash(_('Please log in to access this page'))
     return render_template('index.html', title='Home', posts=posts)
 
 
+#
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -88,7 +93,7 @@ def edit_profile():
         current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas(e automaticamente removido as' +
+        flash('Suas alterações foram salvas(e automaticamente removido as ' +
               'acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
@@ -132,7 +137,7 @@ def user(username):
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado,alguarde alguns' +
+        flash('O servidor foi registrado,alguarde alguns ' +
               'minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
