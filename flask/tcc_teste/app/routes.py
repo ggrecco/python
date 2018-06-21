@@ -13,7 +13,7 @@ import unidecode
 from flask_babel import _
 
 
-# guia home
+# atualiza data de ações
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -26,19 +26,16 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'Bem Vindo '},
-            'body': 'Escrever aqui um breve resumo das' +
-            'funcioanlidades do software.(com links)'
-        }
-    ]
-    flash(_('bem vindo! first'))
-    flash(_('Please log in to access this page'))
-    return render_template('index.html', title='Home', posts=posts)
+    flash('bem vindo!')
+    return render_template('index.html', title='Home')
 
 
-#
+@app.route('/qr', methods=['GET', 'POST'])
+def qr():
+    return render_template('qr.html', title='Código QR')
+
+
+# página de login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -60,12 +57,14 @@ def login():
     return render_template('login.html', title='Entrar', form=form)
 
 
+# logout
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
+# cadastro
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -85,6 +84,7 @@ def register():
     return render_template('register.html', title='Registro', form=form)
 
 
+# edição de perfil
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -103,6 +103,7 @@ def edit_profile():
     return render_template('editar.html', title='Editar Perfil', form=form)
 
 
+# exclusão de perfil
 @app.route("/deletar", methods=['GET', 'POST'])
 @login_required
 def deletar():
@@ -121,6 +122,7 @@ def deletar():
                            form=form)
 
 
+# perfil do usuário
 @app.route('/usuario/<username>')
 @login_required
 def user(username):
@@ -131,7 +133,7 @@ def user(username):
                            user=user, dados=dados, servidores=servidores)
 
 
-# tratar o erro para nome unico(igual login)
+# Pesquisar servidor
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():
@@ -153,6 +155,7 @@ def servidor():
                            form=form)
 
 
+# refazer analise
 @app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
 @login_required
 def refazer(nome, url, ip, user):
@@ -163,6 +166,7 @@ def refazer(nome, url, ip, user):
     return redirect(url_for('index'))
 
 
+# botão visualizar e dados escaneados
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
@@ -175,6 +179,7 @@ def dados(nome):
                            dados=dados, servidores=servidores)
 
 
+# detalhes da vulnerabilidade
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
 @login_required
 def vul(cveid, nome):
@@ -185,6 +190,7 @@ def vul(cveid, nome):
     return render_template('vul.html', title='Detalhes', dados=dados)
 
 
+# servidores pesqusiados
 @app.route('/ver_servidor<username>', methods=['GET', 'POST'])
 @login_required
 def ver_servidor(username):
@@ -202,6 +208,7 @@ def ver_servidor(username):
                            tamanho=tamanho, lista=lista)
 
 
+# botão de deletar servidor
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def deleta_servidor(server, serverid):
@@ -219,6 +226,7 @@ def deleta_servidor(server, serverid):
                            form=form)
 
 
+# botão de alterar servidor
 @app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def altera_servidor(server, serverid):

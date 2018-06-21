@@ -12,6 +12,7 @@
 	<table class="table table-striped border-spacing padding">
 	<thead>
 		<tr>
+            <th class="text-center">Teste</th>
             <th class="text-center">Serviço</th>
             <th class="text-center">CVEID</th>
             <th class="text-center">Nota</th>
@@ -23,7 +24,8 @@
 <tr>
 
     <p>
-        <td  class="text-center">{{ dado.produto }}</td>
+        <td class="text-center"><input type="checkbox"></td>
+        <td class="text-center">{{ dado.produto }}</td>
         <td  class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</td>
         <td  class="text-center">{{ dado.nota }}</td>
         <td>{{ dado.comentario }}</td>

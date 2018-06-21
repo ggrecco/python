@@ -21,6 +21,7 @@
             <li><a href="{{ url_for('index') }}">Home</a></li>
             {% if current_user.is_anonymous %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('qr')}}">Código QR</a></li>
             {% else %}
                 <li><a href="{{ url_for('servidor') }}">Pesquisar</a></li>
                 <li><a href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
