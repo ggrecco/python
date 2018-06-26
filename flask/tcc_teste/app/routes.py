@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
@@ -10,7 +10,7 @@ from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
 import unidecode
-from flask_babel import _
+from flask_babel import get_locale
 
 
 # atualiza data de ações
@@ -19,6 +19,7 @@ def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 
 # página inicial

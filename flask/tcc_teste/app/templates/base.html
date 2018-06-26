@@ -59,6 +59,10 @@
 {% endblock %}
 
 {% block scripts %}
+    <!-- exemplo de como usar java script:
+    <script src="{{url_for('.static', filename='myscripts.js')}}"></script> -->
+    <script src="{{url_for('static', filename='js/teste.js')}}"></script>
     {{ super() }}
     {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
 {% endblock %}

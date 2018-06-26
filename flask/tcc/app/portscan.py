@@ -39,5 +39,6 @@ def busca_ip(site):
     b = ip.split("(")
     c = b[1].split(")")
     ip = c[0]
+    arq.close()
 
     return ip
