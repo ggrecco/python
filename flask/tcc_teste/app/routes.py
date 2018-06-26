@@ -27,7 +27,6 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    flash('bem vindo!')
     return render_template('index.html', title='Home')
 
 
