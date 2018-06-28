@@ -1,51 +1,47 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
-
 {% block app_content %}
-
-<input type="text" id="text">
-
-
+<!-- <input type="text" id="text"> -->
+<!-- <textarea name="name" rows="8" cols="80" id="text">
+</textarea>
+<button type="button" id="bt-ok">Seleção</button> na th exibir
+<button type="button" id="area">Enviar</button> -->
 
 {% for servidor in servidores %}
-<div class="text-center">
-    <h1>Dados do site:  {{servidor.url}}  </h1>
+<div class="page-header text-center">
+    <h1>Dados do site:  {{servidor.url}}</h1>
     <hr>
 </div>
-
+<div class="row">
 <div class="table-responsive col-md-12">
-	<table class="table table-striped border-spacing padding">
+	<table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-            <th class="text-center">
-                Teste
-                <button type="button" id="bt-ok">Ok</button>
-            </th>
+            <th class="text-center">Exibir</th>
             <th class="text-center">Serviço</th>
             <th class="text-center">CVEID</th>
             <th class="text-center">Nota</th>
             <th class="text-center">Resumo</th>
-
         </tr>
     </thead>
+<tbody>
 {% for dado in dados %}
-<tr>
-
-    <p>
-        <td class="text-center">
-            <input type="checkbox" name="{{ dado.cveid }}">
-        </td>
+    <tr>
+        <td class="text-center"><input type="checkbox" name="{{ dado.cveid }}"></td>
         <td class="text-center">{{ dado.produto }}</td>
-        <td  class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</td>
-        <td  class="text-center">{{ dado.nota }}</td>
+        <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>
+        <td class="text-center">{{ dado.nota }}</td>
         <td>{{ dado.comentario }}</td>
-    </p>
-    </a>
-</tr>
+    </tr>
 {% endfor %}
 {% endfor %}
+</tbody>
 </table>
-
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</div>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="{{url_for('static', filename='js/pbtable.min.js')}}"></script>
+<script>
+    $('#myTable').pbTable();
+</script>
 {% endblock %}

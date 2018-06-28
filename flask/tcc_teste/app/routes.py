@@ -208,7 +208,7 @@ def ver_servidor(username):
                            tamanho=tamanho, lista=lista)
 
 
-# botão de deletar servidor
+#  deletar servidor
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def deleta_servidor(server, serverid):
@@ -226,7 +226,7 @@ def deleta_servidor(server, serverid):
                            form=form)
 
 
-# botão de alterar servidor
+# alterar servidor
 @app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def altera_servidor(server, serverid):
@@ -246,3 +246,13 @@ def altera_servidor(server, serverid):
         form.servidor.data = servidor.value('nome')
     return render_template('altera_servidor.html',
                            title='Alterar Servidor', form=form)
+
+
+@app.route("/listar", methods=['GET', 'POST'])
+@login_required
+def listar():
+    cvsid = request.form.getlist('vals')
+    # cvs = vals
+    print(cvsid)
+    return render_template('listar.html',
+                           title='Listar', cves=cvsid)
