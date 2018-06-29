@@ -4,9 +4,11 @@
 <!-- <input type="text" id="text"> -->
 <!-- <textarea name="name" rows="8" cols="80" id="text">
 </textarea>
-<button type="button" id="bt-ok">Seleção</button> na th exibir
+<button type="button" id="bt-ok">Seleção</button> th exibir
 <button type="button" id="area">Enviar</button> -->
 
+<!-- <button type="button" id="exibir">Seleção</button> -->
+<!-- <button class='value-plus'>pintar</button> -->
 {% for servidor in servidores %}
 <div class="page-header text-center">
     <h1>Dados do site:  {{servidor.url}}</h1>
@@ -14,7 +16,7 @@
 </div>
 <div class="row">
 <div class="table-responsive col-md-12">
-	<table id="myTable" class="table table-striped">
+<table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
             <th class="text-center">Exibir</th>
@@ -30,7 +32,15 @@
         <td class="text-center"><input type="checkbox" name="{{ dado.cveid }}"></td>
         <td class="text-center">{{ dado.produto }}</td>
         <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>
-        <td class="text-center">{{ dado.nota }}</td>
+        {% if dado.nota < 4.0 %}
+            <td style="background-color:#00c400" class="text-center"><b>{{ dado.nota }}</b></td>
+        {% elif dado.nota >= 4.0 and dado.nota < 7.0 %}
+            <td style="background-color:#d1ff00" class="text-center"><b>{{ dado.nota }}</b></td>
+        {% elif dado.nota >= 7.0 and dado.nota < 9.0 %}
+            <td style="background-color:#ff9c20" class="text-center"><b>{{ dado.nota }}</b></td>
+        {% else %}
+            <td style="background-color:#ff0000" class="text-center"><b>{{ dado.nota }}</b></td>
+        {% endif %}
         <td>{{ dado.comentario }}</td>
     </tr>
 {% endfor %}
@@ -39,9 +49,4 @@
 </table>
 </div>
 </div>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-<script src="{{url_for('static', filename='js/pbtable.min.js')}}"></script>
-<script>
-    $('#myTable').pbTable();
-</script>
 {% endblock %}

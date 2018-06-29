@@ -3,6 +3,11 @@
 {% block title %}
     {% if title %}{{ title }} - Tcc{% else %}Bem vindo ao TCC{% endif %}
 {% endblock %}
+{% block styles %}
+<!-- <link rel="stylesheet" href="{{url_for('static', filename='css/meu.css')}}"> -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
+
 {% block navbar %}
 <nav class="navbar navbar-default">
     <div class="container">
@@ -61,4 +66,10 @@
     {{ super() }}
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/pbtable.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/meu.js')}}"></script>
+    <script>
+        $('#myTable').pbTable();
+    </script>
 {% endblock %}
