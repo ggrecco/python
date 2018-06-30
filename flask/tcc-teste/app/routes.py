@@ -11,6 +11,7 @@ from celeryF import *
 from datetime import datetime
 import unidecode
 from flask_babel import get_locale
+from flask_weasyprint import HTML, render_pdf
 
 
 # atualiza data de ações
@@ -256,3 +257,16 @@ def listar():
     print(cvsid)
     return render_template('listar.html',
                            title='Listar', cves=cvsid)
+
+
+@app.route('/imprimir<nome>.pdf')
+@login_required
+def imprimir(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('imprimir.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
