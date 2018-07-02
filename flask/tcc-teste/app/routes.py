@@ -14,7 +14,7 @@ from flask_babel import get_locale
 from flask_weasyprint import HTML, render_pdf
 
 
-# atualiza data de ações
+# atualiza data de ações, traduz conforme local
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
