@@ -253,7 +253,6 @@ def altera_servidor(server, serverid):
 @login_required
 def listar():
     cvsid = request.form.getlist('vals')
-    # cvs = vals
     print(cvsid)
     return render_template('listar.html',
                            title='Listar', cves=cvsid)
