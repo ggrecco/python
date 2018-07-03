@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 from app.models import Usuario, Servidor, Dados
@@ -10,13 +10,17 @@ from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
 import unidecode
+from flask_babel import get_locale
+from flask_weasyprint import HTML, render_pdf
 
 
+# atualiza data de ações, traduz conforme local
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
+    g.locale = str(get_locale())
 
 
 # página inicial
@@ -24,16 +28,15 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    posts = [
-        {
-            'author': {'username': 'Bem Vindo '},
-            'body': 'Escrever aqui um breve resumo das' +
-            'funcioanlidades do software.(com links)'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts)
+    return render_template('index.html', title='Home')
 
 
+@app.route('/qr', methods=['GET', 'POST'])
+def qr():
+    return render_template('qr.html', title='Código QR')
+
+
+# página de login
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
@@ -55,12 +58,14 @@ def login():
     return render_template('login.html', title='Entrar', form=form)
 
 
+# logout
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
 
 
+# cadastro
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if current_user.is_authenticated:
@@ -80,6 +85,7 @@ def register():
     return render_template('register.html', title='Registro', form=form)
 
 
+# edição de perfil
 @app.route('/edit_profile', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
@@ -88,7 +94,7 @@ def edit_profile():
         current_user.nome = unidecode.unidecode(form.username.data)
         current_user.email = form.email.data
         db.session.commit()
-        flash('Suas alterações foram salvas(e automaticamente removido as' +
+        flash('Suas alterações foram salvas(e automaticamente removido as ' +
               'acentuações ;) )')
         return redirect(url_for('index'))
     elif request.method == 'GET':
@@ -98,6 +104,7 @@ def edit_profile():
     return render_template('editar.html', title='Editar Perfil', form=form)
 
 
+# exclusão de perfil
 @app.route("/deletar", methods=['GET', 'POST'])
 @login_required
 def deletar():
@@ -116,6 +123,7 @@ def deletar():
                            form=form)
 
 
+# perfil do usuário
 @app.route('/usuario/<username>')
 @login_required
 def user(username):
@@ -126,13 +134,13 @@ def user(username):
                            user=user, dados=dados, servidores=servidores)
 
 
-# tratar o erro para nome unico(igual login)
+# Pesquisar servidor
 @app.route('/servidor', methods=['GET', 'POST'])
 @login_required
 def servidor():
     form = ServidorForm()
     if form.validate_on_submit():
-        flash('O servidor foi registrado,alguarde alguns' +
+        flash('O servidor foi registrado,alguarde alguns ' +
               'minutos antes de consultar.')
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
@@ -148,6 +156,7 @@ def servidor():
                            form=form)
 
 
+# refazer analise
 @app.route('/refazer_<nome>_<url>_<ip>_<user>', methods=['GET', 'POST'])
 @login_required
 def refazer(nome, url, ip, user):
@@ -158,6 +167,7 @@ def refazer(nome, url, ip, user):
     return redirect(url_for('index'))
 
 
+# botão visualizar e dados escaneados
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
@@ -170,6 +180,7 @@ def dados(nome):
                            dados=dados, servidores=servidores)
 
 
+# detalhes da vulnerabilidade
 @app.route('/vul_<cveid>_<nome>', methods=['GET', 'POST'])
 @login_required
 def vul(cveid, nome):
@@ -180,6 +191,7 @@ def vul(cveid, nome):
     return render_template('vul.html', title='Detalhes', dados=dados)
 
 
+# servidores pesqusiados
 @app.route('/ver_servidor<username>', methods=['GET', 'POST'])
 @login_required
 def ver_servidor(username):
@@ -197,6 +209,7 @@ def ver_servidor(username):
                            tamanho=tamanho, lista=lista)
 
 
+#  deletar servidor
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def deleta_servidor(server, serverid):
@@ -214,10 +227,10 @@ def deleta_servidor(server, serverid):
                            form=form)
 
 
+# alterar servidor
 @app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def altera_servidor(server, serverid):
-    # implementar alteração do nome do servidor
     form = AlteraServidorForm()
     user_id = current_user.id
     servidor = Servidor.query.filter_by(nome=server,
@@ -233,3 +246,41 @@ def altera_servidor(server, serverid):
         form.servidor.data = servidor.value('nome')
     return render_template('altera_servidor.html',
                            title='Alterar Servidor', form=form)
+
+
+# imprime pdf
+@app.route('/imprimir<nome>.pdf')
+@login_required
+def imprimir(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('imprimir.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
+
+
+# marcar os checkbox
+@app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcas(cveid, servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
+    d = dados[0].check
+    if d != '1':
+        dados[0].check = '1'
+        db.session.commit()
+        flash('Marcado {}'.format(cveid))
+    else:
+        dados[0].check = '0'
+        db.session.commit()
+        flash('Desmarcado {}'.format(cveid))
+
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)

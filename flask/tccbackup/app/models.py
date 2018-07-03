@@ -52,10 +52,11 @@ class Dados(db.Model):
     cveid = db.Column(db.String(25))
     tipo = db.Column(db.String(25))
     datacorrecao = db.Column(db.String(50))
-    nota = db.Column(db.String(10))
+    nota = db.Column(db.Float(50))
     acesso = db.Column(db.String(100))
     porta = db.Column(db.String(10))
     comentario = db.Column(db.String(5000))
+    check = db.Column(db.String(5))
 
     def __repr__(self):
         return '<Dados {}>'.format(self.produto)

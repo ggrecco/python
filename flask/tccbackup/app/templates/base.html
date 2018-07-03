@@ -3,6 +3,10 @@
 {% block title %}
     {% if title %}{{ title }} - Tcc{% else %}Bem vindo ao TCC{% endif %}
 {% endblock %}
+{% block styles %}
+<!-- <link rel="stylesheet" href="{{url_for('static', filename='css/meu.css')}}"> -->
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
 
 {% block navbar %}
 <nav class="navbar navbar-default">
@@ -21,6 +25,7 @@
             <li><a href="{{ url_for('index') }}">Home</a></li>
             {% if current_user.is_anonymous %}
                 <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li><a href="{{ url_for('qr')}}">Código QR</a></li>
             {% else %}
                 <li><a href="{{ url_for('servidor') }}">Pesquisar</a></li>
                 <li><a href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
@@ -42,7 +47,7 @@
 
 {% block content %}
 
-    <div class="container">
+    <article class="container">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -54,10 +59,17 @@
 
         {# application content needs to be provided in the app_content block #}
         {% block app_content %}{% endblock %}
-    </div>
+    </article>
 {% endblock %}
 
 {% block scripts %}
     {{ super() }}
     {{ moment.include_moment() }}
+    {{ moment.lang(g.locale) }}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/pbtable.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/meu.js')}}"></script>
+    <script>
+        $('#myTable').pbTable();
+    </script>
 {% endblock %}
