@@ -279,4 +279,8 @@ def marcas(cveid, servidor):
         dados[0].check = '0'
         db.session.commit()
         flash('Desmarcado {}'.format(cveid))
-    return render_template('index.html', title='Home')
+
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)
