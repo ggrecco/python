@@ -231,7 +231,6 @@ def deleta_servidor(server, serverid):
 @app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def altera_servidor(server, serverid):
-    # implementar alteração do nome do servidor
     form = AlteraServidorForm()
     user_id = current_user.id
     servidor = Servidor.query.filter_by(nome=server,
@@ -249,15 +248,7 @@ def altera_servidor(server, serverid):
                            title='Alterar Servidor', form=form)
 
 
-@app.route("/listar", methods=['GET', 'POST'])
-@login_required
-def listar():
-    cvsid = request.form.getlist('vals')
-    print(cvsid)
-    return render_template('listar.html',
-                           title='Listar', cves=cvsid)
-
-
+# imprime pdf
 @app.route('/imprimir<nome>.pdf')
 @login_required
 def imprimir(nome):
@@ -269,3 +260,23 @@ def imprimir(nome):
     html = render_template('imprimir.html', title='Vulnerabilidades',
                            dados=dados, servidores=servidores)
     return render_pdf(HTML(string=html))
+
+
+# marcar os checkbox
+@app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcas(cveid, servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
+    d = dados[0].check
+    if d != '1':
+        dados[0].check = '1'
+        db.session.commit()
+        flash('Marcado {}'.format(cveid))
+    else:
+        dados[0].check = '0'
+        db.session.commit()
+        flash('Desmarcado {}'.format(cveid))
+    return render_template('index.html', title='Home')

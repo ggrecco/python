@@ -6,7 +6,6 @@
     <h1>Dados do site:  {{servidor.url}}</h1>
     <h2>Registrado como: {{servidor.nome}}</h2>
     <h6><a href="{{ url_for('imprimir', nome=servidor.nome) }}" target="_blank">Gerar PDF</a></h6>
-
     <hr>
 </div>
 <div class="row">
@@ -24,11 +23,11 @@
 <tbody>
 {% for dado in dados %}
     <tr>
-      {% if dado.check != '1' %}
-        <td class="text-center"><input type="checkbox" name="{{ dado.cveid }}"></td>
-      {% else %}
-        <td class="text-center"><input type="checkbox" name="{{ dado.cveid }}" checked></td>
-      {% endif %}
+        {% if dado.check != '1' %}
+        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox"></a></td>
+        {% else %}
+        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></td>
+        {% endif %}
         <td class="text-center">{{ dado.produto }}</td>
         <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>
       {% if dado.nota < 4.0 %}
