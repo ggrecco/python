@@ -196,14 +196,16 @@ def vul(cveid, nome):
 @login_required
 def ver_servidor(username):
     lista = []
+    n = []
     user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
     tamanho = len(list(dados))
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     for a in servidores:
         sa = a.id
-        lista.append(len(list(Dados.query.filter_by(usuario_id=current_user.id,
-                                                    servidor_id=sa))))
+        n.append(list(Dados.query.filter_by(usuario_id=current_user.id,
+                                            servidor_id=sa, check='0')))
+        lista.append(len(n))
     return render_template('ver_servidor.html', title='Perfil de usuário',
                            user=user, dados=dados, servidores=servidores,
                            tamanho=tamanho, lista=lista)
