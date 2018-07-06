@@ -258,18 +258,38 @@ def altera_servidor(server, serverid):
                            title='Alterar Servidor', form=form)
 
 
-# imprime pdf
+# imprime todos os dados em pdf
 @app.route('/imprimir<nome>.pdf')
 @login_required
-def imprimir(nome):
+def imprimir_todos(nome):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=nome)
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidor_id)
-    html = render_template('imprimir.html', title='Vulnerabilidades',
+    html = render_template('imprimir_todos.html', title='Vulnerabilidades',
                            dados=dados, servidores=servidores)
     return render_pdf(HTML(string=html))
+
+
+# imprime por faixa de valores
+@app.route('/imprimir<nome>.pdf')
+@login_required
+def imprimir_faixa(nome):
+    servidor = Servidor.query.filter_by(usuario_id=current_user.id,
+                                        nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
+    d = dados[0].check
+
+
+# seleciona faixa para impressão
+@app.route('/faixa<nome><min><max>', methods=['GET', 'POST'])
+def faixa(min, max):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
 
 
 # marcar os checkbox
@@ -278,10 +298,10 @@ def imprimir(nome):
 def marcas(cveid, servidor):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=servidor)
-    servidor_id = servidores.value('id')
-    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
-    d = dados[0].check
-    if d != '1':
+    # servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid,
+                                  servidor_id=servidores.value('id'))
+    if dados[0].check != '1':
         dados[0].check = '1'
         db.session.commit()
         flash('Marcado {}'.format(cveid))
@@ -291,6 +311,6 @@ def marcas(cveid, servidor):
         flash('Desmarcado {}'.format(cveid))
 
     dados = Dados.query.filter_by(usuario_id=current_user.id,
-                                  servidor_id=servidor_id)
+                                  servidor_id=servidores.value('id'))
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
