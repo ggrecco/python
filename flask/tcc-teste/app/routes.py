@@ -210,7 +210,6 @@ def ver_servidor(username):
             j = dados_servidor[i].check
             if j == '0':
                 k = k + 1
-                print(k)
             else:
                 pass
             i = i + 1
