@@ -5,7 +5,7 @@ from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, \
         ServidorForm, EditProfileForm, DeletarForm, \
-        AlteraServidorForm
+        AlteraServidorForm, NotaServidorForm
 from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
@@ -83,7 +83,7 @@ def register():
         flash('Por favor, não utilize caractéres especiais como "/ $ #" ' +
               'ou palavras acentuádas.')
     return render_template('register.html', title='Registro', form=form)
-
+ 
 
 # edição de perfil
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -273,14 +273,14 @@ def imprimir_todos(nome):
 
 
 # imprime por faixa de valores
-@app.route('/imprimir<nome>.pdf')
+@app.route('/imprimir<nome>')
 @login_required
-def imprimir_faixa(nome):
-    servidor = Servidor.query.filter_by(usuario_id=current_user.id,
-                                        nome=nome)
-    servidor_id = servidores.value('id')
-    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
-    d = dados[0].check
+def selecionar_faixa_imprimir(nome):
+    form = NotaServidorForm()
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    return render_template('imprimir_faixa.html', servidores=servidores,
+                           form=form)
 
 
 # seleciona faixa para impressão
@@ -298,7 +298,6 @@ def faixa(min, max):
 def marcas(cveid, servidor):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=servidor)
-    # servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(cveid=cveid,
                                   servidor_id=servidores.value('id'))
     if dados[0].check != '1':

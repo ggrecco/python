@@ -4,10 +4,13 @@
     {% if title %}{{ title }} - Tcc{% else %}Bem vindo ao TCC{% endif %}
 {% endblock %}
 {% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/meu.css')}}">
 <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 {% endblock %}
 
 {% block navbar %}
+<div class="carregando" id="carregando"></div>
+<div class="corpo" id="corpo">
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -27,7 +30,7 @@
                 <li><a href="{{ url_for('qr')}}">Código QR</a></li>
             {% else %}
                 <li><a href="{{ url_for('servidor') }}">Pesquisar</a></li>
-                <li><a href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
+                <li><a onclick="clickLoad()" href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
                 <li><a href="{{ url_for('user', username=current_user.nome) }}">Perfil</a></li>
             {% endif %}
         </ul>
@@ -67,4 +70,5 @@
     <script>
       $('#myTable').pbTable();
     </script>
+  </div>
 {% endblock %}
