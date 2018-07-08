@@ -4,8 +4,10 @@
 {% for servidor in servidores %}
 <h1>Site:  {{servidor.url}}</h1>
 {% endfor %}
-<div class="col-md-5"></div>
-<div class="col-md-1">
-  {{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}
+<div class="row">
+  <div class="col-md-5"></div>
+   <div class="col-md-1">
+       {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-primary'}) }}
+   </div>
 </div>
 {% endblock %}

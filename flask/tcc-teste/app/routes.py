@@ -273,25 +273,25 @@ def imprimir_todos(nome):
 
 
 # imprimir por faixa de valores
-@app.route('/imprimir_faixa/<nome>')
+@app.route('/imprimir_faixa/<nome>', methods=['GET', 'POST'])
 @login_required
 def selecionar_faixa_imprimir(nome):
     form = NotaServidorForm()
-    if form.validate_on_submit():
-        return render_template('index')
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=nome)
+    if form.validate_on_submit():
+        minimo = float(form.minimo.data)
+        maximo = float(form.maximo.data)
+        servidor_id = servidores.value('id')
+        dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                      servidor_id=servidor_id)
+        html = render_template('impressao_faixa.html',
+                               title='Vulnerabilidades',
+                               minimo=minimo, maximo=maximo,
+                               dados=dados, servidores=servidores)
+        return render_pdf(HTML(string=html))
     return render_template('imprimir_faixa.html', servidores=servidores,
                            form=form)
-
-
-# seleciona faixa para impressão
-@app.route('/faixa<nome><min><max>', methods=['GET', 'POST'])
-def faixa(min, max):
-    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
-                                          nome=nome)
-    servidor_id = servidores.value('id')
-    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
 
 
 # marcar os checkbox
