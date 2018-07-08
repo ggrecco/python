@@ -73,3 +73,9 @@ class AlteraServidorForm(FlaskForm):
     servidor = StringField('Novo nome para o servidor',
                            validators=[DataRequired()])
     submit = SubmitField('alterar')
+
+
+class NotaServidorForm(FlaskForm):
+    minimo = StringField('Mínimo: ', render_kw={"placeholder": "1"})
+    maximo = StringField('Máximo: ', render_kw={"placeholder": "10"})
+    submit = SubmitField('Filtrar')

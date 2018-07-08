@@ -5,7 +5,7 @@ from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, \
         ServidorForm, EditProfileForm, DeletarForm, \
-        AlteraServidorForm
+        AlteraServidorForm, NotaServidorForm
 from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
@@ -167,7 +167,7 @@ def refazer(nome, url, ip, user):
     return redirect(url_for('index'))
 
 
-# botão visualizar e dados escaneados
+# botão visualizar dados escaneados
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
@@ -258,18 +258,40 @@ def altera_servidor(server, serverid):
                            title='Alterar Servidor', form=form)
 
 
-# imprime pdf
-@app.route('/imprimir<nome>.pdf')
+# imprime todos os dados em pdf
+@app.route('/imprimir_todos/<nome>.pdf')
 @login_required
-def imprimir(nome):
+def imprimir_todos(nome):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=nome)
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidor_id)
-    html = render_template('imprimir.html', title='Vulnerabilidades',
+    html = render_template('imprimir_todos.html', title='Vulnerabilidades',
                            dados=dados, servidores=servidores)
     return render_pdf(HTML(string=html))
+
+
+# imprimir por faixa de valores
+@app.route('/imprimir_faixa/<nome>')
+@login_required
+def selecionar_faixa_imprimir(nome):
+    form = NotaServidorForm()
+    if form.validate_on_submit():
+        return render_template('index')
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    return render_template('imprimir_faixa.html', servidores=servidores,
+                           form=form)
+
+
+# seleciona faixa para impressão
+@app.route('/faixa<nome><min><max>', methods=['GET', 'POST'])
+def faixa(min, max):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
 
 
 # marcar os checkbox
@@ -278,10 +300,9 @@ def imprimir(nome):
 def marcas(cveid, servidor):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=servidor)
-    servidor_id = servidores.value('id')
-    dados = Dados.query.filter_by(cveid=cveid, servidor_id=servidor_id)
-    d = dados[0].check
-    if d != '1':
+    dados = Dados.query.filter_by(cveid=cveid,
+                                  servidor_id=servidores.value('id'))
+    if dados[0].check != '1':
         dados[0].check = '1'
         db.session.commit()
         flash('Marcado {}'.format(cveid))
@@ -291,6 +312,6 @@ def marcas(cveid, servidor):
         flash('Desmarcado {}'.format(cveid))
 
     dados = Dados.query.filter_by(usuario_id=current_user.id,
-                                  servidor_id=servidor_id)
+                                  servidor_id=servidores.value('id'))
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
