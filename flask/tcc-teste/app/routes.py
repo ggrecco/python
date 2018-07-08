@@ -83,7 +83,7 @@ def register():
         flash('Por favor, não utilize caractéres especiais como "/ $ #" ' +
               'ou palavras acentuádas.')
     return render_template('register.html', title='Registro', form=form)
- 
+
 
 # edição de perfil
 @app.route('/edit_profile', methods=['GET', 'POST'])
@@ -167,7 +167,7 @@ def refazer(nome, url, ip, user):
     return redirect(url_for('index'))
 
 
-# botão visualizar e dados escaneados
+# botão visualizar dados escaneados
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
@@ -259,7 +259,7 @@ def altera_servidor(server, serverid):
 
 
 # imprime todos os dados em pdf
-@app.route('/imprimir<nome>.pdf')
+@app.route('/imprimir_todos/<nome>.pdf')
 @login_required
 def imprimir_todos(nome):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
@@ -272,11 +272,13 @@ def imprimir_todos(nome):
     return render_pdf(HTML(string=html))
 
 
-# imprime por faixa de valores
-@app.route('/imprimir<nome>')
+# imprimir por faixa de valores
+@app.route('/imprimir_faixa/<nome>')
 @login_required
 def selecionar_faixa_imprimir(nome):
     form = NotaServidorForm()
+    if form.validate_on_submit():
+        return render_template('index')
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=nome)
     return render_template('imprimir_faixa.html', servidores=servidores,

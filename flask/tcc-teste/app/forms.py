@@ -76,6 +76,6 @@ class AlteraServidorForm(FlaskForm):
 
 
 class NotaServidorForm(FlaskForm):
-    minimo = StringField('Mínimo: ')
-    maximo = StringField('Máximo: ')
+    minimo = StringField('Mínimo: ', render_kw={"placeholder": "1"})
+    maximo = StringField('Máximo: ', render_kw={"placeholder": "10"})
     submit = SubmitField('Filtrar')

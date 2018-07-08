@@ -2,7 +2,10 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% block app_content %}
 {% for servidor in servidores %}
-<h1 class="text-center">Site:  {{servidor.url}}</h1>
-{{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}
+<h1>Site:  {{servidor.url}}</h1>
 {% endfor %}
+<div class="col-md-5"></div>
+<div class="col-md-1">
+  {{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}
+</div>
 {% endblock %}
