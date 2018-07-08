@@ -5,7 +5,7 @@
 <div class="page-header text-center">
     <h1>Dados do site:  {{servidor.url}}</h1>
     <h2>Registrado como: {{servidor.nome}}</h2>
-    <h6><a class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank">Gerar PDF todos</a>
+    <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank">Gerar PDF todos</a>
     <a href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">Selecionar faixa para impressão</a></h6>
     <hr>
 </div>
