@@ -285,11 +285,15 @@ def selecionar_faixa_imprimir(nome):
         servidor_id = servidores.value('id')
         dados = Dados.query.filter_by(usuario_id=current_user.id,
                                       servidor_id=servidor_id)
-        html = render_template('impressao_faixa.html',
-                               title='Vulnerabilidades',
-                               minimo=minimo, maximo=maximo,
-                               dados=dados, servidores=servidores)
-        return render_pdf(HTML(string=html))
+        if minimo <= maximo:
+            html = render_template('impressao_faixa.html',
+                                   title='Vulnerabilidades',
+                                   minimo=minimo, maximo=maximo,
+                                   dados=dados, servidores=servidores)
+            return render_pdf(HTML(string=html))
+        flash('o valor mínimo deve ser menor que o máximo.')
+        return render_template('imprimir_faixa.html', servidores=servidores,
+                               form=form)
     return render_template('imprimir_faixa.html', servidores=servidores,
                            form=form)
 
