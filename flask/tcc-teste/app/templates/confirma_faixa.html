@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+<h1>Olá {{ current_user.nome }}, o deseja fazer?</h1>
+<div class="row">
+  <div class="col-md-4"></div>
+   <div class="col-md-4">
+       <br />
+       <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}"  target="_blank" onclick="imprimir()">Imprimir</a>
+       <a type="button" class="" href="{{ url_for('index') }}">voltar</a>
+   </div>
+</div>
+{% endblock %}

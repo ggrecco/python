@@ -3,13 +3,13 @@
     <h1 class="text-center">Servidores</h1>
 {% if tamanho != 0 %}
 <div class="table-responsive col-md-12">
-    <table class="table table-striped border-spacing padding">
+    <table id="myTable" class="table table-striped border-spacing padding">
     <thead>
         <tr>
             <th class="text-center">Data Scan</th>
             <th class="text-center">Nome</th>
             <th class="text-center">Site</th>
-            <th class="text-center">IP</th>
+            <th class="text-center">IPv4</th>
             <!-- <th class="text-center">Scanear outra vez</th> -->
             <th class="text-center">Opções</th>
         </tr>
@@ -25,7 +25,7 @@
                 <a class="btn btn-warning" href="{{ url_for('altera_servidor',
                 server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
                 <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
-                <a class="btn btn-success" href="{{ url_for('dados',
+                <a onclick="clickLoad()" class="btn btn-success" href="{{ url_for('dados',
                 nome=servidor.nome) }}">Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
             </td>
         </tr>

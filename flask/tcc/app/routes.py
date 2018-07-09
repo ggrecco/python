@@ -5,15 +5,16 @@ from app.models import Usuario, Servidor, Dados
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, \
         ServidorForm, EditProfileForm, DeletarForm, \
-        AlteraServidorForm
+        AlteraServidorForm, NotaServidorForm
 from app.portscan import busca_ip
 from celeryF import *
 from datetime import datetime
 import unidecode
 from flask_babel import get_locale
+from flask_weasyprint import HTML, render_pdf
 
 
-# atualiza data de ações
+# atualiza data de ações, traduz conforme local
 @app.before_request
 def before_request():
     if current_user.is_authenticated:
@@ -27,7 +28,6 @@ def before_request():
 @app.route('/index')
 @login_required
 def index():
-    flash('bem vindo!')
     return render_template('index.html', title='Home')
 
 
@@ -167,7 +167,7 @@ def refazer(nome, url, ip, user):
     return redirect(url_for('index'))
 
 
-# botão visualizar e dados escaneados
+# botão visualizar dados escaneados
 @app.route('/dados_<nome>', methods=['GET', 'POST'])
 @login_required
 def dados(nome):
@@ -196,20 +196,30 @@ def vul(cveid, nome):
 @login_required
 def ver_servidor(username):
     lista = []
-    user = Usuario.query.filter_by(nome=username).first_or_404()
+    # user = Usuario.query.filter_by(nome=username).first_or_404()
     dados = Dados.query.filter_by(usuario_id=current_user.id)
     tamanho = len(list(dados))
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
-    for a in servidores:
-        sa = a.id
-        lista.append(len(list(Dados.query.filter_by(usuario_id=current_user.id,
-                                                    servidor_id=sa))))
+    for servidor in servidores:
+        dados_servidor = Dados.query.filter_by(usuario_id=current_user.id,
+                                               servidor_id=servidor.id)
+
+        k = 0
+        i = 0
+        while i < len(list(dados_servidor)):
+            j = dados_servidor[i].check
+            if j == '0':
+                k = k + 1
+            else:
+                pass
+            i = i + 1
+        lista.append(k)
     return render_template('ver_servidor.html', title='Perfil de usuário',
-                           user=user, dados=dados, servidores=servidores,
+                           dados=dados, servidores=servidores,
                            tamanho=tamanho, lista=lista)
 
 
-# botão de deletar servidor
+#  deletar servidor
 @app.route("/deleta_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def deleta_servidor(server, serverid):
@@ -227,11 +237,10 @@ def deleta_servidor(server, serverid):
                            form=form)
 
 
-# botão de alterar servidor
+# alterar servidor
 @app.route("/altera_servidor<server><serverid>", methods=['GET', 'POST'])
 @login_required
 def altera_servidor(server, serverid):
-    # implementar alteração do nome do servidor
     form = AlteraServidorForm()
     user_id = current_user.id
     servidor = Servidor.query.filter_by(nome=server,
@@ -247,3 +256,66 @@ def altera_servidor(server, serverid):
         form.servidor.data = servidor.value('nome')
     return render_template('altera_servidor.html',
                            title='Alterar Servidor', form=form)
+
+
+# imprime todos os dados em pdf
+@app.route('/imprimir_todos/<nome>.pdf')
+@login_required
+def imprimir_todos(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('imprimir_todos.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
+
+
+# imprimir por faixa de valores
+@app.route('/imprimir_faixa/<nome>', methods=['GET', 'POST'])
+@login_required
+def selecionar_faixa_imprimir(nome):
+    form = NotaServidorForm()
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    if form.validate_on_submit():
+        minimo = float(form.minimo.data)
+        maximo = float(form.maximo.data)
+        servidor_id = servidores.value('id')
+        dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                      servidor_id=servidor_id)
+        if minimo <= maximo:
+            html = render_template('impressao_faixa.html',
+                                   title='Vulnerabilidades',
+                                   minimo=minimo, maximo=maximo,
+                                   dados=dados, servidores=servidores)
+            return render_pdf(HTML(string=html))
+        flash('o valor mínimo deve ser menor que o máximo.')
+        return render_template('imprimir_faixa.html', servidores=servidores,
+                               form=form)
+    return render_template('imprimir_faixa.html', servidores=servidores,
+                           form=form)
+
+
+# marcar os checkbox
+@app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcas(cveid, servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    dados = Dados.query.filter_by(cveid=cveid,
+                                  servidor_id=servidores.value('id'))
+    if dados[0].check != '1':
+        dados[0].check = '1'
+        db.session.commit()
+        flash('Marcado {}'.format(cveid))
+    else:
+        dados[0].check = '0'
+        db.session.commit()
+        flash('Desmarcado {}'.format(cveid))
+
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)

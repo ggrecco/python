@@ -26,12 +26,14 @@ def scraper(procura, nome, porta, user):
         nota = coluna[9].text
         acesso = coluna[10].text
         comentario = coment[i].text.split('\t')[6]
+        check = '0'
         if '\n\t' in tipo:
             tipo = tipo.split('\t')[6]
             d = Dados(autor_usuario=u, autor_servidor=s,
                       produto=produto, cveid=cveid, tipo=tipo,
-                      datacorrecao=datacorrecao, nota=nota, acesso=acesso,
-                      comentario=comentario, porta=porta)
+                      datacorrecao=datacorrecao, nota=float(nota),
+                      acesso=acesso, comentario=comentario, porta=porta,
+                      check=check)
             db.session.add(d)
             db.session.commit()
 
@@ -39,8 +41,9 @@ def scraper(procura, nome, porta, user):
             tipo = tipo.split('\n')[0]
             d = Dados(autor_usuario=u, autor_servidor=s,
                       produto=produto, cveid=cveid, tipo=tipo,
-                      datacorrecao=datacorrecao, nota=nota, acesso=acesso,
-                      comentario=comentario, porta=porta)
+                      datacorrecao=datacorrecao, nota=float(nota),
+                      acesso=acesso, comentario=comentario, porta=porta,
+                      check=check)
             db.session.add(d)
             db.session.commit()
 

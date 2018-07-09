@@ -33,8 +33,8 @@ def busca_ip(site):
     # captura apenas o campo de ip e salva em um arquivo txt
     s = str(site)
     # os.system("host " + s + " | awk '{print $4}' > ip.txt")
-    os.system('ping -c1 ' + s + " | awk '{print $3}' > ip.txt")
-    arq = open('/home/ggrecco/Documentos/python/flask/tcc/ip.txt', 'r')
+    os.system('ping -c1 ' + s + " -4 | awk '{print $3}' > ip.txt")
+    arq = open('/home/ggrecco/Documentos/python/flask/tcc-teste/ip.txt', 'r')
     ip = arq.read()
     b = ip.split("(")
     c = b[1].split(")")

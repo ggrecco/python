@@ -9,9 +9,8 @@ class RegistrationForm(FlaskForm):
     username = StringField('Usuario', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Senha', validators=[DataRequired()])
-    password2 = PasswordField('Repita a senha', validators=[DataRequired(),
-                                                            EqualTo('password')
-                                                            ])
+    password2 = PasswordField('Repita a senha',
+                              validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Registrar')
 
     def validate_username(self, username):
@@ -74,3 +73,11 @@ class AlteraServidorForm(FlaskForm):
     servidor = StringField('Novo nome para o servidor',
                            validators=[DataRequired()])
     submit = SubmitField('alterar')
+
+
+class NotaServidorForm(FlaskForm):
+    minimo = StringField('Mínimo: ', render_kw={"placeholder": "1"},
+                         validators=[DataRequired()])
+    maximo = StringField('Máximo: ', render_kw={"placeholder": "10"},
+                         validators=[DataRequired()])
+    submit = SubmitField('Filtrar', render_kw={"onclick": "clickLoad()"})

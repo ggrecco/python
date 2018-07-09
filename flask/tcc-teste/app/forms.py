@@ -80,4 +80,4 @@ class NotaServidorForm(FlaskForm):
                          validators=[DataRequired()])
     maximo = StringField('Máximo: ', render_kw={"placeholder": "10"},
                          validators=[DataRequired()])
-    submit = SubmitField('Filtrar', render_kw={"target": "_blank"})
+    submit = SubmitField('Filtrar', render_kw={"onclick": "clickLoad()"})

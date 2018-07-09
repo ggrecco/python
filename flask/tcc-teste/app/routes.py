@@ -282,20 +282,28 @@ def selecionar_faixa_imprimir(nome):
     if form.validate_on_submit():
         minimo = float(form.minimo.data)
         maximo = float(form.maximo.data)
-        servidor_id = servidores.value('id')
-        dados = Dados.query.filter_by(usuario_id=current_user.id,
-                                      servidor_id=servidor_id)
         if minimo <= maximo:
-            html = render_template('impressao_faixa.html',
-                                   title='Vulnerabilidades',
-                                   minimo=minimo, maximo=maximo,
-                                   dados=dados, servidores=servidores)
-            return render_pdf(HTML(string=html))
+            return render_template('confirma_faixa.html', nome=nome,
+                                   minimo=minimo, maximo=maximo)
         flash('o valor mínimo deve ser menor que o máximo.')
         return render_template('imprimir_faixa.html', servidores=servidores,
                                form=form)
     return render_template('imprimir_faixa.html', servidores=servidores,
                            form=form)
+
+
+# confirma impressão por faixas
+@app.route("/confirma/<minimo>/<maximo>/<nome>", methods=['GET', 'POST'])
+def confirma(minimo, maximo, nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('impressao_faixa.html',
+                           minimo=float(minimo), maximo=float(maximo),
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
 
 
 # marcar os checkbox

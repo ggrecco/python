@@ -3,8 +3,14 @@
 {% block title %}
     {% if title %}{{ title }} - Tcc{% else %}Bem vindo ao TCC{% endif %}
 {% endblock %}
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/meu.css')}}">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+{% endblock %}
 
 {% block navbar %}
+<div class="carregando" id="carregando"></div>
+<div class="corpo" id="corpo">
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
@@ -24,7 +30,7 @@
                 <li><a href="{{ url_for('qr')}}">Código QR</a></li>
             {% else %}
                 <li><a href="{{ url_for('servidor') }}">Pesquisar</a></li>
-                <li><a href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
+                <li><a onclick="clickLoad()" href="{{ url_for('ver_servidor', username=current_user.nome) }}">Servidores</a></li>
                 <li><a href="{{ url_for('user', username=current_user.nome) }}">Perfil</a></li>
             {% endif %}
         </ul>
@@ -40,10 +46,8 @@
 </nav>
 {% endblock %}
 
-
 {% block content %}
-
-    <div class="container">
+    <article class="container text-center">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for message in messages %}
@@ -51,18 +55,20 @@
              {% endfor %}
         {% endif %}
         {% endwith %}
-
-
-        {# application content needs to be provided in the app_content block #}
-        {% block app_content %}{% endblock %}
-    </div>
+            {# application content needs to be provided in the app_content block #}
+            {% block app_content %}{% endblock %}
+    </article>
 {% endblock %}
 
 {% block scripts %}
-    <!-- exemplo de como usar java script:
-    <script src="{{url_for('.static', filename='myscripts.js')}}"></script> -->
-    <script src="{{url_for('static', filename='js/teste.js')}}"></script>
     {{ super() }}
     {{ moment.include_moment() }}
     {{ moment.lang(g.locale) }}
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="{{url_for('static', filename='js/pbtable.min.js')}}"></script>
+    <script src="{{url_for('static', filename='js/meu.js')}}"></script>
+    <script>
+      $('#myTable').pbTable();
+    </script>
+  </div>
 {% endblock %}
