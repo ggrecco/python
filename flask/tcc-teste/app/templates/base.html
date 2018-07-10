@@ -5,7 +5,8 @@
 {% endblock %}
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/meu.css')}}">
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css')}}">
 {% endblock %}
 
 {% block navbar %}
