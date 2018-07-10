@@ -53,7 +53,8 @@ class ScrapyForm(FlaskForm):
 class ServidorForm(FlaskForm):
     servidor = StringField('Nome para o servidor:',
                            validators=[DataRequired()])
-    url = StringField('Url (site do servidor):', validators=[DataRequired()])
+    url = StringField('Url / IP (site do servidor):',
+                      validators=[DataRequired()])
     registro = SubmitField('Pesquisar')
 
     def validate_servidor(self, servidor):
@@ -77,8 +78,8 @@ class AlteraServidorForm(FlaskForm):
 
 class NotaServidorForm(FlaskForm):
     minimo = StringField('Mínimo: ',
-                         render_kw={"placeholder": "1"},
+                         render_kw={"value": "1"},
                          validators=[DataRequired()])
-    maximo = StringField('Máximo: ', render_kw={"placeholder": "10"},
+    maximo = StringField('Máximo: ', render_kw={"value": "10"},
                          validators=[DataRequired()])
     submit = SubmitField('Filtrar', render_kw={"onclick": "clickLoad()"})
