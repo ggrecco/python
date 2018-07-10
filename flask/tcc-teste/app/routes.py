@@ -318,7 +318,10 @@ def marcaTodos(servidor):
                                   servidor_id=servidores.value('id'))
     i = 0
     while i < len(list(dados)):
-        dados[i].check = '1'
+        if dados[i].check == '1':
+            dados[i].check = '0'
+        else:
+            dados[i].check = '1'
         i = i + 1
     db.session.commit()
     return render_template('dados_servidores.html', title='Home',
