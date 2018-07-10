@@ -14,7 +14,7 @@
 <table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-        <th class="text-center">Exibir</th>
+        <th class="text-center">Exibir<input type="checkbox" name="chkAll" onClick="checkAll(this)" /></th>
         <th class="text-center">Serviço</th>
         <th class="text-center">CVEID</th>
         <th class="text-center">Nota</th>
@@ -27,7 +27,7 @@
         {% if dado.check != '1' %}
         <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox"></a></td>
         {% else %}
-        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></td>
+        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></a></td>
         {% endif %}
         <td class="text-center">{{ dado.produto }}</td>
         <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>
