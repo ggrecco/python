@@ -308,7 +308,24 @@ def confirma(minimo, maximo, nome):
     return render_pdf(HTML(string=html))
 
 
-# marcar os checkbox
+# marcar todos os checkboxes
+@app.route("/marca_todos<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcaTodos(servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    i = 0
+    while i < len(list(dados)):
+        dados[i].check = '1'
+        i = i + 1
+    db.session.commit()
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)
+
+
+# marcar um checkbox
 @app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
 @login_required
 def marcas(cveid, servidor):

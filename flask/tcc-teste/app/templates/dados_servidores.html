@@ -14,7 +14,7 @@
 <table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-        <th class="text-center">Exibir<input type="checkbox" name="chkAll" onClick="checkAll(this)" /></th>
+        <th class="text-center">Exibir<a type="checkbox" href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="checkbox" name="chkAll" onClick="checkAll(this)" /></th>
         <th class="text-center">Serviço</th>
         <th class="text-center">CVEID</th>
         <th class="text-center">Nota</th>
