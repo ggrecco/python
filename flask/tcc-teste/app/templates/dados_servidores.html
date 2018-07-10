@@ -14,7 +14,7 @@
 <table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-        <th class="text-center"><a href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="button" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></th>
+        <th class="text-center"><a href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></th>
         <th class="text-center">Serviço</th>
         <th class="text-center">CVEID</th>
         <th class="text-center">Nota</th>

@@ -2,14 +2,17 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+{% for servidor in servidores %}
 <h1>Olá {{ current_user.nome }}, o deseja fazer?</h1>
 <h3>Imprimir relatório entre {{ minimo }} e {{ maximo }}</h3>
 <div class="row">
   <div class="col-md-4"></div>
    <div class="col-md-4">
        <br />
-       <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}"  target="_blank" onclick="imprimir()">Imprimir</a>
-       <a type="button" class="" href="{{ url_for('index') }}">voltar</a>
+       <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}" class="btn btn-primary btn-lg" target="_blank" onclick="imprimir()">Imprimir faixa selecionada</a>
+       <a class="btn btn-success btn-lg" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">mudar faixa de impressão</a><br />
+       <a href="{{ url_for('index') }}">início</a>
    </div>
 </div>
+{% endfor %}
 {% endblock %}

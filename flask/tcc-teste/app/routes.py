@@ -284,7 +284,8 @@ def selecionar_faixa_imprimir(nome):
         maximo = float(form.maximo.data)
         if minimo <= maximo and minimo >= 1 and maximo <= 10:
             return render_template('confirma_faixa.html', nome=nome,
-                                   minimo=minimo, maximo=maximo)
+                                   minimo=minimo, maximo=maximo,
+                                   servidores=servidores)
         flash('- O valor mínimo deve ser maior que 1')
         flash('- Mínimo deve ser menor que o valor máximo.')
         flash('- Valor máximo não pode ser superior a 10.0')
