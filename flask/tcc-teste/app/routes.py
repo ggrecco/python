@@ -350,3 +350,32 @@ def marcas(cveid, servidor):
                                   servidor_id=servidores.value('id'))
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
+
+
+# quantidade de Notas
+@app.route("/quantidadeNotas<nome>", methods=['GET', 'POST'])
+@login_required
+def quantidadeNotas(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    verde = 0
+    amarelo = 0
+    laranja = 0
+    vermelho = 0
+    i = 0
+    while i < len(list(dados)):
+        if dados[i].check == '0':
+            if dados[i].nota < 4:
+                verde = verde + 1
+            elif dados[i].nota >= 4 and dados[i].nota < 7:
+                amarelo = amarelo + 1
+            elif dados[i].nota >= 7 and dados[i].nota < 9:
+                laranja = laranja + 1
+            else:
+                vermelho = vermelho + 1
+        i = i + 1
+    print('Verde: {}\nAmarelo: {}\nLaranja: {}\nVermelho: {}'.format(
+          verde, amarelo, laranja, vermelho))
+    return render_template('index.html')
