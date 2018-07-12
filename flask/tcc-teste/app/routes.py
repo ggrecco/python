@@ -378,4 +378,5 @@ def quantidadeNotas(nome):
         i = i + 1
     print('Verde: {}\nAmarelo: {}\nLaranja: {}\nVermelho: {}'.format(
           verde, amarelo, laranja, vermelho))
-    return render_template('index.html')
+    return render_template('quantidadeNotas.html', nome=nome, verde=verde,
+                           amarelo=amarelo, laranja=laranja, vermelho=vermelho)
