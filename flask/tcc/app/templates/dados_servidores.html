@@ -6,7 +6,8 @@
     <h1>Dados do site:  {{servidor.url}}</h1>
     <h2>Registrado como: {{servidor.nome}}</h2>
     <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank">Gerar PDF todos</a>
-    <a href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">Selecionar faixa para impressão</a></h6>
+    <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">Selecionar faixa para impressão</a></h6>
+    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank">impressão quantidade notas</a>
     <hr>
 </div>
 <div class="row">
@@ -14,7 +15,7 @@
 <table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-        <th class="text-center">Exibir</th>
+        <th class="text-center"><a href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></th>
         <th class="text-center">Serviço</th>
         <th class="text-center">CVEID</th>
         <th class="text-center">Nota</th>
@@ -27,7 +28,7 @@
         {% if dado.check != '1' %}
         <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox"></a></td>
         {% else %}
-        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></td>
+        <td class="text-center"><a type="checkbox" href="{{ url_for('marcas', cveid=dado.cveid, servidor=servidor.nome) }}"><input type="checkbox" checked></a></td>
         {% endif %}
         <td class="text-center">{{ dado.produto }}</td>
         <td class="text-center"><a href="{{ url_for('vul', cveid=dado.cveid, nome=servidor.nome) }}">{{ dado.cveid }}</a></td>

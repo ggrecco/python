@@ -196,27 +196,60 @@ def vul(cveid, nome):
 @login_required
 def ver_servidor(username):
     lista = []
-    # user = Usuario.query.filter_by(nome=username).first_or_404()
+    d = {}
     dados = Dados.query.filter_by(usuario_id=current_user.id)
     tamanho = len(list(dados))
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     for servidor in servidores:
         dados_servidor = Dados.query.filter_by(usuario_id=current_user.id,
                                                servidor_id=servidor.id)
-
         k = 0
         i = 0
+        verde = 0
+        amarelo = 0
+        laranja = 0
+        vermelho = 0
+        tverde = 0
+        tamarelo = 0
+        tlaranja = 0
+        tvermelho = 0
         while i < len(list(dados_servidor)):
-            j = dados_servidor[i].check
-            if j == '0':
+            if dados_servidor[i].check == '0':
                 k = k + 1
+                if dados_servidor[i].nota < 4:
+                    verde = verde + 1
+                elif dados_servidor[i].nota >= 4 and dados_servidor[i].nota < 7:
+                    amarelo = amarelo + 1
+                elif dados_servidor[i].nota >= 7 and dados_servidor[i].nota < 9:
+                    laranja = laranja + 1
+                else:
+                    vermelho = vermelho + 1
             else:
                 pass
             i = i + 1
+
+        j = 0
+        while j < len(list(dados_servidor)):
+            if dados_servidor[j].nota < 4:
+                tverde = tverde + 1
+            elif dados_servidor[j].nota >= 4 and dados_servidor[j].nota < 7:
+                tamarelo = tamarelo + 1
+            elif dados_servidor[j].nota >= 7 and dados_servidor[j].nota < 9:
+                tlaranja = tlaranja + 1
+            else:
+                tvermelho = tvermelho + 1
+            j = j + 1
+        d[servidor.nome] = {'verde': verde, 'amarelo': amarelo,
+                            'tverde': tverde, 'tamarelo': tamarelo,
+                            'laranja': laranja, 'vermelho': vermelho,
+                            'tlaranja': tlaranja, 'tvermelho': tvermelho}
         lista.append(k)
+
+    print(d)
     return render_template('ver_servidor.html', title='Perfil de usuário',
                            dados=dados, servidores=servidores,
-                           tamanho=tamanho, lista=lista)
+                           tamanho=tamanho, lista=lista,
+                           dici=d)
 
 
 #  deletar servidor
@@ -282,23 +315,54 @@ def selecionar_faixa_imprimir(nome):
     if form.validate_on_submit():
         minimo = float(form.minimo.data)
         maximo = float(form.maximo.data)
-        servidor_id = servidores.value('id')
-        dados = Dados.query.filter_by(usuario_id=current_user.id,
-                                      servidor_id=servidor_id)
-        if minimo <= maximo:
-            html = render_template('impressao_faixa.html',
-                                   title='Vulnerabilidades',
+        if minimo <= maximo and minimo >= 1 and maximo <= 10:
+            return render_template('confirma_faixa.html', nome=nome,
                                    minimo=minimo, maximo=maximo,
-                                   dados=dados, servidores=servidores)
-            return render_pdf(HTML(string=html))
-        flash('o valor mínimo deve ser menor que o máximo.')
+                                   servidores=servidores)
+        flash('- O valor mínimo deve ser maior que 1')
+        flash('- Mínimo deve ser menor que o valor máximo.')
+        flash('- Valor máximo não pode ser superior a 10.0')
         return render_template('imprimir_faixa.html', servidores=servidores,
                                form=form)
     return render_template('imprimir_faixa.html', servidores=servidores,
                            form=form)
 
 
-# marcar os checkbox
+# confirma impressão por faixas
+@app.route("/confirma/<minimo>/<maximo>/<nome>", methods=['GET', 'POST'])
+def confirma(minimo, maximo, nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('impressao_faixa.html',
+                           minimo=float(minimo), maximo=float(maximo),
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
+
+
+# marcar todos os checkboxes
+@app.route("/marca_todos<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcaTodos(servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    i = 0
+    while i < len(list(dados)):
+        if dados[i].check == '1':
+            dados[i].check = '0'
+        else:
+            dados[i].check = '1'
+        i = i + 1
+    db.session.commit()
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)
+
+
+# marcar um checkbox
 @app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
 @login_required
 def marcas(cveid, servidor):
@@ -319,3 +383,53 @@ def marcas(cveid, servidor):
                                   servidor_id=servidores.value('id'))
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
+
+
+# quantidade de Notas
+@app.route("/quantidadeNotas<nome>", methods=['GET', 'POST'])
+@login_required
+def quantidadeNotas(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    site = servidores[0].url
+    verde = 0
+    amarelo = 0
+    laranja = 0
+    vermelho = 0
+    tverde = 0
+    tamarelo = 0
+    tlaranja = 0
+    tvermelho = 0
+    i = 0
+    while i < len(list(dados)):
+        if dados[i].check == '0':
+            if dados[i].nota < 4:
+                verde = verde + 1
+            elif dados[i].nota >= 4 and dados[i].nota < 7:
+                amarelo = amarelo + 1
+            elif dados[i].nota >= 7 and dados[i].nota < 9:
+                laranja = laranja + 1
+            else:
+                vermelho = vermelho + 1
+        i = i + 1
+    j = 0
+    while j < len(list(dados)):
+        if dados[j].nota < 4:
+            tverde = tverde + 1
+        elif dados[j].nota >= 4 and dados[j].nota < 7:
+            tamarelo = tamarelo + 1
+        elif dados[j].nota >= 7 and dados[j].nota < 9:
+            tlaranja = tlaranja + 1
+        else:
+            tvermelho = tvermelho + 1
+        j = j + 1
+    print('\nVerde: {}/{}\nAmarelo: {}/{}\nLaranja: {}/{}\nVermelho: {}/{}\n'.format(
+          verde, tverde, amarelo, tamarelo, laranja, tlaranja, vermelho,
+          tvermelho))
+    html = render_template('quantidadeNotas.html', nome=nome, site=site,
+                           verde=verde, amarelo=amarelo, laranja=laranja,
+                           vermelho=vermelho, tverde=tverde, tamarelo=tamarelo,
+                           tlaranja=tlaranja, tvermelho=tvermelho)
+    return render_pdf(HTML(string=html))

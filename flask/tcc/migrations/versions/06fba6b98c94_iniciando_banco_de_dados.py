@@ -1,8 +1,8 @@
-"""timestamp
+"""iniciando banco de dados
 
-Revision ID: 5950fba44017
+Revision ID: 06fba6b98c94
 Revises: 
-Create Date: 2018-06-08 09:32:03.045447
+Create Date: 2018-07-13 10:29:27.860251
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '5950fba44017'
+revision = '06fba6b98c94'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -48,10 +48,11 @@ def upgrade():
     sa.Column('cveid', sa.String(length=25), nullable=True),
     sa.Column('tipo', sa.String(length=25), nullable=True),
     sa.Column('datacorrecao', sa.String(length=50), nullable=True),
-    sa.Column('nota', sa.String(length=10), nullable=True),
+    sa.Column('nota', sa.Float(precision=50), nullable=True),
     sa.Column('acesso', sa.String(length=100), nullable=True),
     sa.Column('porta', sa.String(length=10), nullable=True),
     sa.Column('comentario', sa.String(length=5000), nullable=True),
+    sa.Column('check', sa.String(length=5), nullable=True),
     sa.ForeignKeyConstraint(['servidor_id'], ['servidor.id'], ),
     sa.ForeignKeyConstraint(['usuario_id'], ['usuario.id'], ),
     sa.PrimaryKeyConstraint('id')
