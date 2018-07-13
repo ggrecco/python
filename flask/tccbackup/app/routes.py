@@ -282,11 +282,13 @@ def selecionar_faixa_imprimir(nome):
     if form.validate_on_submit():
         minimo = float(form.minimo.data)
         maximo = float(form.maximo.data)
-        if minimo <= maximo and minimo >= 1:
+        if minimo <= maximo and minimo >= 1 and maximo <= 10:
             return render_template('confirma_faixa.html', nome=nome,
-                                   minimo=minimo, maximo=maximo)
-        flash('o valor mínimo deve ser maior ' +
-              'que 1 e menor que o valor máximo.')
+                                   minimo=minimo, maximo=maximo,
+                                   servidores=servidores)
+        flash('- O valor mínimo deve ser maior que 1')
+        flash('- Mínimo deve ser menor que o valor máximo.')
+        flash('- Valor máximo não pode ser superior a 10.0')
         return render_template('imprimir_faixa.html', servidores=servidores,
                                form=form)
     return render_template('imprimir_faixa.html', servidores=servidores,
@@ -307,7 +309,27 @@ def confirma(minimo, maximo, nome):
     return render_pdf(HTML(string=html))
 
 
-# marcar os checkbox
+# marcar todos os checkboxes
+@app.route("/marca_todos<servidor>", methods=['GET', 'POST'])
+@login_required
+def marcaTodos(servidor):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    i = 0
+    while i < len(list(dados)):
+        if dados[i].check == '1':
+            dados[i].check = '0'
+        else:
+            dados[i].check = '1'
+        i = i + 1
+    db.session.commit()
+    return render_template('dados_servidores.html', title='Home',
+                           servidores=servidores, dados=dados)
+
+
+# marcar um checkbox
 @app.route("/marcas_<cveid>_<servidor>", methods=['GET', 'POST'])
 @login_required
 def marcas(cveid, servidor):
@@ -328,3 +350,36 @@ def marcas(cveid, servidor):
                                   servidor_id=servidores.value('id'))
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
+
+
+# quantidade de Notas
+@app.route("/quantidadeNotas<nome>", methods=['GET', 'POST'])
+@login_required
+def quantidadeNotas(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidores.value('id'))
+    site = servidores[0].url
+    verde = 0
+    amarelo = 0
+    laranja = 0
+    vermelho = 0
+    i = 0
+    while i < len(list(dados)):
+        if dados[i].check == '0':
+            if dados[i].nota < 4:
+                verde = verde + 1
+            elif dados[i].nota >= 4 and dados[i].nota < 7:
+                amarelo = amarelo + 1
+            elif dados[i].nota >= 7 and dados[i].nota < 9:
+                laranja = laranja + 1
+            else:
+                vermelho = vermelho + 1
+        i = i + 1
+    print('\nVerde: {}\nAmarelo: {}\nLaranja: {}\nVermelho: {}\n'.format(
+          verde, amarelo, laranja, vermelho))
+    html = render_template('quantidadeNotas.html', nome=nome, site=site,
+                           verde=verde, amarelo=amarelo, laranja=laranja,
+                           vermelho=vermelho)
+    return render_pdf(HTML(string=html))
