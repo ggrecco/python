@@ -6,7 +6,6 @@
 <h1>Olá {{ current_user.nome }}, o deseja fazer?</h1>
 <h3>Imprimir relatório entre {{ minimo }} e {{ maximo }}</h3>
 <div class="row">
-  <div class="col-md-4"></div>
    <div class="col-md-4">
        <br />
        <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}" class="btn btn-primary btn-lg" target="_blank" onclick="imprimir()">Imprimir faixa selecionada</a>

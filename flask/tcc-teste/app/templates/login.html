@@ -3,14 +3,18 @@
 
 {% block app_content %}
     <div class="row">
-        <div class="col-md-4"></div>
+      <table>
+        <tr class="vertical-align:center">
+          <td><img src="{{url_for('static', filename='img/login.png')}}"></td>
+          <td>{{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}</td>
+        </tr>
+      </table>
         <div class="col-md-4">
-            <img src="{{url_for('static', filename='img/login.png')}}">
-            {{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}
+          <p>Usuário novo? <a href="{{ url_for('register') }}">Clique para Registrar-se!</a></p>
+          <footer>
+            <p>&copy; 2018 Mascarenhas, Esc.</p>
+          </footer>
+
         </div>
-   </div><br />
-    <p>Usuário novo? <a href="{{ url_for('register') }}">Clique para Registrar-se!</a></p>
-    <footer>
-        <p>&copy; 2018 Mascarenhas, Esc.</p>
-    </footer>
+   </div>
 {% endblock %}
