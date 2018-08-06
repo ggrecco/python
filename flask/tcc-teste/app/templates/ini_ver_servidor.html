@@ -11,10 +11,10 @@
             <th class="text-center">Site</th>
             <th class="text-center">IPv4</th>
             <th class="text-center">Opções</th>
-            <th class="text-center" style="background-color:#ff0000">V</th>
-            <th class="text-center" style="background-color:#ff9c20">L</th>
-            <th class="text-center" style="background-color:#d1ff00">A</th>
             <th class="text-center" style="background-color:#00c400">V</th>
+            <th class="text-center" style="background-color:#d1ff00">A</th>
+            <th class="text-center" style="background-color:#ff9c20">L</th>
+            <th class="text-center" style="background-color:#ff0000">V</th>
         </tr>
     </thead>
 {% for servidor in servidores %}
@@ -28,12 +28,12 @@
                 server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
                 <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
                 <a onclick="clickLoad()" class="btn btn-success" href="{{ url_for('dados',
-                nome=servidor.nome) }}">Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
+                nome=servidor.nome) }}">Visualizar<span class="badge badge-light">?</span></a>
             </td>
-            <td class="text-center">{{dici[servidor.nome]['vermelho']}} / {{dici[servidor.nome]['tvermelho']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['laranja']}} / {{dici[servidor.nome]['tlaranja']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['amarelo']}} / {{dici[servidor.nome]['tamarelo']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['verde']}} / {{dici[servidor.nome]['tverde']}}</td>
+            <td class="text-center"> <img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
+            <td class="text-center"><img class="background-image" src="{{ url_for('static', filename='img/faq2.png') }}"></td>
         </tr>
 {% endfor %}
     </table>
