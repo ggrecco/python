@@ -8,8 +8,8 @@
 <div class="row">
    <div class="col-md-4">
        <br />
-       <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}" class="btn btn-primary btn-lg" target="_blank" onclick="imprimir()">Imprimir faixa selecionada</a>
-       <a class="btn btn-success btn-lg" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">mudar faixa de impressão</a><br />
+       <a href="{{ url_for('confirma', nome=nome, minimo=minimo, maximo=maximo) }}" class="btn btn-primary btn-lg" target="_blank" onclick="imprimir()"><span class="glyphicon glyphicon-print"></span> Imprimir faixa selecionada</a>
+       <a class="btn btn-success btn-lg" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-retweet"></span> mudar faixa de impressão</a><br />
        <a href="{{ url_for('index') }}">início</a>
    </div>
 </div>

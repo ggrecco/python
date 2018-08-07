@@ -5,9 +5,9 @@
 <div class="page-header text-center">
     <h1>Dados do site:  {{servidor.url}}</h1>
     <h2>Registrado como: {{servidor.nome}}</h2>
-    <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank">Gerar PDF todos</a>
-    <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}">Selecionar faixa para impressão</a></h6>
-    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank">impressão quantidade notas</a>
+    <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank"><span class="glyphicon glyphicon-print"></span> Gerar PDF todos</a>
+    <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-print"></span> Selecionar faixa para impressão</a></h6>
+    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> impressão quantidade notas</a>
     <hr>
 </div>
 <div class="row">
@@ -15,7 +15,7 @@
 <table id="myTable" class="table table-striped">
 	<thead>
 		<tr>
-        <th class="text-center"><a href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></th>
+        <th class="text-center"><a href="{{ url_for('marcaTodos', servidor=servidor.nome) }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /><span class="glyphicon glyphicon-list-alt"></span></th>
         <th class="text-center">Serviço</th>
         <th class="text-center">CVEID</th>
         <th class="text-center">Nota</th>
