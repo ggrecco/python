@@ -304,6 +304,20 @@ def imprimir_todos(nome):
     return render_pdf(HTML(string=html))
 
 
+# imprime todos os checkbox
+@app.route('/imprimir_todos_checkbox/<nome>.pdf')
+@login_required
+def imprimir_todos_checkbox(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('imprimir_todos_checkbox.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
+
+
 # imprimir por faixa de valores
 @app.route('/imprimir_faixa/<nome>', methods=['GET', 'POST'])
 @login_required
@@ -382,12 +396,10 @@ def marcas(cveid, servidor):
         dados[0].check = '1'
         db.session.commit()
         flash('Marcado {}'.format(cveid))
-        flash('Check 1 --> {}'.format(dados[0].check))
     else:
         dados[0].check = '0'
         db.session.commit()
         flash('Desmarcado {}'.format(cveid))
-        flash('Check 0 --> {}'.format(dados[0].check))
 
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidores.value('id'))

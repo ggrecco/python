@@ -8,6 +8,7 @@
     <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank"><span class="glyphicon glyphicon-print"></span> Gerar PDF todos</a>
     <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-print"></span> Selecionar faixa para impressão</a></h6>
     <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> impressão quantidade notas</a>
+    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('imprimir_todos_checkbox', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> impressão checkbox</a>
     <hr>
     Marcar:
     <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='1') }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></a>
