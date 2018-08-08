@@ -2,7 +2,19 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <h1>Olá, {{ current_user.nome }}!</h1>
-    <img class="background-image" src="{{url_for('static', filename='img/sucesso.png')}}">
+<table>
+  <tr valign="center">
+    <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/sucesso.png')}}"></td>
 
+    <td><h1>Olá, {{ current_user.nome }}!</h1></td>
+  </tr>
+</table>
+<br />
+<p>Resumo:</p>
+<ol>
+  <li><i>Pesquisar</i> você poderá registrar e pesquisar seu servidor;</li>
+  <li>Servidores</li>
+  <li>Perfil</li>
+</ol>
+<p><i>Este é um software para analise de vulnerabilidades em servidores web. O Software apresenta a analise de algumas falhas, classifica quais erros são de maior preocupação e cadastra um usuário para utilizar o software.</i></p>
 {% endblock %}

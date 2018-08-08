@@ -6,10 +6,10 @@ from flask_login import current_user
 
 
 class RegistrationForm(FlaskForm):
-    username = StringField('Usuario', validators=[DataRequired()])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    password = PasswordField('Senha', validators=[DataRequired()])
-    password2 = PasswordField('Repita a senha',
+    username = StringField('Usuario:', validators=[DataRequired()])
+    email = StringField('Email:', validators=[DataRequired(), Email()])
+    password = PasswordField('Senha:', validators=[DataRequired()])
+    password2 = PasswordField('Repita a senha:',
                               validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Registrar')
 
@@ -31,22 +31,22 @@ class DeletarForm(FlaskForm):
 
 
 class LoginForm(FlaskForm):
-    username = StringField('Usuário', validators=[DataRequired()])
-    password = PasswordField('Senha', validators=[DataRequired()])
-    remember_me = BooleanField('Lembrar')
+    username = StringField('Usuário:', validators=[DataRequired()])
+    password = PasswordField('Senha:', validators=[DataRequired()])
+    remember_me = BooleanField('Lembrar-me')
     submit = SubmitField('Entrar')
 
 
 class EditProfileForm(FlaskForm):
-    username = StringField('Nome de Usuario', validators=[DataRequired()])
-    email = StringField('E-mail', validators=[DataRequired()])
-    email2 = StringField('Repita o e-mail', validators=[DataRequired(),
+    username = StringField('Nome de Usuario:', validators=[DataRequired()])
+    email = StringField('E-mail:', validators=[DataRequired()])
+    email2 = StringField('Repita o e-mail:', validators=[DataRequired(),
                                                         EqualTo('email')])
     submit = SubmitField('alterar')
 
 
 class ScrapyForm(FlaskForm):
-    linguagem = StringField('Linguagem', validators=[DataRequired()])
+    linguagem = StringField('Linguagem:', validators=[DataRequired()])
     submit = SubmitField('Pesquisar')
 
 

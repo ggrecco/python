@@ -2,7 +2,7 @@
 {% block app_content %}
     <h1 class="text-center">Servidores</h1>
 {% if tamanho != 0 %}
-<div class="table-responsive col-md-12">
+
     <table id="myTable" class="table table-striped border-spacing padding">
     <thead>
         <tr>
@@ -10,28 +10,33 @@
             <th class="text-center">Nome</th>
             <th class="text-center">Site</th>
             <th class="text-center">IPv4</th>
-            <!-- <th class="text-center">Scanear outra vez</th> -->
-            <th class="text-center">Opções</th>
+            <th class="text-center" style="width: 225px;">Opções</th>
+            <th class="text-center" style="background-color:#ff0000">V</th>
+            <th class="text-center" style="background-color:#ff9c20">L</th>
+            <th class="text-center" style="background-color:#d1ff00">A</th>
+            <th class="text-center" style="background-color:#00c400">V</th>
         </tr>
     </thead>
-    {% for servidor in servidores %}
+{% for servidor in servidores %}
         <tr class="text-center">
             <td>{{ moment(servidor.timestamp).fromNow() }}</td>
             <td><a href="{{ url_for('dados', nome=servidor.nome) }}">{{ servidor.nome }}</a></td>
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
-            <!-- <td><a class="btn btn-primary" type="submit" href="{{ url_for('refazer', ip=servidor.ip , nome=servidor.nome, url=servidor.url, user=current_user.id) }}">Refazer</a></td>-->
             <td>
                 <a class="btn btn-warning" href="{{ url_for('altera_servidor',
-                server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
-                <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
-                <a onclick="clickLoad()" class="btn btn-success" href="{{ url_for('dados',
-                nome=servidor.nome) }}">Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
+                server=servidor.nome, serverid=servidor.id) }}"><span class="glyphicon glyphicon-pencil"></span> Alterar</a>
+                <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}"><span class="glyphicon glyphicon-trash"></span> Excluir</a><br />
+                <a onclick="clickLoad()" class="btn btn-success botaoMesmoTamanho" href="{{ url_for('dados',
+                nome=servidor.nome) }}"><span style="width: 15%;" class="glyphicon glyphicon-eye-open"></span> Visualizar <span class="badge badge-light" style="width: 35px;">{{ lista[loop.index0] }}</span></a>
             </td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['vermelho']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tvermelho']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['laranja']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tlaranja']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['amarelo']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tamarelo']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['verde']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tverde']}}</u></font></td>
         </tr>
-    {% endfor %}
+{% endfor %}
     </table>
-</div>
 {% else %}
 <div class="alert alert-info text-center">
     Não há servidores pesquisados
