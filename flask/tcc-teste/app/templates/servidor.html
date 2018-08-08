@@ -2,10 +2,13 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-<h1>Olá {{ current_user.nome }}, informe os dados abaixos:</h1>
-<div class="row">
-   <div class="col-md-4">
-       {{ wtf.quick_form(form, button_map={'registro' : 'btn btn-primary btn-lg'}) }}
-   </div>
-</div>
+<table>
+  <tr>
+    <h1>Olá {{ current_user.nome }}, informe os dados abaixos:</h1>
+    <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/Servers2.png')}}" ></td>
+    <td>
+      {{ wtf.quick_form(form, button_map={'registro' : 'btn btn-primary btn-lg'}) }}
+    </td>
+  </tr>
+</table>
 {% endblock %}

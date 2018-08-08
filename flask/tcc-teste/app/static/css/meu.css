@@ -13,3 +13,19 @@
   /* background: url(../img/carregando.gif) 50% 50% no-repeat; */
   /* background: url(http://www.santamargaridadosul.rs.gov.br/_converter/load.gif) 50% 50% no-repeat; */
 }
+
+.iconInput { position: relative }
+.iconInput input { padding-left: 28px }
+.iconInput i { position: absolute; padding: 9px 10px }
+
+.botaoMesmoTamanho {
+  width: 95%;
+  white-space: normal;
+}
+
+.editaImagem {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  /* width: 50%; */
+}

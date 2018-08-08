@@ -2,7 +2,7 @@
 {% block app_content %}
     <h1 class="text-center">Servidores</h1>
 {% if tamanho != 0 %}
-<div class="table-responsive col-md-12">
+
     <table id="myTable" class="table table-striped border-spacing padding">
     <thead>
         <tr>
@@ -10,7 +10,7 @@
             <th class="text-center">Nome</th>
             <th class="text-center">Site</th>
             <th class="text-center">IPv4</th>
-            <th class="text-center">Opções</th>
+            <th class="text-center" style="width: 50px;">Opções</th>
             <th class="text-center" style="background-color:#ff0000">V</th>
             <th class="text-center" style="background-color:#ff9c20">L</th>
             <th class="text-center" style="background-color:#d1ff00">A</th>
@@ -24,20 +24,19 @@
             <td>{{ servidor.url }}</td>
             <td>{{ servidor.ip }}</td>
             <td>
-                <a class="btn btn-warning" href="{{ url_for('altera_servidor',
-                server=servidor.nome, serverid=servidor.id) }}">Alterar</a>
-                <a class="btn btn-danger" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}">Excluir</a>
-                <a onclick="clickLoad()" class="btn btn-success" href="{{ url_for('dados',
-                nome=servidor.nome) }}">Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
+                <a class="btn btn-warning botaoMesmoTamanho" href="{{ url_for('altera_servidor',
+                server=servidor.nome, serverid=servidor.id) }}"><span class="glyphicon glyphicon-pencil"></span> Alterar</a>
+                <a class="btn btn-danger botaoMesmoTamanho" href="{{ url_for('deleta_servidor', server=servidor.nome, serverid=servidor.id) }}"><span class="glyphicon glyphicon-trash"></span> Excluir</a>
+                <a onclick="clickLoad()" class="btn btn-success botaoMesmoTamanho" href="{{ url_for('dados',
+                nome=servidor.nome) }}"><span class="glyphicon glyphicon-eye-open"></span> Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
             </td>
-            <td class="text-center">{{dici[servidor.nome]['vermelho']}} / {{dici[servidor.nome]['tvermelho']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['laranja']}} / {{dici[servidor.nome]['tlaranja']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['amarelo']}} / {{dici[servidor.nome]['tamarelo']}}</td>
-            <td class="text-center">{{dici[servidor.nome]['verde']}} / {{dici[servidor.nome]['tverde']}}</td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['vermelho']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tvermelho']}}</font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['laranja']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tlaranja']}}</font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['amarelo']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tamarelo']}}</font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['verde']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tverde']}}</font></td>
         </tr>
 {% endfor %}
     </table>
-</div>
 {% else %}
 <div class="alert alert-info text-center">
     Não há servidores pesquisados
