@@ -4,7 +4,7 @@
 {% block app_content %}
 <table>
   <tr valign="center">
-    <td><img class="background-image" src="{{url_for('static', filename='img/sucesso.png')}}"></td>
+    <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/sucesso.png')}}"></td>
 
     <td><h1>Olá, {{ current_user.nome }}!</h1></td>
   </tr>
@@ -16,4 +16,5 @@
   <li>Servidores</li>
   <li>Perfil</li>
 </ol>
+<p><i>Este é um software para analise de vulnerabilidades em servidores web. O Software apresenta a analise de algumas falhas, classifica quais erros são de maior preocupação e cadastra um usuário para utilizar o software.</i></p>
 {% endblock %}
