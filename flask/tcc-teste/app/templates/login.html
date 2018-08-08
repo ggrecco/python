@@ -5,16 +5,13 @@
     <div class="row">
       <table>
         <tr class="vertical-align:center">
-          <td><img src="{{url_for('static', filename='img/login.png')}}"></td>
+          <td><img class="editaImagem" style="width: 95%;" src="{{url_for('static', filename='img/login2.png')}}"></td>
           <td>{{ wtf.quick_form(form, button_map={'submit' : 'primary'}) }}</td>
         </tr>
       </table>
-        <div class="col-md-4">
           <p>Usuário novo? <a href="{{ url_for('register') }}">Clique para Registrar-se!</a></p>
           <footer>
             <p>&copy; 2018 Mascarenhas, Esc.</p>
           </footer>
-
-        </div>
    </div>
 {% endblock %}
