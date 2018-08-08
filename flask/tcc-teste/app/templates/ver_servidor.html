@@ -30,10 +30,10 @@
                 <a onclick="clickLoad()" class="btn btn-success botaoMesmoTamanho" href="{{ url_for('dados',
                 nome=servidor.nome) }}"><span class="glyphicon glyphicon-eye-open"></span> Visualizar <span class="badge badge-light">{{ lista[loop.index0] }}</span></a>
             </td>
-            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['vermelho']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tvermelho']}}</font></td>
-            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['laranja']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tlaranja']}}</font></td>
-            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['amarelo']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tamarelo']}}</font></td>
-            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['verde']}}</font> | <font color= "#0000ff">{{dici[servidor.nome]['tverde']}}</font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['vermelho']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tvermelho']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['laranja']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tlaranja']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['amarelo']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tamarelo']}}</u></font></td>
+            <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['verde']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tverde']}}</u></font></td>
         </tr>
 {% endfor %}
     </table>
