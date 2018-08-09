@@ -7,12 +7,12 @@
     <h2>Registrado como: {{servidor.nome}}</h2>
     <h6><a onclick="imprimir()" class="btn btn-primary" href="{{ url_for('imprimir_todos', nome=servidor.nome) }}" target="_blank"><span class="glyphicon glyphicon-print"></span> Gerar PDF todos</a>
     <a class="btn btn-warning" href="{{ url_for('selecionar_faixa_imprimir', nome=servidor.nome) }}"><span class="glyphicon glyphicon-print"></span> Selecionar faixa para impressão</a></h6>
-    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> impressão quantidade notas</a>
     <hr>
     Marcar:
     <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='1') }}"><input type="button" onclick="clickLoad()" class="btn btn-primary" name="chkAll" onClick="checkAll(this)" value="Todos" /></a>
     <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='2') }}"><input type="button" onclick="clickLoad()" class="btn btn-warning" name="chkAll" onClick="checkAll(this)" value="Reverter" /></a>
     <a href="{{ url_for('marcaTodos', servidor=servidor.nome, selecao='0') }}"><input type="button" onclick="clickLoad()" class="btn btn-success" name="chkAll" onClick="checkAll(this)" value="Desmarcar" /></a>
+    <a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('imprimir_todos_checkbox', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span> imprimir marcadas</a>
 </div>
 <div class="row">
 <div class="table-responsive col-md-12">

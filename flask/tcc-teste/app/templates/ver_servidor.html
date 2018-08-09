@@ -34,6 +34,7 @@
             <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['laranja']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tlaranja']}}</u></font></td>
             <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['amarelo']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tamarelo']}}</u></font></td>
             <td class="text-center"><font color="#ff0000">{{dici[servidor.nome]['verde']}}</font> | <font color= "#0000ff"><u>{{dici[servidor.nome]['tverde']}}</u></font></td>
+            <td><a onclick="imprimir()" class="btn btn-sucess" href="{{ url_for('quantidadeNotas', nome=servidor.nome)}}" target="_blank"><span class="glyphicon glyphicon-print"></span>imprimir</a></td>
         </tr>
 {% endfor %}
     </table>

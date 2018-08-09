@@ -416,6 +416,7 @@ def quantidadeNotas(nome):
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidores.value('id'))
     site = servidores[0].url
+    ip = servidores[0].ip
     verde = 0
     amarelo = 0
     laranja = 0
@@ -447,11 +448,9 @@ def quantidadeNotas(nome):
         else:
             tvermelho = tvermelho + 1
         j = j + 1
-    print('\nVerde: {}/{}\nAmarelo: {}/{}\nLaranja: {}/{}\nVermelho: {}/{}\n'.format(
-          verde, tverde, amarelo, tamarelo, laranja, tlaranja, vermelho,
-          tvermelho))
+
     html = render_template('quantidadeNotas.html', nome=nome, site=site,
                            verde=verde, amarelo=amarelo, laranja=laranja,
                            vermelho=vermelho, tverde=tverde, tamarelo=tamarelo,
-                           tlaranja=tlaranja, tvermelho=tvermelho)
+                           tlaranja=tlaranja, tvermelho=tvermelho, ip=ip)
     return render_pdf(HTML(string=html))
