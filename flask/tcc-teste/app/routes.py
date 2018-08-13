@@ -313,7 +313,8 @@ def imprimir_todos_checkbox(nome):
     servidor_id = servidores.value('id')
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidor_id)
-    html = render_template('imprimir_todos_checkbox.html', title='Vulnerabilidades',
+    html = render_template('imprimir_todos_checkbox.html',
+                           title='Vulnerabilidades',
                            dados=dados, servidores=servidores)
     return render_pdf(HTML(string=html))
 
