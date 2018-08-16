@@ -245,7 +245,6 @@ def ver_servidor(username):
                             'tlaranja': tlaranja, 'tvermelho': tvermelho}
         lista.append(k)
 
-    print(d)
     return render_template('ver_servidor.html', title='Perfil de usuário',
                            dados=dados, servidores=servidores,
                            tamanho=tamanho, lista=lista,
@@ -267,7 +266,7 @@ def deleta_servidor(server, serverid):
         flash('Alterações realizadas com sucesso.')
         return redirect(url_for('index'))
     return render_template('deleta_servidor.html', title='Excluir',
-                           form=form)
+                           form=form, servidor=server)
 
 
 # alterar servidor
@@ -301,6 +300,21 @@ def imprimir_todos(nome):
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidor_id)
     html = render_template('imprimir_todos.html', title='Vulnerabilidades',
+                           dados=dados, servidores=servidores)
+    return render_pdf(HTML(string=html))
+
+
+# imprime todos os checkbox
+@app.route('/imprimir_todos_checkbox/<nome>.pdf')
+@login_required
+def imprimir_todos_checkbox(nome):
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=nome)
+    servidor_id = servidores.value('id')
+    dados = Dados.query.filter_by(usuario_id=current_user.id,
+                                  servidor_id=servidor_id)
+    html = render_template('imprimir_todos_checkbox.html',
+                           title='Vulnerabilidades',
                            dados=dados, servidores=servidores)
     return render_pdf(HTML(string=html))
 
@@ -343,20 +357,29 @@ def confirma(minimo, maximo, nome):
 
 
 # marcar todos os checkboxes
-@app.route("/marca_todos<servidor>", methods=['GET', 'POST'])
+@app.route("/marca_todos<servidor><selecao>", methods=['GET', 'POST'])
 @login_required
-def marcaTodos(servidor):
+def marcaTodos(servidor, selecao):
     servidores = Servidor.query.filter_by(usuario_id=current_user.id,
                                           nome=servidor)
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidores.value('id'))
     i = 0
-    while i < len(list(dados)):
-        if dados[i].check == '1':
-            dados[i].check = '0'
-        else:
+    if selecao == '1':
+        while i < len(list(dados)):
             dados[i].check = '1'
-        i = i + 1
+            i = i + 1
+    elif selecao == '2':
+        while i < len(list(dados)):
+            if dados[i].check == '1':
+                dados[i].check = '0'
+            else:
+                dados[i].check = '1'
+            i = i + 1
+    else:
+        while i < len(list(dados)):
+            dados[i].check = '0'
+            i = i + 1
     db.session.commit()
     return render_template('dados_servidores.html', title='Home',
                            servidores=servidores, dados=dados)
@@ -394,6 +417,7 @@ def quantidadeNotas(nome):
     dados = Dados.query.filter_by(usuario_id=current_user.id,
                                   servidor_id=servidores.value('id'))
     site = servidores[0].url
+    ip = servidores[0].ip
     verde = 0
     amarelo = 0
     laranja = 0
@@ -425,11 +449,9 @@ def quantidadeNotas(nome):
         else:
             tvermelho = tvermelho + 1
         j = j + 1
-    print('\nVerde: {}/{}\nAmarelo: {}/{}\nLaranja: {}/{}\nVermelho: {}/{}\n'.format(
-          verde, tverde, amarelo, tamarelo, laranja, tlaranja, vermelho,
-          tvermelho))
+
     html = render_template('quantidadeNotas.html', nome=nome, site=site,
                            verde=verde, amarelo=amarelo, laranja=laranja,
                            vermelho=vermelho, tverde=tverde, tamarelo=tamarelo,
-                           tlaranja=tlaranja, tvermelho=tvermelho)
+                           tlaranja=tlaranja, tvermelho=tvermelho, ip=ip)
     return render_pdf(HTML(string=html))

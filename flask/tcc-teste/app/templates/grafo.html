@@ -6,8 +6,12 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
   </head>
   <body>
+    <div style="text-align: center;">
+      <h1>Servidor:<i> {{nome}}</i></h1>
     <div class="" id="myfirstchart">
     </div>
+    <a href="/index">voltar</a>
+  </div>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
@@ -25,12 +29,12 @@ new Morris.Bar({
   // the chart.
   data: dados,
   // The name of the data record attribute that contains x-values.
-  xkey: 'ANO',
+  xkey: 'COR',
   // A list of names of data record attributes that contain y-values.
-  ykeys: ['EUA','BRA'],
+  ykeys: ['NOTA','TNOTA'],
   // Labels for the ykeys -- will be displayed when you hover over the
   // chart.
-  labels: ['Pop EUA', 'Pop BRA']
+  labels: ['Pendentes', 'Total']
 });
 
 //]]>

@@ -3,11 +3,17 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <h1>Editar Perfil</h1>
-    <div class="row">
-      <div class="col-md-4"></div>
-       <div class="col-md-4">
-           {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-warning'}) }}
-       </div>
-   </div>
+
+<table>
+  <h1>Editar Perfil</h1>
+  <tr>
+    <td>
+      <img class="editaImagem" style="width: 70%;" src="{{url_for('static', filename='img/editar.png')}}">
+    </td>
+    <td>
+      {{ wtf.quick_form(form, button_map={'submit' : 'btn btn-warning'}) }}
+    </td>
+  </tr>
+
+</table>
 {% endblock %}
