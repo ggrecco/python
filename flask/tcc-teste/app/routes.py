@@ -290,6 +290,14 @@ def altera_servidor(server, serverid):
                            title='Alterar Servidor', form=form)
 
 
+@app.route('/baseimprimir')
+@login_required
+def baseimprimir():
+    servidores = Servidor.query.filter_by(usuario_id=current_user.id,
+                                          nome=servidor)
+    return render_template('baseimp.html')
+
+
 # imprime todos os dados em pdf
 @app.route('/imprimir_todos/<nome>.pdf')
 @login_required
@@ -512,26 +520,31 @@ def grafo(nome):
             else:
                 tvermelho = tvermelho + 1
         i = i + 1
+    #
+    # dicionario["COR"] = "Verde"
+    # dicionario["NOTA"] = verde
+    # dicionario["TNOTA"] = tverde
+    # lista.append(dicionario)
+    # dicionario = {}
+    # dicionario["COR"] = "Amarelo"
+    # dicionario["NOTA"] = amarelo
+    # dicionario["TNOTA"] = tamarelo
+    # lista.append(dicionario)
+    # dicionario = {}
+    # dicionario["COR"] = "Laranja"
+    # dicionario["NOTA"] = laranja
+    # dicionario["TNOTA"] = tlaranja
+    # lista.append(dicionario)
+    # dicionario = {}
+    # dicionario["COR"] = "Vermelho"
+    # dicionario["NOTA"] = vermelho
+    # dicionario["TNOTA"] = tvermelho
+    # lista.append(dicionario)
+    # dicionario = {}
 
-    dicionario["COR"] = "Verde"
-    dicionario["NOTA"] = verde
-    dicionario["TNOTA"] = tverde
-    lista.append(dicionario)
-    dicionario = {}
-    dicionario["COR"] = "Amarelo"
-    dicionario["NOTA"] = amarelo
-    dicionario["TNOTA"] = tamarelo
-    lista.append(dicionario)
-    dicionario = {}
-    dicionario["COR"] = "Laranja"
-    dicionario["NOTA"] = laranja
-    dicionario["TNOTA"] = tlaranja
-    lista.append(dicionario)
-    dicionario = {}
-    dicionario["COR"] = "Vermelho"
-    dicionario["NOTA"] = vermelho
-    dicionario["TNOTA"] = tvermelho
-    lista.append(dicionario)
-    dicionario = {}
-
-    return render_template("grafo.html", dados=json.dumps(lista), nome=nome)
+    # return render_template("grafo.html", dados=json.dumps(lista), nome=nome)
+    return render_template("grafo2.html", nome=nome,
+                           verde=verde, amarelo=amarelo,
+                           laranja=laranja,  vermelho=vermelho,
+                           tverde=tverde, tamarelo=tamarelo,
+                           tlaranja=tlaranja, tvermelho=tvermelho)
