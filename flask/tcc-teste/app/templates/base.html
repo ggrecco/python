@@ -30,7 +30,7 @@
                 <li><a href="{{ url_for('qr')}}"><span class="glyphicon glyphicon-qrcode"></span> Código QR</a></li>
             {% else %}
                 <li><a href="{{ url_for('servidor') }}"><span class="glyphicon glyphicon-search"></span> Pesquisar</a></li>
-                <li><a onclick="clickLoad()" href="{{ url_for('ver_servidor', username=current_user.nome) }}"><span class="glyphicon glyphicon-cloud"></span> Servidores</a></li>
+                <li><a onclick="clickLoad()" href="{{ url_for('ver_servidor')}}"><span class="glyphicon glyphicon-cloud"></span> Servidores</a></li>
                 <li><a href="{{ url_for('user', username=current_user.nome) }}"> <span class="glyphicon glyphicon-user"></span> Perfil</a></li>
             {% endif %}
         </ul>

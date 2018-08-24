@@ -14,6 +14,8 @@ from flask_babel import get_locale
 from flask_weasyprint import HTML, render_pdf
 
 
+
+
 # atualiza data de ações, traduz conforme local
 @app.before_request
 def before_request():
@@ -145,15 +147,27 @@ def servidor():
         u = Usuario.query.filter_by(id=current_user.id).first()
         p = busca_ip(form.url.data)
         s = Servidor(nome=form.servidor.data, url=form.url.data,
-                     ip=p, rel_usuario=u)
+                     ip=p, rel_usuario=u, scan='0')
         db.session.add(s)
         db.session.commit()
-        url = form.url.data
-        user = current_user.id
-        scaneando.delay(url, user)
+        # url = form.url.data
+        # user = current_user.id
+        # scaneando.delay(url, user)
         return redirect(url_for('index'))
     return render_template('servidor.html', title='Pesquisar servidor',
                            form=form)
+
+
+@app.route('/scaner<nome>', methods=['GET', 'POST'])
+@login_required
+def scaner(nome):
+    user = current_user.id
+    ser = Servidor.query.filter_by(nome=str(nome)).first()
+    ser.scan = '1'
+    scaneando.delay(str(ser.url), user)
+    db.session.commit()
+    flash("Seu scan será realizado em alguns instantes.")
+    return render_template('index.html')
 
 
 # refazer analise
@@ -192,13 +206,12 @@ def vul(cveid, nome):
 
 
 # servidores pesqusiados
-@app.route('/ver_servidor<username>', methods=['GET', 'POST'])
+@app.route('/ver_servidor', methods=['GET', 'POST'])
 @login_required
-def ver_servidor(username):
+def ver_servidor():
     lista = []
     d = {}
-    dados = Dados.query.filter_by(usuario_id=current_user.id)
-    tamanho = len(list(dados))
+    scans = ['1', '0']
     servidores = Servidor.query.filter_by(usuario_id=current_user.id)
     for servidor in servidores:
         dados_servidor = Dados.query.filter_by(usuario_id=current_user.id,
@@ -244,11 +257,11 @@ def ver_servidor(username):
                             'laranja': laranja, 'vermelho': vermelho,
                             'tlaranja': tlaranja, 'tvermelho': tvermelho}
         lista.append(k)
-
+    #     scans.append(servidor.scan)
+    # print("\n\nScans: ", scans, "\n\n")
     return render_template('ver_servidor.html', title='Perfil de usuário',
-                           dados=dados, servidores=servidores,
-                           tamanho=tamanho, lista=lista,
-                           dici=d)
+                           dados=dados, servidores=servidores, scans=scans,
+                           lista=lista, dici=d)
 
 
 #  deletar servidor

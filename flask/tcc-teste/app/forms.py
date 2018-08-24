@@ -40,8 +40,8 @@ class LoginForm(FlaskForm):
 class EditProfileForm(FlaskForm):
     username = StringField('Nome de Usuario:', validators=[DataRequired()])
     email = StringField('E-mail:', validators=[DataRequired()])
-    email2 = StringField('Repita o e-mail:', validators=[DataRequired(),
-                                                        EqualTo('email')])
+    email2 = StringField('Repita o e-mail:',
+                         validators=[DataRequired(), EqualTo('email')])
     submit = SubmitField('alterar')
 
 
@@ -55,7 +55,7 @@ class ServidorForm(FlaskForm):
                            validators=[DataRequired()])
     url = StringField('Url / IP (site do servidor):',
                       validators=[DataRequired()])
-    registro = SubmitField('Pesquisar')
+    registro = SubmitField('Registrar')
 
     def validate_servidor(self, servidor):
         servidor = Servidor.query.filter_by(nome=servidor.data).first()

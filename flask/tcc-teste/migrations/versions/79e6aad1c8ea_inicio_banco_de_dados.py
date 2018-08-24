@@ -1,8 +1,8 @@
-"""iniciando banco de dados
+"""inicio banco de dados
 
-Revision ID: 06fba6b98c94
+Revision ID: 79e6aad1c8ea
 Revises: 
-Create Date: 2018-07-13 10:29:27.860251
+Create Date: 2018-08-24 10:12:04.234689
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '06fba6b98c94'
+revision = '79e6aad1c8ea'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,6 +33,7 @@ def upgrade():
     sa.Column('nome', sa.String(length=140), nullable=True),
     sa.Column('url', sa.String(length=255), nullable=True),
     sa.Column('ip', sa.String(length=25), nullable=True),
+    sa.Column('scan', sa.String(length=10), nullable=True),
     sa.Column('usuario_id', sa.Integer(), nullable=True),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['usuario_id'], ['usuario.id'], ),
