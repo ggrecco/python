@@ -8,4 +8,4 @@ print("Iniciando nosso robo...\n")
 driver = webdriver.Chrome("C:\Users\gustavo.grecco\robos_python\chromedriver.exe")
 
 # site que será aberto
-driver.get("")
+driver.get("https://registro.br")
