@@ -13,7 +13,7 @@ def main():
     janela_canvas = ResizingCanvas(janela, width=1350, height=750, bg='blue', highlightthickness=0 )
     janela_canvas.pack(fill=BOTH, expand=YES)
 
-
+# pycache?
 
     janela_canvas.addtag_all("all")
     root.mainloop()
