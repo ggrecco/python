@@ -1,25 +1,30 @@
 from tkinter import *
-import random
-import time;
-import datetime
-from ResizingCanvas import ResizingCanvas
+# import random
+# import time;
+# import datetime
+# from ResizingCanvas import ResizingCanvas
 
-def main():
-    root = Tk()
-    root.title('Sistema de vendas')
-    janela = Frame(root)
-    janela.pack(fill=BOTH, expand=YES)
 
-    janela_canvas = ResizingCanvas(janela, width=1350, height=750, bg='blue', highlightthickness=0 )
-    janela_canvas.pack(fill=BOTH, expand=YES)
+# def main():
+#     root = Tk()
+#     root.title('Sistema de vendas')
+#     janela = Frame(root)
+#     janela.pack(fill=BOTH, expand=YES)
+# # janela
+#     janela_canvas = ResizingCanvas(janela, width=1350, height=750, bg='blue', highlightthickness=0 )
+#     janela_canvas.pack(fill=BOTH, expand=YES)
 
-# pycache?
+#     janela_canvas.create_rectangle(50, 25, 150, 75, fill="red")
+#     # janela_canvas.create_text(800, 100, fill="red", text="teste")
+#     # menu_topo = Frame (janela_canvas, width=1350, height=100, bd=8, relief="raise")
+#     # menu_topo.pack(side=TOP, expand=True)
 
-    janela_canvas.addtag_all("all")
-    root.mainloop()
 
-if __name__ == "__main__":
-    main()
+#     janela_canvas.addtag_all("all")
+#     root.mainloop()
+
+# if __name__ == "__main__":
+#     main()
 
 
 # janela = Tk()
