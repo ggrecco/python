@@ -108,7 +108,7 @@ tornado==5.0
 traitlets==4.3.2
 ubuntu-drivers-common==0.0.0
 ufw==0.35
-urllib3==1.22
+urllib3==1.26.5
 urlopen==1.0.0
 virtkey==0.63.0
 virtualenv==15.2.0
