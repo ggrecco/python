@@ -1,5 +1,5 @@
 decorator==4.2.1
-Django==1.8.4
+Django==2.2.24
 django-bootstrap3==9.1.0
 ipython==6.2.1
 ipython-genutils==0.2.0
